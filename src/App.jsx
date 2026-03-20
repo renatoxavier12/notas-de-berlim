@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react'
+import { useState, useCallback, useEffect, useRef } from 'react'
 import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet'
 import 'leaflet/dist/leaflet.css'
 import L from 'leaflet'
@@ -282,20 +282,41 @@ function LikeButton({ slug }) {
   )
 }
 
-function GiscusComments() {
+function GiscusComments({ slug }) {
+  const ref = useRef(null)
+
+  useEffect(() => {
+    if (!ref.current || ref.current.querySelector('iframe')) return
+    const script = document.createElement('script')
+    script.src = 'https://giscus.app/client.js'
+    script.setAttribute('data-repo', 'renatoxavier12/notas-de-berlim')
+    script.setAttribute('data-repo-id', 'R_kgDORsOcnA')
+    script.setAttribute('data-category', 'General')
+    script.setAttribute('data-category-id', 'DIC_kwDORsOcnM4C43ed')
+    script.setAttribute('data-mapping', 'specific')
+    script.setAttribute('data-term', slug)
+    script.setAttribute('data-reactions-enabled', '0')
+    script.setAttribute('data-emit-metadata', '0')
+    script.setAttribute('data-input-position', 'top')
+    script.setAttribute('data-theme', 'light')
+    script.setAttribute('data-lang', 'pt')
+    script.setAttribute('crossorigin', 'anonymous')
+    script.async = true
+    ref.current.appendChild(script)
+  }, [slug])
+
   return (
     <div className="comments-section">
       <p className="share-label" style={{ marginBottom: 16 }}>COMENTÁRIOS</p>
-      <p style={{ fontSize: 14, color: 'var(--gray)', fontFamily: 'var(--font-ui)' }}>
-        Comentários via Giscus — disponíveis quando o site estiver publicado.
-      </p>
+      <div ref={ref} />
     </div>
   )
 }
 
 function ShareBar({ edicao }) {
   const [copied, setCopied] = useState(false)
-  const pageUrl = encodeURIComponent(window.location.href)
+  const canonicalUrl = `https://notasdeberlim.com/edicoes/${edicao.slug}`
+  const pageUrl = encodeURIComponent(canonicalUrl)
   const text = encodeURIComponent(`"${edicao.titulo}" — Notas de Berlim`)
 
   const redes = [
@@ -307,10 +328,10 @@ function ShareBar({ edicao }) {
 
   async function copiar() {
     try {
-      await navigator.clipboard.writeText(window.location.href)
+      await navigator.clipboard.writeText(canonicalUrl)
     } catch {
       const el = document.createElement('textarea')
-      el.value = window.location.href
+      el.value = canonicalUrl
       document.body.appendChild(el)
       el.select()
       document.execCommand('copy')
@@ -341,7 +362,7 @@ function ShareBar({ edicao }) {
           </div>
         </div>
       </div>
-      <GiscusComments />
+      <GiscusComments slug={edicao.slug} />
     </div>
   )
 }

@@ -1,0 +1,10 @@
+{
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "www.notasdeberlim.com" }],
+      "destination": "https://notasdeberlim.com/:path*",
+      "permanent": true
+    }
+  ]
+}
