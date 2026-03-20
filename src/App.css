@@ -653,7 +653,6 @@ button:focus-visible, a:focus-visible {
   flex: 1;
   display: flex;
   overflow: hidden;
-  background: #111;
 }
 
 @media (max-width: 768px) {
@@ -665,71 +664,38 @@ button:focus-visible, a:focus-visible {
     width: 100%;
     height: 35%;
     border-right: none;
-    border-bottom: 2px solid rgba(0,0,0,0.1);
+    border-bottom: 3px solid var(--black);
   }
 }
 
 .sidebar {
-  width: 380px;
-  background: #f8f8f6;
-  border-right: 1px solid rgba(0,0,0,0.05);
+  width: 340px;
+  background: white;
+  border-right: 3px solid var(--black);
   display: flex;
   flex-direction: column;
   flex-shrink: 0;
-  z-index: 10;
 }
 
 .sidebar-header {
-  background: white;
-  padding: 24px 20px;
-  border-bottom: 1px solid rgba(0,0,0,0.05);
+  background: var(--yellow);
+  padding: 16px 20px;
+  border-bottom: 3px solid var(--black);
   flex-shrink: 0;
 }
 
 .sidebar-header h1 {
   margin: 0;
-  font-size: 24px;
-  font-family: var(--font-display);
-  font-weight: 700;
-  letter-spacing: -0.01em;
+  font-size: 18px;
+  font-family: 'Georgia', serif;
+  font-weight: normal;
+  letter-spacing: 0.02em;
 }
 
 .sidebar-content {
   flex: 1;
   overflow-y: auto;
-  padding: 16px;
-  background: #f8f8f6;
-}
-
-.location-item {
-  padding: 16px;
-  margin-bottom: 16px;
-  background: white;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-  cursor: pointer;
-  transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  border: 1px solid transparent;
-}
-
-.location-item:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
-}
-
-.location-img-thumb {
-  width: 100%;
-  height: 160px;
-  object-fit: cover;
-  margin-bottom: 14px;
-  border-radius: 8px;
-}
-
-.location-item h3 {
-  margin: 0 0 6px;
-  font-size: 18px;
-  font-family: var(--font-display);
-  font-weight: 700;
+  padding: 20px;
 }
 
 .map-container {
@@ -737,47 +703,77 @@ button:focus-visible, a:focus-visible {
   position: relative;
 }
 
-/* Popups Orgânicos */
+.leaflet-container {
+  height: 100%;
+  width: 100%;
+}
+
+/* Popups */
 .leaflet-popup-content-wrapper {
-  border-radius: 16px !important;
-  border: none !important;
-  padding: 0 !important;
-  box-shadow: 0 12px 36px rgba(0,0,0,0.2) !important;
-  overflow: hidden;
+  border-radius: 0;
+  border: 2px solid var(--black);
+  padding: 0;
+  box-shadow: 4px 4px 0 rgba(0,0,0,0.15);
 }
 
 .leaflet-popup-content {
-  margin: 0 !important;
-  padding: 0 !important;
-  width: 260px !important;
+  margin: 0;
+  padding: 14px;
 }
 
 .popup-title {
   color: white;
-  padding: 12px 16px;
-  margin: 0;
-  font-family: var(--font-ui);
-  font-weight: 700;
+  padding: 6px 14px;
+  margin: -14px -14px 12px -14px;
+  font-weight: bold;
   font-size: 13px;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.05em;
 }
 
-.popup-body {
-  padding: 16px;
+.location-item {
+  padding: 14px 0;
+  border-bottom: 1px solid var(--border);
+  cursor: pointer;
+  transition: padding-left 0.15s;
+  border-left: 4px solid transparent;
+}
+
+.location-item:hover {
+  padding-left: 8px;
+}
+
+.location-item h3 {
+  margin: 0 0 4px;
+  font-size: 16px;
+  font-weight: normal;
+}
+
+.location-item p {
+  margin: 0;
+  font-size: 13px;
+  color: var(--gray);
+  line-height: 1.4;
+}
+
+.location-img-thumb {
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+  margin-bottom: 12px;
+  border: 1px solid var(--border);
 }
 
 .popup-img {
   width: 100%;
-  height: 140px;
+  height: 100px;
   object-fit: cover;
-  margin-bottom: 12px;
-  border-radius: 8px;
+  margin-bottom: 10px;
   display: block;
 }
 
-.leaflet-popup-tip {
-  box-shadow: none !important;
+.popup-body {
+  padding: 0;
 }
 
 .u-line-tag {
