@@ -445,10 +445,17 @@ function SobreView({ setView, setEdicaoAtiva }) {
 function MapaView({ setView, setEdicaoAtiva }) {
   const [activeLocation, setActiveLocation] = useState(null)
   const [center, setCenter] = useState([52.501, 13.41])
+  const [sidebarOpen, setSidebarOpen] = useState(false)
 
   return (
     <div className="mapa-view">
-      <div className="sidebar">
+      <button
+        className="mapa-toggle-btn"
+        onClick={() => setSidebarOpen(o => !o)}
+      >
+        {sidebarOpen ? '✕ Fechar' : '☰ Locais'}
+      </button>
+      <div className={`sidebar ${sidebarOpen ? 'sidebar-open' : ''}`}>
         <header className="sidebar-header">
           <h1>Mapa</h1>
         </header>
