@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet'
 import 'leaflet/dist/leaflet.css'
 import L from 'leaflet'
@@ -31,7 +31,9 @@ const createStationIcon = (color) =>
 
 function MapRecenter({ coords }) {
   const map = useMap()
-  map.setView(coords, 14)
+  useEffect(() => {
+    map.setView(coords, 14)
+  }, [coords, map])
   return null
 }
 
@@ -297,8 +299,8 @@ function GiscusComments({ slug }) {
     script.setAttribute('data-term', slug)
     script.setAttribute('data-reactions-enabled', '0')
     script.setAttribute('data-emit-metadata', '0')
-    script.setAttribute('data-input-position', 'top')
-    script.setAttribute('data-theme', 'light')
+    script.setAttribute('data-input-position', 'bottom')
+    script.setAttribute('data-theme', 'noborder_light')
     script.setAttribute('data-lang', 'pt')
     script.setAttribute('crossorigin', 'anonymous')
     script.async = true
