@@ -363,6 +363,15 @@ button {
   }
 }
 
+.edicao-capa {
+  width: 100%;
+  max-width: 100%;
+  max-height: 520px;
+  object-fit: cover;
+  display: block;
+  margin-bottom: 40px;
+}
+
 .back-btn {
   font-family: var(--font-ui);
   font-size: 13px;
