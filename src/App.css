@@ -756,6 +756,26 @@ button:focus-visible, a:focus-visible {
   line-height: 1.4;
 }
 
+.location-img-thumb {
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+  margin-bottom: 12px;
+  border: 1px solid var(--border);
+}
+
+.popup-img {
+  width: 100%;
+  height: 100px;
+  object-fit: cover;
+  margin-bottom: 10px;
+  display: block;
+}
+
+.popup-body {
+  padding: 0;
+}
+
 .u-line-tag {
   display: inline-block;
   padding: 2px 7px;

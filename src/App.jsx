@@ -461,6 +461,9 @@ function MapaView({ setView, setEdicaoAtiva }) {
               }}
               style={activeLocation === loc.id ? { borderLeft: `8px solid ${loc.color}` } : {}}
             >
+              {loc.imageUrl && (
+                <img src={loc.imageUrl} alt={loc.name} className="location-img-thumb" />
+              )}
               <h3>{loc.name}</h3>
               <div style={{ display: 'flex', alignItems: 'center', marginBottom: '5px' }}>
                 <span className="u-line-tag" style={{ backgroundColor: loc.color }}>
@@ -496,7 +499,10 @@ function MapaView({ setView, setEdicaoAtiva }) {
                 <div className="popup-title" style={{ backgroundColor: loc.color }}>
                   {loc.name}
                 </div>
-                <div>
+                <div className="popup-body">
+                  {loc.imageUrl && (
+                    <img src={loc.imageUrl} alt={loc.name} className="popup-img" />
+                  )}
                   <p style={{ margin: '0 0 8px', fontSize: '13px' }}>{loc.description}</p>
                   <span style={{ fontWeight: 'bold', fontSize: '12px', color: '#888' }}>Linha {loc.line}</span>
                   {loc.edicaoId && (() => {

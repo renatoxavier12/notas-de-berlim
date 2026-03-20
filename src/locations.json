@@ -6,7 +6,8 @@
     "description": "Bairro em Kreuzberg, espremido entre o Spree e o Landwehrkanal.",
     "line": "U1",
     "color": "#79B643",
-    "edicaoId": 1
+    "edicaoId": 1,
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Streetart_Wrangelkiez_Berlin-Kreuzberg.jpg/640px-Streetart_Wrangelkiez_Berlin-Kreuzberg.jpg"
   },
   {
     "id": 2,
@@ -15,7 +16,8 @@
     "description": "Mercado histórico do séc. XIX. Vinhos em taça e produtores locais.",
     "line": "U1",
     "color": "#79B643",
-    "edicaoId": 1
+    "edicaoId": 1,
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Kreuzberg_Markthalle_IX.JPG/640px-Kreuzberg_Markthalle_IX.JPG"
   },
   {
     "id": 3,
@@ -24,7 +26,8 @@
     "description": "Base de pesquisa do pós-doc. Perto da Potsdamer Platz.",
     "line": "U2",
     "color": "#DA421E",
-    "edicaoId": 1
+    "edicaoId": 1,
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Ibero-American_Institute_Berlin.jpg/640px-Ibero-American_Institute_Berlin.jpg"
   },
   {
     "id": 4,
@@ -33,7 +36,8 @@
     "description": "O pulmão de Kreuzberg, a poucos minutos do apartamento.",
     "line": "U1",
     "color": "#79B643",
-    "edicaoId": 1
+    "edicaoId": 1,
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Berlin-kreuzberg_goerlitzer-park_20050923_527.jpg/640px-Berlin-kreuzberg_goerlitzer-park_20050923_527.jpg"
   },
   {
     "id": 5,
@@ -42,6 +46,7 @@
     "description": "Hambúrguer icônico num antigo banheiro público sob os trilhos da U1.",
     "line": "U1",
     "color": "#79B643",
-    "edicaoId": 1
+    "edicaoId": 1,
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Burgermeister-Schlesisches-Tor_zugeschnitten.jpg/640px-Burgermeister-Schlesisches-Tor_zugeschnitten.jpg"
   }
 ]
