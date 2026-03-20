@@ -1,4 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
+// v1.0.1 - Fix images and naming
+
 import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet'
 import 'leaflet/dist/leaflet.css'
 import L from 'leaflet'

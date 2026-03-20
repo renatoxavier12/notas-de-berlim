@@ -7,7 +7,7 @@
     "line": "U1",
     "color": "#79B643",
     "edicaoId": 1,
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/c/cf/Streetart_Wrangelkiez_Berlin-Kreuzberg.jpg"
+    "imageUrl": "https://images.unsplash.com/photo-1599933334292-16298547275d?auto=format&fit=crop&q=80&w=800"
   },
   {
     "id": 2,
@@ -17,7 +17,7 @@
     "line": "U1",
     "color": "#79B643",
     "edicaoId": 1,
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/b/b3/Kreuzberg_Markthalle_IX.JPG"
+    "imageUrl": "https://images.unsplash.com/photo-1541544185732-f67498909f18?auto=format&fit=crop&q=80&w=800"
   },
   {
     "id": 3,
@@ -27,7 +27,7 @@
     "line": "U2",
     "color": "#DA421E",
     "edicaoId": 1,
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/1/15/Ibero-American_Institute_Berlin.jpg"
+    "imageUrl": "https://images.unsplash.com/photo-1590424744295-886981146761?auto=format&fit=crop&q=80&w=800"
   },
   {
     "id": 4,
@@ -37,7 +37,7 @@
     "line": "U1",
     "color": "#79B643",
     "edicaoId": 1,
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/c/cd/Berlin-kreuzberg_goerlitzer-park_20050923_527.jpg"
+    "imageUrl": "https://images.unsplash.com/photo-1626014903708-39d997869689?auto=format&fit=crop&q=80&w=800"
   },
   {
     "id": 5,
@@ -47,6 +47,6 @@
     "line": "U1",
     "color": "#79B643",
     "edicaoId": 1,
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/e/e5/Burgermeister-Schlesisches-Tor_zugeschnitten.jpg"
+    "imageUrl": "https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&q=80&w=800"
   }
 ]
