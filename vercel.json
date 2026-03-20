@@ -6,8 +6,5 @@
       "destination": "https://notasdeberlim.com/:path*",
       "permanent": true
     }
-  ],
-  "rewrites": [
-    { "source": "/edicoes/:slug", "destination": "/api/edicao-og?slug=:slug" }
   ]
 }
