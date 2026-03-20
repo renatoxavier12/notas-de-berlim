@@ -407,7 +407,7 @@ function SobreView({ setView, setEdicaoAtiva }) {
             <p className="home-kicker">O AUTOR</p>
             <h1 className="sobre-nome">Renato Xavier</h1>
             <p className="sobre-texto">
-              Pós-doutorando CEBRAP/FAPESP e visiting researcher no Ibero-Amerikanisches Institut (IAI), em Berlim. Pesquisador de teoria política e relações internacionais, com foco em W.E.B. Du Bois, algoritmos e racismo. Em março de 2026, chegamos a Kreuzberg: Bia, Tiãozinho (nosso spitz alemão) e eu. Com mala e sem leiteira.
+              Pós-doutorando CEBRAP/FAPESP e pesquisador visitante no Ibero-Amerikanisches Institut (IAI), em Berlim. Pesquisador de teoria política e relações internacionais, com foco em W.E.B. Du Bois, algoritmos e raça. Em março de 2026, chegamos a Kreuzberg: Bia, Tiãozinho (nosso spitz alemão) e eu. Com mala e sem leiteira.
             </p>
             <p className="sobre-texto">
               <em>Notas de Berlim</em> é um caderno aberto sem folhas.
