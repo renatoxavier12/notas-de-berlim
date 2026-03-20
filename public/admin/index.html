@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Notas de Berlim — Admin</title>
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+</head>
+<body>
+  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+  <script>
+    CMS.init({
+      config: {
+        backend: {
+          name: 'github',
+          repo: 'renatoxavier12/notas-de-berlim',
+          branch: 'main',
+          base_url: 'https://notasdeberlim.com',
+          auth_endpoint: 'api/auth',
+        },
+        media_folder: 'public',
+        public_folder: '/',
+        collections: [
+          {
+            name: 'edicoes',
+            label: 'Edições',
+            folder: 'src/edicoes',
+            create: true,
+            slug: '{{slug}}',
+            fields: [
+              { label: 'Título', name: 'title', widget: 'string' },
+              { label: 'Corpo', name: 'body', widget: 'markdown' },
+            ],
+          },
+        ],
+      },
+    })
+  </script>
+</body>
+</html>
