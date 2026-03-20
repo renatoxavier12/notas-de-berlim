@@ -377,6 +377,9 @@ function EdicaoView({ edicao, setView }) {
         <button className="back-btn" onClick={() => setView('home')}>
           ← Arquivo
         </button>
+        {edicao.capa && (
+          <img src={edicao.capa} alt={edicao.titulo} className="edicao-capa" />
+        )}
         <header className="edicao-header">
           <span className="edicao-numero-big">#{String(edicao.id).padStart(2, '0')}</span>
           <h1>{edicao.titulo}</h1>

@@ -364,6 +364,14 @@ button {
   color: var(--black);
 }
 
+.edicao-capa {
+  width: 100%;
+  max-height: 520px;
+  object-fit: cover;
+  display: block;
+  margin-bottom: 40px;
+}
+
 .edicao-header {
   margin-bottom: 48px;
   padding-bottom: 32px;
