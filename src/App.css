@@ -347,7 +347,20 @@ button {
 
 .edicao-view-inner {
   max-width: 660px;
+  width: 100%;
   margin: 0 auto;
+}
+
+@media (min-width: 768px) and (max-width: 1100px) {
+  .edicao-view {
+    padding: 40px 48px 80px;
+  }
+  .edicao-view-inner {
+    max-width: 100%;
+  }
+  .sobre-inner {
+    max-width: 100%;
+  }
 }
 
 .back-btn {
