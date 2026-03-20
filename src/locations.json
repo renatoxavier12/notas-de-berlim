@@ -1,52 +1,52 @@
 [
   {
-    "id": 101,
-    "name": "WRANGELKIEZ",
+    "id": 201,
+    "name": "Wrangelkiez",
     "coords": [52.4996, 13.4444],
     "description": "Bairro em Kreuzberg, espremido entre o Spree e o Landwehrkanal.",
     "line": "U1",
     "color": "#79B643",
     "edicaoId": 1,
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Streetart_Wrangelkiez_Berlin-Kreuzberg.jpg/800px-Streetart_Wrangelkiez_Berlin-Kreuzberg.jpg"
+    "imageUrl": "https://commons.wikimedia.org/w/thumb.php?f=Streetart_Wrangelkiez_Berlin-Kreuzberg.jpg&w=800"
   },
   {
-    "id": 102,
-    "name": "MARKTHALLE NEUN",
+    "id": 202,
+    "name": "Markthalle Neun",
     "coords": [52.5019, 13.4328],
     "description": "Mercado histórico do séc. XIX. Vinhos em taça e produtores locais.",
     "line": "U1",
     "color": "#79B643",
     "edicaoId": 1,
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Kreuzberg_Markthalle_IX.JPG/800px-Kreuzberg_Markthalle_IX.JPG"
+    "imageUrl": "https://commons.wikimedia.org/w/thumb.php?f=Kreuzberg_Markthalle_IX.JPG&w=800"
   },
   {
-    "id": 103,
-    "name": "IBERO-AMERIKANISCHES INSTITUT",
+    "id": 203,
+    "name": "Ibero-Amerikanisches Institut",
     "coords": [52.5064, 13.3703],
     "description": "Base de pesquisa do pós-doc. Perto da Potsdamer Platz.",
     "line": "U2",
     "color": "#DA421E",
     "edicaoId": 1,
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Ibero-American_Institute_Berlin.jpg/800px-Ibero-American_Institute_Berlin.jpg"
+    "imageUrl": "https://commons.wikimedia.org/w/thumb.php?f=Ibero-American_Institute_Berlin.jpg&w=800"
   },
   {
-    "id": 104,
-    "name": "GÖRLITZER PARK",
+    "id": 204,
+    "name": "Görlitzer Park",
     "coords": [52.4965, 13.4365],
     "description": "O pulmão de Kreuzberg, a poucos minutos do apartamento.",
     "line": "U1",
     "color": "#79B643",
     "edicaoId": 1,
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Berlin-kreuzberg_goerlitzer-park_20050923_527.jpg/800px-Berlin-kreuzberg_goerlitzer-park_20050923_527.jpg"
+    "imageUrl": "https://commons.wikimedia.org/w/thumb.php?f=Berlin-kreuzberg_goerlitzer-park_20050923_527.jpg&w=800"
   },
   {
-    "id": 105,
-    "name": "BURGERMEISTER",
+    "id": 205,
+    "name": "Burgermeister",
     "coords": [52.5003, 13.4425],
     "description": "Hambúrguer icônico num antigo banheiro público sob os trilhos da U1 no Schlesisches Tor.",
     "line": "U1",
     "color": "#79B643",
     "edicaoId": 1,
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Burgermeister-Schlesisches-Tor_zugeschnitten.jpg/800px-Burgermeister-Schlesisches-Tor_zugeschnitten.jpg"
+    "imageUrl": "https://commons.wikimedia.org/w/thumb.php?f=Burgermeister-Schlesisches-Tor_zugeschnitten.jpg&w=800"
   }
 ]
