@@ -402,7 +402,12 @@ button {
   text-align: justify;
   hyphens: auto;
   -webkit-hyphens: auto;
-  lang: pt;
+}
+
+/* Foco para acessibilidade */
+button:focus-visible, a:focus-visible {
+  outline: 2px solid var(--yellow);
+  outline-offset: 2px;
 }
 
 .edicao-content p {
@@ -648,6 +653,19 @@ button {
   flex: 1;
   display: flex;
   overflow: hidden;
+}
+
+@media (max-width: 768px) {
+  .mapa-view {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    height: 35%;
+    border-right: none;
+    border-bottom: 3px solid var(--black);
+  }
 }
 
 .sidebar {
