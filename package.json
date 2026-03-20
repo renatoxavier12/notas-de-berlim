@@ -4,18 +4,20 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
+    "dev": "tinacms dev -c \"vite\"",
+    "build": "tinacms build && vite build",
     "lint": "eslint .",
     "preview": "vite preview"
   },
   "dependencies": {
+    "@tinacms/app": "^2.3.30",
     "leaflet": "^1.9.4",
     "lucide-react": "^0.577.0",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
     "react-leaflet": "^5.0.0",
-    "react-markdown": "^10.1.0"
+    "react-markdown": "^10.1.0",
+    "tinacms": "^3.6.3"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.4",
