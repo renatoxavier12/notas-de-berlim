@@ -462,7 +462,7 @@ function MapaView({ setView, setEdicaoAtiva }) {
               style={activeLocation === loc.id ? { borderLeft: `8px solid ${loc.color}` } : {}}
             >
               {loc.imageUrl && (
-                <img src={loc.imageUrl} alt={loc.name} className="location-img-thumb" />
+                <img src={loc.imageUrl} alt={loc.name} className="location-img-thumb" referrerPolicy="no-referrer" />
               )}
               <h3>{loc.name}</h3>
               <div style={{ display: 'flex', alignItems: 'center', marginBottom: '5px' }}>
@@ -501,7 +501,7 @@ function MapaView({ setView, setEdicaoAtiva }) {
                 </div>
                 <div className="popup-body">
                   {loc.imageUrl && (
-                    <img src={loc.imageUrl} alt={loc.name} className="popup-img" />
+                    <img src={loc.imageUrl} alt={loc.name} className="popup-img" referrerPolicy="no-referrer" />
                   )}
                   <p style={{ margin: '0 0 8px', fontSize: '13px' }}>{loc.description}</p>
                   <span style={{ fontWeight: 'bold', fontSize: '12px', color: '#888' }}>Linha {loc.line}</span>
