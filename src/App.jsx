@@ -530,6 +530,35 @@ function App() {
   const [view, setView] = useState('home')
   const [edicaoAtiva, setEdicaoAtiva] = useState(null)
 
+  // Sincroniza a view inicial com a URL
+  useEffect(() => {
+    const path = window.location.pathname
+    if (path.startsWith('/edicoes/')) {
+      const slug = path.replace('/edicoes/', '')
+      const edicao = EDICOES.find(e => e.slug === slug)
+      if (edicao) {
+        setEdicaoAtiva(edicao)
+        setView('edicao')
+      }
+    } else if (path === '/mapa') {
+      setView('mapa')
+    } else if (path === '/sobre') {
+      setView('sobre')
+    }
+  }, [])
+
+  // Atualiza a URL quando a view muda
+  useEffect(() => {
+    let newPath = '/'
+    if (view === 'edicao' && edicaoAtiva) newPath = `/edicoes/${edicaoAtiva.slug}`
+    if (view === 'mapa') newPath = '/mapa'
+    if (view === 'sobre') newPath = '/sobre'
+
+    if (window.location.pathname !== newPath) {
+      window.history.pushState({}, '', newPath)
+    }
+  }, [view, edicaoAtiva])
+
   return (
     <div className={`app-root view-${view}`}>
       <Nav view={view} setView={setView} />
