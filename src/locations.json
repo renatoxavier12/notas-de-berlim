@@ -1,0 +1,47 @@
+[
+  {
+    "id": 1,
+    "name": "Wrangelkiez",
+    "coords": [52.4996, 13.4444],
+    "description": "Bairro em Kreuzberg, espremido entre o Spree e o Landwehrkanal.",
+    "line": "U1",
+    "color": "#79B643",
+    "edicaoId": 1
+  },
+  {
+    "id": 2,
+    "name": "Markthalle Neun",
+    "coords": [52.5019, 13.4328],
+    "description": "Mercado histórico do séc. XIX. Vinhos em taça e produtores locais.",
+    "line": "U1",
+    "color": "#79B643",
+    "edicaoId": 1
+  },
+  {
+    "id": 3,
+    "name": "Ibero-Amerikanisches Institut",
+    "coords": [52.5064, 13.3703],
+    "description": "Base de pesquisa do pós-doc. Perto da Potsdamer Platz.",
+    "line": "U2",
+    "color": "#DA421E",
+    "edicaoId": 1
+  },
+  {
+    "id": 4,
+    "name": "Görlitzer Park",
+    "coords": [52.4965, 13.4365],
+    "description": "O pulmão de Kreuzberg, a poucos minutos do apartamento.",
+    "line": "U1",
+    "color": "#79B643",
+    "edicaoId": 1
+  },
+  {
+    "id": 5,
+    "name": "Burgermeister",
+    "coords": [52.5003, 13.4425],
+    "description": "Hambúrguer icônico num antigo banheiro público sob os trilhos da U1.",
+    "line": "U1",
+    "color": "#79B643",
+    "edicaoId": 1
+  }
+]
