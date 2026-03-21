@@ -335,7 +335,7 @@ button {
   flex: 1;
 }
 
-.edicao-info h3 {
+.edicao-info h2 {
   margin: 0 0 6px;
   font-family: var(--font-display);
   font-size: 24px;
@@ -830,7 +830,7 @@ button:focus-visible, a:focus-visible {
   border-radius: 8px;
 }
 
-.location-item h3 {
+.location-item h2 {
   margin: 0 0 6px;
   font-size: 18px;
   font-family: var(--font-display);
@@ -922,4 +922,125 @@ button:focus-visible, a:focus-visible {
   border-radius: 50%;
   border: 3px solid var(--black);
   box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+/* ── Dark mode ── */
+.nav-theme-toggle {
+  font-size: 17px;
+  color: rgba(255,255,255,0.6);
+  padding: 6px 10px;
+  line-height: 1;
+  transition: color 0.15s;
+}
+
+.nav-theme-toggle:hover {
+  color: var(--yellow);
+}
+
+html[data-theme="dark"] {
+  --bg: #141414;
+  --border: #2a2a2a;
+  --gray: #888;
+}
+
+html[data-theme="dark"] body,
+html[data-theme="dark"] #root {
+  background: #141414;
+  color: #ddd8ce;
+}
+
+html[data-theme="dark"] .home-main {
+  background: #141414;
+}
+
+html[data-theme="dark"] .edicao-card {
+  border-color: #2a2a2a;
+}
+
+html[data-theme="dark"] .edicao-card:first-child {
+  border-color: #2a2a2a;
+}
+
+html[data-theme="dark"] .edicao-card:hover {
+  background: #1e1e1e;
+}
+
+html[data-theme="dark"] .edicao-teaser {
+  color: #999;
+}
+
+html[data-theme="dark"] .edicao-content {
+  color: #ccc8be;
+}
+
+html[data-theme="dark"] .edicao-header {
+  border-bottom-color: #3a3a3a;
+}
+
+html[data-theme="dark"] .edicao-gate::before {
+  background: linear-gradient(to bottom, transparent, #141414);
+}
+
+html[data-theme="dark"] .gate-inner {
+  background: #1e1e1e;
+  border-color: #3a3a3a;
+}
+
+html[data-theme="dark"] .gate-text {
+  color: #aaa;
+}
+
+html[data-theme="dark"] .share-bar {
+  border-top-color: #2a2a2a;
+}
+
+html[data-theme="dark"] .sobre-texto {
+  color: #aaa;
+}
+
+html[data-theme="dark"] .sobre-link {
+  color: #ddd8ce;
+  border-color: #3a3a3a;
+}
+
+html[data-theme="dark"] .sobre-link:hover {
+  background: #ddd8ce;
+  color: #141414;
+}
+
+html[data-theme="dark"] .sobre-edicoes {
+  border-top-color: #3a3a3a;
+}
+
+html[data-theme="dark"] .subscribe-input {
+  background: #1e1e1e;
+  color: #ddd8ce;
+}
+
+html[data-theme="dark"] .search-input {
+  color: #ddd8ce;
+  border-color: #2a2a2a;
+}
+
+html[data-theme="dark"] .search-input:focus {
+  border-color: #888;
+}
+
+html[data-theme="dark"] .sidebar {
+  background: #1a1a1a;
+  border-right-color: #2a2a2a;
+}
+
+html[data-theme="dark"] .sidebar-header {
+  background: #141414;
+  border-bottom-color: #2a2a2a;
+}
+
+html[data-theme="dark"] .location-item {
+  background: #1e1e1e;
+  box-shadow: none;
+}
+
+html[data-theme="dark"] .sidebar-content {
+  background: #1a1a1a;
 }

@@ -79,7 +79,7 @@ function MapRecenter({ coords }) {
   return null
 }
 
-function Nav({ view, setView }) {
+function Nav({ view, setView, dark, setDark }) {
   return (
     <nav className="site-nav">
       <button className="nav-logo" onClick={() => setView('home')}>
@@ -103,6 +103,13 @@ function Nav({ view, setView }) {
           onClick={() => setView('sobre')}
         >
           Sobre
+        </button>
+        <button
+          className="nav-theme-toggle"
+          onClick={() => setDark(d => !d)}
+          aria-label={dark ? 'Modo claro' : 'Modo escuro'}
+        >
+          {dark ? '☀' : '☽'}
         </button>
       </div>
     </nav>
@@ -615,6 +622,12 @@ function MapaView({ setView, setEdicaoAtiva }) {
 function App() {
   const [view, setView] = useState('home')
   const [edicaoAtiva, setEdicaoAtiva] = useState(null)
+  const [dark, setDark] = useState(() => getCookie('theme') === 'dark')
+
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light')
+    setCookie('theme', dark ? 'dark' : 'light')
+  }, [dark])
 
   // Sincroniza a view inicial com a URL
   useEffect(() => {
@@ -666,7 +679,7 @@ function App() {
 
   return (
     <div className={`app-root view-${view}`}>
-      <Nav view={view} setView={setView} />
+      <Nav view={view} setView={setView} dark={dark} setDark={setDark} />
       {view === 'home' && (
         <HomeView setView={setView} setEdicaoAtiva={setEdicaoAtiva} />
       )}
