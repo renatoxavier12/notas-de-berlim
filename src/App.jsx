@@ -184,7 +184,7 @@ function HomeView({ setView, setEdicaoAtiva }) {
         <p className="home-kicker">BERLIM, 2026</p>
         <h1 className="home-title">Notas de Berlim</h1>
         <p className="home-subtitle">
-          Comida, drink, Kultur. Vida em Kreuzberg.<br />Vida em Berlim.
+          Comida, drink, Kultur. Vida em Berlim.
         </p>
         <SubscribeForm />
       </header>

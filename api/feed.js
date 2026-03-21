@@ -52,7 +52,7 @@ export default async function handler(req, res) {
   <channel>
     <title>Notas de Berlim</title>
     <link>https://notasdeberlim.com</link>
-    <description>Comida, drink, Kultur. Vida em Kreuzberg. Vida em Berlim.</description>
+    <description>Comida, drink, Kultur. Vida em Berlim.</description>
     <language>pt-BR</language>
     <atom:link href="https://notasdeberlim.com/api/feed" rel="self" type="application/rss+xml"/>
     ${items}
