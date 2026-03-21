@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
-// v1.0.1 - Fix images and naming
+import { inject } from '@vercel/analytics'
+inject()
 
 import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet'
 import 'leaflet/dist/leaflet.css'
@@ -12,6 +13,16 @@ import markerIcon from 'leaflet/dist/images/marker-icon.png'
 import markerShadow from 'leaflet/dist/images/marker-shadow.png'
 
 const markdownFiles = import.meta.glob('./edicoes/*.md', { query: '?raw', import: 'default', eager: true })
+
+function getCookie(name) {
+  const match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'))
+  return match ? decodeURIComponent(match[2]) : null
+}
+
+function setCookie(name, value, days = 365) {
+  const expires = new Date(Date.now() + days * 864e5).toUTCString()
+  document.cookie = `${name}=${encodeURIComponent(value)};expires=${expires};path=/;SameSite=Lax`
+}
 
 function parseFrontmatter(raw) {
   const match = raw.match(/^---\n([\s\S]*?)\n---\n?([\s\S]*)$/)
@@ -205,7 +216,7 @@ function EdicaoGate({ onUnlock }) {
       if (res.ok) {
         const data = await res.json()
         if (data.isSubscribed) {
-          localStorage.setItem('nb_email', email)
+          setCookie('nb_email', email)
           onUnlock()
         } else {
           setStatus('not_subscribed')
@@ -289,12 +300,12 @@ const IconHeart = ({ filled }) => (
 
 function LikeButton({ slug }) {
   const key = `nb_like_${slug}`
-  const [liked, setLiked] = useState(() => localStorage.getItem(key) === 'true')
+  const [liked, setLiked] = useState(() => getCookie(key) === 'true')
 
   function toggle() {
     const next = !liked
     setLiked(next)
-    localStorage.setItem(key, String(next))
+    setCookie(key, String(next))
   }
 
   return (
@@ -398,7 +409,7 @@ function EdicaoView({ edicao, setView }) {
   const hasMore = parts.length > 1
   const rest = parts.slice(1).join('\n\n---\n\n')
 
-  const [unlocked, setUnlocked] = useState(() => !!localStorage.getItem('nb_email'))
+  const [unlocked, setUnlocked] = useState(() => !!getCookie('nb_email'))
 
   return (
     <div className="edicao-view">

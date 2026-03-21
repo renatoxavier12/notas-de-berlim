@@ -23,6 +23,21 @@ export default async function handler(req, res) {
     });
 
     if (brevoRes.ok || brevoRes.status === 204) {
+      // Notifica o autor por email
+      await fetch('https://api.brevo.com/v3/smtp/email', {
+        method: 'POST',
+        headers: {
+          'api-key': process.env.BREVO_API_KEY,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          sender: { name: 'Notas de Berlim', email: 'renatoxavier12@gmail.com' },
+          to: [{ email: 'renatoxavier12@gmail.com' }],
+          subject: 'Novo inscrito no Notas de Berlim',
+          htmlContent: `<p style="font-family:monospace;">Novo inscrito: <strong>${email}</strong></p>`,
+        }),
+      }).catch(() => {}) // silencioso se falhar
+
       return res.status(200).json({ success: true });
     } else {
       const data = await brevoRes.json();
