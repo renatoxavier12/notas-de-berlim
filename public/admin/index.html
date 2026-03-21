@@ -12,11 +12,19 @@
     <div style="display:flex;gap:20px;">
       <button onclick="toggleView('cms')" id="btn-cms" style="background:none;border:none;color:#F0D722;cursor:pointer;font-weight:bold;text-transform:uppercase;">📝 Conteúdo</button>
       <button onclick="toggleView('comments')" id="btn-comments" style="background:none;border:none;color:#888;cursor:pointer;font-weight:bold;text-transform:uppercase;">💬 Comentários</button>
+      <button onclick="toggleView('audience')" id="btn-audience" style="background:none;border:none;color:#888;cursor:pointer;font-weight:bold;text-transform:uppercase;">👥 Audiência</button>
     </div>
     <div style="display:flex;gap:20px;align-items:center;">
       <a href="/" style="color:#888;text-decoration:none;letter-spacing:1px;text-transform:uppercase;font-weight:bold;">⌂ Site</a>
       <a href="/admin/preview.html" style="color:#F0D722;text-decoration:none;letter-spacing:1px;text-transform:uppercase;">Preview de Email →</a>
     </div>
+  </div>
+
+  <!-- Audiência -->
+  <div id="audience-admin" style="display:none; padding: 48px 24px; font-family: monospace; background: #f5f4f0; min-height: 100vh;">
+    <p style="font-size:11px;letter-spacing:0.15em;color:#888;text-transform:uppercase;margin:0 0 16px;">LISTA DE INSCRITOS</p>
+    <div id="audience-total" style="font-size:80px;font-weight:bold;line-height:1;color:#0a0a0a;">—</div>
+    <p id="audience-label" style="font-size:14px;color:#666;margin:8px 0 0;">carregando...</p>
   </div>
 
   <!-- Custom Comments Admin -->
@@ -31,20 +39,29 @@
     function toggleView(view) {
       const cms = document.querySelector('#nc-root');
       const comments = document.querySelector('#comments-admin');
-      const btnCms = document.querySelector('#btn-cms');
-      const btnComments = document.querySelector('#btn-comments');
+      const audience = document.querySelector('#audience-admin');
+      const btns = { cms: '#btn-cms', comments: '#btn-comments', audience: '#btn-audience' };
 
-      if (view === 'cms') {
-        if (cms) cms.style.display = 'block';
-        comments.style.display = 'none';
-        btnCms.style.color = '#F0D722';
-        btnComments.style.color = '#888';
-      } else {
-        if (cms) cms.style.display = 'none';
-        comments.style.display = 'block';
-        btnCms.style.color = '#888';
-        btnComments.style.color = '#F0D722';
-        loadComments();
+      if (cms) cms.style.display = view === 'cms' ? 'block' : 'none';
+      comments.style.display = view === 'comments' ? 'block' : 'none';
+      audience.style.display = view === 'audience' ? 'block' : 'none';
+
+      Object.keys(btns).forEach(k => {
+        document.querySelector(btns[k]).style.color = k === view ? '#F0D722' : '#888';
+      });
+
+      if (view === 'comments') loadComments();
+      if (view === 'audience') loadAudience();
+    }
+
+    async function loadAudience() {
+      try {
+        const res = await fetch('/api/audience');
+        const data = await res.json();
+        document.querySelector('#audience-total').textContent = data.total ?? '—';
+        document.querySelector('#audience-label').textContent = data.total === 1 ? 'inscrito' : 'inscritos';
+      } catch {
+        document.querySelector('#audience-label').textContent = 'erro ao carregar';
       }
     }
 
