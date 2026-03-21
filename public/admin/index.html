@@ -28,7 +28,11 @@
             create: true,
             slug: '{{slug}}',
             fields: [
+              { label: 'Número (#)', name: 'id', widget: 'number', value_type: 'int' },
               { label: 'Título', name: 'title', widget: 'string' },
+              { label: 'Data', name: 'data', widget: 'string', hint: 'Ex: 21 de março de 2026' },
+              { label: 'Bairro / Local', name: 'bairro', widget: 'string', hint: 'Ex: Kreuzberg / Wrangelkiez' },
+              { label: 'Teaser', name: 'teaser', widget: 'text', hint: 'Frase que aparece na lista de edições' },
               { label: 'Foto de capa', name: 'capa', widget: 'image', required: false },
               { label: 'Corpo', name: 'body', widget: 'markdown' },
             ],

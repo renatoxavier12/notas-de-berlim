@@ -7,12 +7,41 @@ import L from 'leaflet'
 import ReactMarkdown from 'react-markdown'
 import './App.css'
 import LOCATIONS from './locations.json'
-import { EDICOES } from './data/edicoes.js'
 
 import markerIcon from 'leaflet/dist/images/marker-icon.png'
 import markerShadow from 'leaflet/dist/images/marker-shadow.png'
 
 const markdownFiles = import.meta.glob('./edicoes/*.md', { query: '?raw', import: 'default', eager: true })
+
+function parseFrontmatter(raw) {
+  const match = raw.match(/^---\n([\s\S]*?)\n---\n?([\s\S]*)$/)
+  if (!match) return { meta: {}, content: raw }
+  const meta = {}
+  match[1].split('\n').forEach(line => {
+    const colonIdx = line.indexOf(':')
+    if (colonIdx === -1) return
+    const key = line.slice(0, colonIdx).trim()
+    const value = line.slice(colonIdx + 1).trim().replace(/^["']|["']$/g, '')
+    if (key) meta[key] = value
+  })
+  return { meta, content: match[2].trim() }
+}
+
+const EDICOES = Object.entries(markdownFiles)
+  .map(([path, raw]) => {
+    const slug = path.replace('./edicoes/', '').replace('.md', '')
+    const { meta } = parseFrontmatter(raw)
+    return {
+      id: meta.id ? parseInt(meta.id) : 0,
+      slug,
+      titulo: meta.title || slug,
+      data: meta.data || '',
+      bairro: meta.bairro || '',
+      teaser: meta.teaser || '',
+      capa: meta.capa || null,
+    }
+  })
+  .sort((a, b) => a.id - b.id)
 
 let DefaultIcon = L.icon({
   iconUrl: markerIcon,
