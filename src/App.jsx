@@ -594,6 +594,25 @@ function App() {
     }
   }, [])
 
+  // Atalho secreto: pressionar A três vezes vai para /admin
+  useEffect(() => {
+    let count = 0
+    let timer
+    function handleKey(e) {
+      if (e.key === 'a' || e.key === 'A') {
+        count++
+        clearTimeout(timer)
+        timer = setTimeout(() => { count = 0 }, 800)
+        if (count >= 3) {
+          count = 0
+          window.location.href = '/admin'
+        }
+      }
+    }
+    window.addEventListener('keydown', handleKey)
+    return () => window.removeEventListener('keydown', handleKey)
+  }, [])
+
   // Atualiza a URL quando a view muda
   useEffect(() => {
     let newPath = '/'
