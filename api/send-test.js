@@ -40,7 +40,7 @@ function buildEmailHtml(markdown, slug) {
       <a href="${edicaoUrl}" style="background:#F0D722;color:#0a0a0a;padding:12px 24px;text-decoration:none;font-weight:bold;font-family:monospace;display:inline-block;">Ler no site →</a>
     </div>
     <div style="margin-top:40px;font-family:monospace;font-size:11px;color:#999;">
-      Você assinou o Entrelaçe e agora nos encontra aqui também — casa nova, mesma escrita.
+      Você assinou o Entrelaçe e agora nos encontra aqui também. Casa nova, mesma escrita.
     </div>
   </div>
 </body>
