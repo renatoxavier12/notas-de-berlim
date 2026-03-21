@@ -433,6 +433,25 @@ function ShareBar({ edicao }) {
   )
 }
 
+function ReadingProgress() {
+  const [progress, setProgress] = useState(0)
+
+  useEffect(() => {
+    function update() {
+      const el = document.documentElement
+      const scrolled = el.scrollTop || document.body.scrollTop
+      const total = el.scrollHeight - el.clientHeight
+      setProgress(total > 0 ? Math.min(100, (scrolled / total) * 100) : 0)
+    }
+    window.addEventListener('scroll', update, { passive: true })
+    return () => window.removeEventListener('scroll', update)
+  }, [])
+
+  return (
+    <div className="reading-progress-bar" style={{ width: `${progress}%` }} />
+  )
+}
+
 function EdicaoView({ edicao, setView }) {
   const key = `./edicoes/${edicao.slug}.md`
   const raw = markdownFiles[key] || '_Conteúdo não encontrado._'
@@ -447,6 +466,7 @@ function EdicaoView({ edicao, setView }) {
 
   return (
     <div className="edicao-view">
+      <ReadingProgress />
       <div className="edicao-view-inner">
         <button className="back-btn" onClick={() => setView('home')}>
           ← Arquivo

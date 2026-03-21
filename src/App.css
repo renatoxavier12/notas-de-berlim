@@ -924,6 +924,18 @@ button:focus-visible, a:focus-visible {
   box-shadow: 0 2px 8px rgba(0,0,0,0.2);
 }
 
+/* ── Barra de progresso de leitura ── */
+.reading-progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  background: var(--yellow);
+  z-index: 9999;
+  transition: width 0.1s linear;
+  pointer-events: none;
+}
+
 /* ── Dark mode ── */
 .nav-theme-toggle {
   font-size: 17px;
