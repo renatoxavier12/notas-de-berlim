@@ -485,8 +485,9 @@ function SobreView({ setView, setEdicaoAtiva }) {
               <em>Notas de Berlim</em> é um caderno aberto sem folhas.
             </p>
             <div className="sobre-links">
+              <a href="https://instagram.com/renatoxavierrr" target="_blank" rel="noopener noreferrer" className="sobre-link">Instagram</a>
               <a href="https://renatoxavier.substack.com" target="_blank" rel="noopener noreferrer" className="sobre-link">Substack</a>
-              <a href="https://www.iai.spk-berlin.de" target="_blank" rel="noopener noreferrer" className="sobre-link">IAI Berlin</a>
+              <a href="mailto:renatoxavier12@gmail.com" className="sobre-link">Contato</a>
             </div>
           </div>
         </div>
