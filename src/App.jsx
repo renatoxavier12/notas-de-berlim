@@ -163,7 +163,21 @@ function SubscribeForm() {
   )
 }
 
+function readingTime(markdown) {
+  const text = markdown.replace(/^---[\s\S]*?---\n?/, '').replace(/[#*`\[\]_]/g, '')
+  const words = text.trim().split(/\s+/).length
+  return `${Math.ceil(words / 200)} min`
+}
+
 function HomeView({ setView, setEdicaoAtiva }) {
+  const [query, setQuery] = useState('')
+  const filtered = EDICOES.filter(e =>
+    !query ||
+    e.titulo.toLowerCase().includes(query.toLowerCase()) ||
+    (e.teaser || '').toLowerCase().includes(query.toLowerCase()) ||
+    (e.bairro || '').toLowerCase().includes(query.toLowerCase())
+  )
+
   return (
     <div className="home-view">
       <header className="home-header">
@@ -176,9 +190,21 @@ function HomeView({ setView, setEdicaoAtiva }) {
       </header>
 
       <main className="home-main">
-        <p className="section-label">EDIÇÕES</p>
+        <div className="archive-header">
+          <p className="section-label">EDIÇÕES</p>
+          <input
+            className="search-input"
+            type="text"
+            placeholder="Buscar..."
+            value={query}
+            onChange={e => setQuery(e.target.value)}
+          />
+        </div>
         <div className="edicoes-list">
-          {EDICOES.map((e) => (
+          {filtered.length === 0 && (
+            <p className="search-empty">Nenhuma edição encontrada.</p>
+          )}
+          {filtered.map((e) => (
             <button
               key={e.id}
               className="edicao-card"
@@ -424,7 +450,7 @@ function EdicaoView({ edicao, setView }) {
           <span className="edicao-numero-big">#{String(edicao.id).padStart(2, '0')}</span>
           <h1>{edicao.titulo}</h1>
           <p className="edicao-meta">
-            {edicao.data} · {edicao.bairro}
+            {edicao.data} · {edicao.bairro} · {readingTime(content)}
           </p>
         </header>
         <article className="edicao-content">

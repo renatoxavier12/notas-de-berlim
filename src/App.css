@@ -248,6 +248,39 @@ button {
   padding: 48px 24px 80px;
 }
 
+.archive-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.archive-header .section-label {
+  margin-bottom: 0;
+}
+
+.search-input {
+  font-family: var(--font-ui);
+  font-size: 12px;
+  border: 1px solid var(--border);
+  background: transparent;
+  padding: 6px 12px;
+  outline: none;
+  width: 140px;
+  color: var(--black);
+}
+
+.search-input:focus {
+  border-color: var(--black);
+}
+
+.search-empty {
+  font-family: var(--font-ui);
+  font-size: 13px;
+  color: var(--gray);
+  padding: 24px 0;
+}
+
 .section-label {
   font-family: var(--font-ui);
   font-size: 11px;
