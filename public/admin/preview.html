@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="pt-BR" translate="no">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Preview de Email — Notas de Berlim</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: monospace; background: #0a0a0a; color: #fff; min-height: 100vh; }
+    header {
+      background: #0a0a0a;
+      border-bottom: 3px solid #F0D722;
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    header a { color: #F0D722; text-decoration: none; font-size: 13px; }
+    h1 { font-size: 14px; text-transform: uppercase; letter-spacing: 2px; color: #F0D722; flex: 1; }
+    .controls {
+      background: #111;
+      padding: 20px 24px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      border-bottom: 1px solid #222;
+    }
+    label { font-size: 12px; color: #999; text-transform: uppercase; letter-spacing: 1px; }
+    input[type="text"] {
+      background: #0a0a0a;
+      border: 1px solid #333;
+      color: #fff;
+      padding: 8px 12px;
+      font-family: monospace;
+      font-size: 13px;
+      width: 260px;
+      outline: none;
+    }
+    input[type="text"]:focus { border-color: #F0D722; }
+    button {
+      padding: 8px 16px;
+      font-family: monospace;
+      font-size: 13px;
+      cursor: pointer;
+      border: none;
+    }
+    .btn-preview { background: #F0D722; color: #0a0a0a; font-weight: bold; }
+    .btn-test { background: #333; color: #fff; }
+    .btn-preview:hover { background: #e0c800; }
+    .btn-test:hover { background: #444; }
+    .status {
+      font-size: 12px;
+      padding: 4px 10px;
+      border-radius: 2px;
+      display: none;
+    }
+    .status.ok { background: #1a3a1a; color: #4caf50; display: inline-block; }
+    .status.err { background: #3a1a1a; color: #f44336; display: inline-block; }
+    .status.loading { background: #1a1a3a; color: #90caf9; display: inline-block; }
+    iframe {
+      width: 100%;
+      height: calc(100vh - 120px);
+      border: none;
+      background: #f5f5f5;
+    }
+    .empty {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: calc(100vh - 120px);
+      color: #333;
+      font-size: 13px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Preview de Email</h1>
+    <a href="/admin">← Voltar ao Admin</a>
+  </header>
+  <div class="controls">
+    <label for="slug">Slug da edição:</label>
+    <input type="text" id="slug" placeholder="ex: primeira-semana" />
+    <button class="btn-preview" onclick="loadPreview()">Ver Preview</button>
+    <button class="btn-test" onclick="sendTest()">Enviar teste para meu email</button>
+    <span class="status" id="status"></span>
+  </div>
+  <div id="preview-area">
+    <div class="empty">Digite o slug da edição e clique em "Ver Preview"</div>
+  </div>
+
+  <script>
+    const SECRET = '421ad3dcee53f40d2810b759b69062dc'
+
+    function getSlug() {
+      return document.getElementById('slug').value.trim()
+    }
+
+    function setStatus(msg, type) {
+      const el = document.getElementById('status')
+      el.textContent = msg
+      el.className = 'status ' + type
+    }
+
+    function loadPreview() {
+      const slug = getSlug()
+      if (!slug) { setStatus('Digite o slug', 'err'); return }
+
+      const url = `/api/email-preview?slug=${encodeURIComponent(slug)}&secret=${SECRET}`
+      document.getElementById('preview-area').innerHTML = `<iframe src="${url}" title="Preview do email"></iframe>`
+      setStatus('', '')
+    }
+
+    async function sendTest() {
+      const slug = getSlug()
+      if (!slug) { setStatus('Digite o slug', 'err'); return }
+
+      setStatus('Enviando...', 'loading')
+      try {
+        const res = await fetch(`/api/send-test?slug=${encodeURIComponent(slug)}&secret=${SECRET}`)
+        const data = await res.json()
+        if (res.ok) {
+          setStatus('Email de teste enviado!', 'ok')
+        } else {
+          setStatus('Erro: ' + (data.error || 'desconhecido'), 'err')
+        }
+      } catch (e) {
+        setStatus('Erro de conexão', 'err')
+      }
+    }
+
+    document.getElementById('slug').addEventListener('keydown', e => {
+      if (e.key === 'Enter') loadPreview()
+    })
+  </script>
+</body>
+</html>
