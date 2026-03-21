@@ -428,7 +428,8 @@ function ShareBar({ edicao }) {
 
 function EdicaoView({ edicao, setView }) {
   const key = `./edicoes/${edicao.slug}.md`
-  const content = markdownFiles[key] || '_Conteúdo não encontrado._'
+  const raw = markdownFiles[key] || '_Conteúdo não encontrado._'
+  const content = raw.replace(/^---[\s\S]*?---\n?/, '')
 
   const parts = content.split(/\n---\n/)
   const teaser = parts[0]
