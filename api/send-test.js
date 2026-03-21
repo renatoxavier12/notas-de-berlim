@@ -1,6 +1,8 @@
 function buildEmailHtml(markdown, slug) {
   const titleMatch = markdown.match(/^title:\s*["']?(.+?)["']?\s*$/m)
   const title = titleMatch ? titleMatch[1].trim() : 'Nova edição'
+  const capaMatch = markdown.match(/^capa:\s*(.+)$/m)
+  const capa = capaMatch ? capaMatch[1].trim() : null
   const body = markdown.replace(/^---[\s\S]*?---\n?/, '').trim()
 
   const htmlBody = body
@@ -18,6 +20,9 @@ function buildEmailHtml(markdown, slug) {
     .join('\n')
 
   const edicaoUrl = `https://notasdeberlim.com/edicoes/${slug}`
+  const capaHtml = capa
+    ? `<img src="https://notasdeberlim.com${capa}" alt="${title}" style="width:100%;max-height:400px;object-fit:cover;display:block;margin-bottom:32px;">`
+    : ''
 
   return `<!doctype html>
 <html>
@@ -27,6 +32,7 @@ function buildEmailHtml(markdown, slug) {
     <div style="border-top:4px solid #F0D722;padding-top:24px;margin-bottom:32px;">
       <a href="https://notasdeberlim.com" style="font-family:monospace;font-size:12px;color:#666;text-decoration:none;text-transform:uppercase;letter-spacing:2px;">Notas de Berlim</a>
     </div>
+    ${capaHtml}
     <h1 style="font-size:28px;font-weight:bold;margin:0 0 32px;line-height:1.3;">${title}</h1>
     ${htmlBody}
     <div style="margin-top:40px;padding-top:24px;border-top:1px solid #e0e0e0;">
