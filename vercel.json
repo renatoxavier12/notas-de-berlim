@@ -6,5 +6,8 @@
       "destination": "https://notasdeberlim.com/:path*",
       "permanent": true
     }
+  ],
+  "rewrites": [
+    { "source": "/((?!api/).*)", "destination": "/index.html" }
   ]
 }
