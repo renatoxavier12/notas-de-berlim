@@ -215,7 +215,7 @@ function HomeView({ setView, setEdicaoAtiva }) {
             >
               <span className="edicao-numero">#{String(e.id).padStart(2, '0')}</span>
               <div className="edicao-info">
-                <h3>{e.titulo}</h3>
+                <h2>{e.titulo}</h2>
                 <p className="edicao-meta">
                   {e.data} · {e.bairro}
                 </p>
@@ -498,7 +498,7 @@ function SobreView({ setView, setEdicaoAtiva }) {
             <button key={e.id} className="edicao-card" onClick={() => { setEdicaoAtiva(e); setView('edicao') }}>
               <span className="edicao-numero">#{String(e.id).padStart(2, '0')}</span>
               <div className="edicao-info">
-                <h3>{e.titulo}</h3>
+                <h2>{e.titulo}</h2>
                 <p className="edicao-meta">{e.data} · {e.bairro}</p>
               </div>
               <span className="edicao-arrow">→</span>
@@ -544,7 +544,7 @@ function MapaView({ setView, setEdicaoAtiva }) {
               {loc.imageUrl && (
                 <img src={loc.imageUrl} alt={loc.name} className="location-img-thumb" referrerPolicy="no-referrer" />
               )}
-              <h3>{loc.name}</h3>
+              <h2>{loc.name}</h2>
               <div style={{ display: 'flex', alignItems: 'center', marginBottom: '5px' }}>
                 <span className="u-line-tag" style={{ backgroundColor: loc.color }}>
                   {loc.line}
