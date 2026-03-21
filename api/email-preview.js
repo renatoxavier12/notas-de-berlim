@@ -8,10 +8,11 @@ function buildEmailHtml(markdown, slug) {
   const htmlBody = body
     .split('\n\n')
     .map(p => p.trim())
-    .filter(Boolean)
+    .filter(p => p !== '---')
+    .slice(0, 2)
     .map(p => {
       if (p.startsWith('#')) return `<h2 style="font-size:20px;margin:32px 0 12px;">${p.replace(/^#+\s*/, '')}</h2>`
-      return `<p style="margin:0 0 20px;line-height:1.7;text-align:justify;">${p
+      return `<p style="margin:0 0 20px;line-height:1.7;">${p
         .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
         .replace(/\*(.+?)\*/g, '<em>$1</em>')
         .replace(/\n/g, '<br>')
