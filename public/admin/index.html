@@ -8,9 +8,88 @@
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
 </head>
 <body>
-  <div style="background:#0a0a0a;border-bottom:3px solid #F0D722;padding:8px 16px;display:flex;align-items:center;justify-content:flex-end;font-family:monospace;font-size:12px;">
+  <div style="background:#0a0a0a;border-bottom:3px solid #F0D722;padding:8px 16px;display:flex;align-items:center;justify-content:space-between;font-family:monospace;font-size:12px;">
+    <div style="display:flex;gap:20px;">
+      <button onclick="toggleView('cms')" id="btn-cms" style="background:none;border:none;color:#F0D722;cursor:pointer;font-weight:bold;text-transform:uppercase;">📝 Conteúdo</button>
+      <button onclick="toggleView('comments')" id="btn-comments" style="background:none;border:none;color:#888;cursor:pointer;font-weight:bold;text-transform:uppercase;">💬 Comentários</button>
+    </div>
     <a href="/admin/preview.html" style="color:#F0D722;text-decoration:none;letter-spacing:1px;text-transform:uppercase;">Preview de Email →</a>
   </div>
+
+  <!-- Custom Comments Admin -->
+  <div id="comments-admin" style="display:none; padding: 24px; font-family: sans-serif; background: #f5f4f0; min-height: 100vh;">
+    <h2 style="font-family: monospace; text-transform: uppercase;">Moderação de Comentários</h2>
+    <div id="comments-list" style="margin-top: 24px; display: grid; gap: 16px;">
+      <p>Carregando...</p>
+    </div>
+  </div>
+
+  <script>
+    function toggleView(view) {
+      const cms = document.querySelector('#nc-root');
+      const comments = document.querySelector('#comments-admin');
+      const btnCms = document.querySelector('#btn-cms');
+      const btnComments = document.querySelector('#btn-comments');
+
+      if (view === 'cms') {
+        if (cms) cms.style.display = 'block';
+        comments.style.display = 'none';
+        btnCms.style.color = '#F0D722';
+        btnComments.style.color = '#888';
+      } else {
+        if (cms) cms.style.display = 'none';
+        comments.style.display = 'block';
+        btnCms.style.color = '#888';
+        btnComments.style.color = '#F0D722';
+        loadComments();
+      }
+    }
+
+    async function loadComments() {
+      const list = document.querySelector('#comments-list');
+      try {
+        const res = await fetch('/api/comments?action=admin_list');
+        const data = await res.json();
+        
+        if (data.length === 0) {
+          list.innerHTML = '<p>Nenhum comentário encontrado.</p>';
+          return;
+        }
+
+        list.innerHTML = data.map(c => `
+          <div style="background: white; padding: 20px; border-radius: 8px; border: 1px solid #ddd; border-left: 5px solid ${c.approved ? '#27ae60' : '#f0d722'}">
+            <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+              <strong style="text-transform: uppercase; font-size: 12px; font-family: monospace;">${c.name}</strong>
+              <span style="font-size: 11px; color: #888;">${new Date(c.timestamp).toLocaleString()}</span>
+            </div>
+            <div style="font-size: 11px; color: #666; margin-bottom: 8px; font-family: monospace;">Post: ${c.slug}</div>
+            <p style="margin: 0 0 16px 0; font-size: 15px; line-height: 1.5;">${c.text}</p>
+            <div style="display: flex; gap: 10px;">
+              ${!c.approved ? `
+                <button onclick="moderate('${c.slug}', '${c.id}', 'approve')" style="background: #27ae60; color: white; border: none; padding: 6px 12px; border-radius: 4px; cursor: pointer; font-weight: bold; font-size: 11px;">APROVAR</button>
+              ` : '<span style="color: #27ae60; font-size: 11px; font-weight: bold;">✓ APROVADO</span>'}
+              <button onclick="moderate('${c.slug}', '${c.id}', 'delete')" style="background: #e74c3c; color: white; border: none; padding: 6px 12px; border-radius: 4px; cursor: pointer; font-weight: bold; font-size: 11px;">EXCLUIR</button>
+            </div>
+          </div>
+        `).join('');
+      } catch (e) {
+        list.innerHTML = '<p>Erro ao carregar comentários.</p>';
+      }
+    }
+
+    async function moderate(slug, id, action) {
+      if (action === 'delete' && !confirm('Tem certeza?')) return;
+      try {
+        const res = await fetch(`/api/comments?action=${action}&slug=${slug}&id=${id}`, {
+          method: 'POST',
+          headers: { 'x-admin-secret': '421ad3dcee53f40d2810b759b69062dc' }
+        });
+        if (res.ok) loadComments();
+      } catch (e) {
+        alert('Erro na moderação');
+      }
+    }
+  </script>
   <script>
     CMS.init({
       config: {
