@@ -348,33 +348,100 @@ function LikeButton({ slug }) {
   )
 }
 
-function GiscusComments({ slug }) {
-  const ref = useRef(null)
+function CustomComments({ slug }) {
+  const [comments, setComments] = useState([])
+  const [formData, setFormData] = useState({ name: '', text: '', honeypot: '' })
+  const [status, setStatus] = useState(null) // null, 'loading', 'ok', 'error'
 
   useEffect(() => {
-    if (!ref.current || ref.current.querySelector('iframe')) return
-    const script = document.createElement('script')
-    script.src = 'https://giscus.app/client.js'
-    script.setAttribute('data-repo', 'renatoxavier12/notas-de-berlim')
-    script.setAttribute('data-repo-id', 'R_kgDORsOcnA')
-    script.setAttribute('data-category', 'General')
-    script.setAttribute('data-category-id', 'DIC_kwDORsOcnM4C43ed')
-    script.setAttribute('data-mapping', 'specific')
-    script.setAttribute('data-term', slug)
-    script.setAttribute('data-reactions-enabled', '0')
-    script.setAttribute('data-emit-metadata', '0')
-    script.setAttribute('data-input-position', 'bottom')
-    script.setAttribute('data-theme', 'noborder_light')
-    script.setAttribute('data-lang', 'pt')
-    script.setAttribute('crossorigin', 'anonymous')
-    script.async = true
-    ref.current.appendChild(script)
+    fetch(`/api/comments?slug=${slug}`)
+      .then(res => res.json())
+      .then(data => setComments(Array.isArray(data) ? data : []))
+      .catch(() => setComments([]))
   }, [slug])
+
+  async function handleSubmit(e) {
+    e.preventDefault()
+    setStatus('loading')
+
+    try {
+      const res = await fetch(`/api/comments?slug=${slug}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      })
+
+      if (res.ok) {
+        setStatus('ok')
+        setFormData({ name: '', text: '', honeypot: '' })
+      } else {
+        setStatus('error')
+      }
+    } catch {
+      setStatus('error')
+    }
+  }
 
   return (
     <div className="comments-section">
-      <p className="share-label" style={{ marginBottom: 16 }}>COMENTÁRIOS</p>
-      <div ref={ref} />
+      <p className="share-label" style={{ marginBottom: 24 }}>COMENTÁRIOS</p>
+
+      {comments.length > 0 ? (
+        <div className="comments-list">
+          {comments.map(c => (
+            <div key={c.id} className="comment-item">
+              <div className="comment-header">
+                <span className="comment-author">{c.name}</span>
+                <span className="comment-date">
+                  {new Date(c.timestamp).toLocaleDateString('pt-BR')}
+                </span>
+              </div>
+              <p className="comment-text">{c.text}</p>
+            </div>
+          ))}
+        </div>
+      ) : (
+        <p className="comments-empty">Seja o primeiro a comentar.</p>
+      )}
+
+      <div className="comment-form-container">
+        <p className="share-label" style={{ marginTop: 40, marginBottom: 16 }}>DEIXE UM COMENTÁRIO</p>
+        {status === 'ok' ? (
+          <p className="comment-success">Obrigado! Seu comentário foi enviado para moderação e aparecerá em breve.</p>
+        ) : (
+          <form className="comment-form" onSubmit={handleSubmit}>
+            {/* Honeypot field - hidden from users */}
+            <input
+              type="text"
+              name="honeypot"
+              style={{ display: 'none' }}
+              value={formData.honeypot}
+              onChange={e => setFormData({ ...formData, honeypot: e.target.value })}
+              tabIndex="-1"
+              autoComplete="off"
+            />
+
+            <input
+              type="text"
+              placeholder="Seu nome (opcional)"
+              className="comment-input-name"
+              value={formData.name}
+              onChange={e => setFormData({ ...formData, name: e.target.value })}
+            />
+            <textarea
+              placeholder="Escreva sua nota..."
+              className="comment-input-text"
+              required
+              value={formData.text}
+              onChange={e => setFormData({ ...formData, text: e.target.value })}
+            />
+            <button type="submit" className="comment-submit-btn" disabled={status === 'loading'}>
+              {status === 'loading' ? 'Enviando...' : 'Enviar Comentário'}
+            </button>
+          </form>
+        )}
+        {status === 'error' && <p className="comment-error">Erro ao enviar. Tente novamente.</p>}
+      </div>
     </div>
   )
 }
@@ -428,7 +495,7 @@ function ShareBar({ edicao }) {
           </div>
         </div>
       </div>
-      <GiscusComments slug={edicao.slug} />
+      <CustomComments slug={edicao.slug} />
     </div>
   )
 }
