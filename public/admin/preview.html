@@ -50,6 +50,8 @@
     .btn-test { background: #333; color: #fff; }
     .btn-preview:hover { background: #e0c800; }
     .btn-test:hover { background: #444; }
+    .btn-all { background: #5a1a1a; color: #fff; border: 1px solid #8b0000; }
+    .btn-all:hover { background: #7a2a2a; }
     .status {
       font-size: 12px;
       padding: 4px 10px;
@@ -85,6 +87,7 @@
     <input type="text" id="slug" placeholder="ex: primeira-semana" />
     <button class="btn-preview" onclick="loadPreview()">Ver Preview</button>
     <button class="btn-test" onclick="sendTest()">Enviar teste para meu email</button>
+    <button class="btn-all" onclick="sendAll()">⚠ Enviar para todos os inscritos</button>
     <span class="status" id="status"></span>
   </div>
   <div id="preview-area">
@@ -123,6 +126,27 @@
         const data = await res.json()
         if (res.ok) {
           setStatus('Email de teste enviado!', 'ok')
+        } else {
+          setStatus('Erro: ' + (data.error || 'desconhecido'), 'err')
+        }
+      } catch (e) {
+        setStatus('Erro de conexão', 'err')
+      }
+    }
+
+    async function sendAll() {
+      const slug = getSlug()
+      if (!slug) { setStatus('Digite o slug', 'err'); return }
+
+      const confirmed = confirm(`Confirma o envio para TODOS os inscritos?\n\nEdição: ${slug}\n\nEsta ação não pode ser desfeita.`)
+      if (!confirmed) return
+
+      setStatus('Enviando para todos...', 'loading')
+      try {
+        const res = await fetch(`/api/send-all?slug=${encodeURIComponent(slug)}&secret=${SECRET}`, { method: 'POST' })
+        const data = await res.json()
+        if (res.ok) {
+          setStatus(`Enviado! Campanha #${data.campaignId}`, 'ok')
         } else {
           setStatus('Erro: ' + (data.error || 'desconhecido'), 'err')
         }
