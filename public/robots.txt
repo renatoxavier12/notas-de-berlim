@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://notasdeberlim.com/sitemap.xml
+Sitemap: https://notasdeberlim.com/api/sitemap
