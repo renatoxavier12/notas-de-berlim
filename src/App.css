@@ -573,6 +573,9 @@ button:focus-visible, a:focus-visible {
   border: 2px solid var(--black);
   border-radius: 20px;
   transition: background 0.15s, color 0.15s;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .sobre-link:hover {
