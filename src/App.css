@@ -587,6 +587,26 @@ button:focus-visible, a:focus-visible {
   gap: 10px;
 }
 
+.support-btn--yellow {
+  background: var(--yellow);
+  border-color: var(--yellow);
+  color: var(--black) !important;
+}
+
+.support-btn--yellow span {
+  color: var(--black) !important;
+}
+
+.support-btn--yellow:hover {
+  background: var(--black) !important;
+  border-color: var(--black) !important;
+  color: var(--yellow) !important;
+}
+
+.support-btn--yellow:hover span {
+  color: var(--yellow) !important;
+}
+
 .support-text {
   font-family: var(--font-ui);
   font-size: 13px;
