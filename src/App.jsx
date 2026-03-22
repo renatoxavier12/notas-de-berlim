@@ -622,7 +622,7 @@ function SobreView({ setView, setEdicaoAtiva, dark }) {
                   <span style={{ display: 'flex' }}><IconMail /></span>
                 </a>
               </div>
-              <a href="https://wise.com/pay/r/renatox31" target="_blank" rel="noopener noreferrer" className="sobre-link support-btn support-btn--yellow">
+              <a href="https://ko-fi.com/renatoxavier" target="_blank" rel="noopener noreferrer" className="sobre-link support-btn support-btn--yellow">
                 <span style={{ display: 'flex' }}><IconKofi /></span>
                 <span className="support-text">Apoie-me</span>
               </a>
