@@ -318,6 +318,12 @@ const IconLinkedIn = () => (
   </svg>
 )
 
+const IconKofi = () => (
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M23.881 8.948c-.773-4.085-4.859-4.593-4.859-4.593H.724c-.304 0-.55.246-.55.55v15.82c0 .304.246.55.55.55h12.726c.304 0 .55-.246.55-.55v-2.035c3.546.109 4.812-1.449 5.069-2.25 1.479.059 4.393-.451 4.812-3.214.26-1.685-.021-3.278-.851-4.278zm-3.235 5.546c-.297 1.93-1.556 2.198-2.359 2.231V9.296c.553.053 2.129.231 2.584 1.449.25.669.155 2.172-.225 3.749z"/>
+  </svg>
+)
+
 const IconLink = () => (
   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
     <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
@@ -581,6 +587,7 @@ function SobreView({ setView, setEdicaoAtiva }) {
             <div className="sobre-links">
               <a href="https://instagram.com/renatoxavierrr" target="_blank" rel="noopener noreferrer" className="sobre-link">Instagram</a>
               <a href="https://renatoxavier.substack.com" target="_blank" rel="noopener noreferrer" className="sobre-link">Substack</a>
+              <a href="https://ko-fi.com/renatoxavier" target="_blank" rel="noopener noreferrer" className="sobre-link" style={{ borderColor: '#FF5E5B', color: dark ? '#FF5E5B' : '#d63031' }}>Ko-fi</a>
               <a href="mailto:renatoxavier12@gmail.com" className="sobre-link">Contato</a>
             </div>
           </div>
