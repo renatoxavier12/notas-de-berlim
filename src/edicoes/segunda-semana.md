@@ -4,6 +4,7 @@ title: Segunda Semana
 data: 23 de março de 2026
 bairro: Kreuzberg / Bergmannkiez
 teaser: Etiqueta na caixinha de correio, leiteira achada, e a Spätify na esquina.
+capa: /capa-02.jpg
 ---
 
 Duas semanas e alguns dias em Berlim.

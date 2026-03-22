@@ -585,7 +585,16 @@ function EdicaoView({ edicao, setView }) {
           {hasMore && !unlocked && <EdicaoGate onUnlock={() => setUnlocked(true)} />}
           {hasMore && unlocked && <ReactMarkdown>{rest}</ReactMarkdown>}
         </article>
-        {(unlocked || !hasMore) && <ShareBar edicao={edicao} />}
+        {(unlocked || !hasMore) && (
+          <>
+            {LOCATIONS.some(l => l.edicaoId === edicao.id) && (
+              <button className="mapa-link-btn" onClick={() => setView('mapa')}>
+                Ver lugares desta edição no mapa →
+              </button>
+            )}
+            <ShareBar edicao={edicao} />
+          </>
+        )}
       </div>
     </div>
   )
