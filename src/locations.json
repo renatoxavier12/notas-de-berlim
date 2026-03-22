@@ -48,5 +48,15 @@
     "color": "#79B643",
     "edicaoId": 1,
     "imageUrl": "https://commons.wikimedia.org/w/thumb.php?f=Burgermeister-Schlesisches-Tor_zugeschnitten.jpg&w=800"
+  },
+  {
+    "id": 210,
+    "name": "Bürgeramt Kreuzberg",
+    "coords": [52.4862, 13.3912],
+    "description": "Bezirksamt Friedrichshain-Kreuzberg, Bürgeramt 1. Aqui a gente se registrou como moradores de Berlim — com bom humor e tudo.",
+    "line": "U7",
+    "color": "#6F4E9C",
+    "edicaoId": 2,
+    "imageUrl": ""
   }
 ]
