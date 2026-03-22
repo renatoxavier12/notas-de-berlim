@@ -565,7 +565,7 @@ function EdicaoView({ edicao, setView }) {
   )
 }
 
-function SobreView({ setView, setEdicaoAtiva }) {
+function SobreView({ setView, setEdicaoAtiva, dark }) {
   return (
     <div className="sobre-view">
       <div className="sobre-inner">
@@ -781,7 +781,7 @@ function App() {
         <EdicaoView edicao={edicaoAtiva} setView={setView} />
       )}
       {view === 'mapa' && <MapaView setView={setView} setEdicaoAtiva={setEdicaoAtiva} />}
-      {view === 'sobre' && <SobreView setView={setView} setEdicaoAtiva={setEdicaoAtiva} />}
+      {view === 'sobre' && <SobreView setView={setView} setEdicaoAtiva={setEdicaoAtiva} dark={dark} />}
     </div>
   )
 }
