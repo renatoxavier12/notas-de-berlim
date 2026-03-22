@@ -611,17 +611,20 @@ function SobreView({ setView, setEdicaoAtiva, dark }) {
               <em>Notas de Berlim</em> é um caderno aberto sem folhas.
             </p>
             <div className="sobre-links">
-              <a href="https://instagram.com/renatoxavierrr" target="_blank" rel="noopener noreferrer" className="sobre-link" aria-label="Instagram">
-                <IconInstagram />
-              </a>
-              <a href="https://renatoxavier.substack.com" target="_blank" rel="noopener noreferrer" className="sobre-link" aria-label="Substack">
-                <IconSubstack />
-              </a>
-              <a href="https://ko-fi.com/renatoxavier" target="_blank" rel="noopener noreferrer" className="sobre-link" aria-label="Pague um café">
-                <IconKofi />
-              </a>
-              <a href="mailto:renatoxavier12@gmail.com" className="sobre-link" aria-label="Contato">
-                <IconMail />
+              <div className="social-group">
+                <a href="https://instagram.com/renatoxavierrr" target="_blank" rel="noopener noreferrer" className="sobre-link" aria-label="Instagram">
+                  <span style={{ color: '#E1306C', display: 'flex' }}><IconInstagram /></span>
+                </a>
+                <a href="https://renatoxavier.substack.com" target="_blank" rel="noopener noreferrer" className="sobre-link" aria-label="Substack">
+                  <span style={{ color: '#FF6719', display: 'flex' }}><IconSubstack /></span>
+                </a>
+                <a href="mailto:renatoxavier12@gmail.com" className="sobre-link" aria-label="Contato">
+                  <span style={{ color: dark ? '#ccc' : '#444', display: 'flex' }}><IconMail /></span>
+                </a>
+              </div>
+              <a href="https://ko-fi.com/renatoxavier" target="_blank" rel="noopener noreferrer" className="sobre-link support-btn" style={{ borderColor: '#FF5E5B' }}>
+                <span style={{ color: '#FF5E5B', display: 'flex' }}><IconKofi /></span>
+                <span className="support-text" style={{ color: dark ? '#FF5E5B' : '#d63031' }}>Apoie-me</span>
               </a>
             </div>
           </div>
