@@ -587,7 +587,7 @@ function SobreView({ setView, setEdicaoAtiva, dark }) {
             <div className="sobre-links">
               <a href="https://instagram.com/renatoxavierrr" target="_blank" rel="noopener noreferrer" className="sobre-link">Instagram</a>
               <a href="https://renatoxavier.substack.com" target="_blank" rel="noopener noreferrer" className="sobre-link">Substack</a>
-              <a href="https://ko-fi.com/renatoxavier" target="_blank" rel="noopener noreferrer" className="sobre-link" style={{ borderColor: '#FF5E5B', color: dark ? '#FF5E5B' : '#d63031' }}>Ko-fi</a>
+              <a href="https://ko-fi.com/renatoxavier" target="_blank" rel="noopener noreferrer" className="sobre-link" style={{ borderColor: '#FF5E5B', color: dark ? '#FF5E5B' : '#d63031' }}>Pague um café</a>
               <a href="mailto:renatoxavier12@gmail.com" className="sobre-link">Contato</a>
             </div>
           </div>
