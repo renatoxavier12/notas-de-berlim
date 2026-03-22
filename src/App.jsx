@@ -611,17 +611,17 @@ function SobreView({ setView, setEdicaoAtiva, dark }) {
               <em>Notas de Berlim</em> é um caderno aberto sem folhas.
             </p>
             <div className="sobre-links">
-              <a href="https://instagram.com/renatoxavierrr" target="_blank" rel="noopener noreferrer" className="sobre-link">
-                <span style={{ display: 'flex' }}><IconInstagram /></span> Instagram
+              <a href="https://instagram.com/renatoxavierrr" target="_blank" rel="noopener noreferrer" className="sobre-link" aria-label="Instagram">
+                <IconInstagram />
               </a>
-              <a href="https://renatoxavier.substack.com" target="_blank" rel="noopener noreferrer" className="sobre-link">
-                <span style={{ display: 'flex' }}><IconSubstack /></span> Substack
+              <a href="https://renatoxavier.substack.com" target="_blank" rel="noopener noreferrer" className="sobre-link" aria-label="Substack">
+                <IconSubstack />
               </a>
-              <a href="https://ko-fi.com/renatoxavier" target="_blank" rel="noopener noreferrer" className="sobre-link">
-                <span style={{ display: 'flex' }}><IconKofi /></span> Pague um café
+              <a href="https://ko-fi.com/renatoxavier" target="_blank" rel="noopener noreferrer" className="sobre-link" aria-label="Pague um café">
+                <IconKofi />
               </a>
-              <a href="mailto:renatoxavier12@gmail.com" className="sobre-link">
-                <span style={{ display: 'flex' }}><IconMail /></span> Contato
+              <a href="mailto:renatoxavier12@gmail.com" className="sobre-link" aria-label="Contato">
+                <IconMail />
               </a>
             </div>
           </div>

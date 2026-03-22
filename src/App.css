@@ -562,25 +562,23 @@ button:focus-visible, a:focus-visible {
 }
 
 .sobre-link {
-  font-family: var(--font-ui);
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--black);
-  text-decoration: none;
-  padding: 8px 16px;
-  border: 2px solid var(--black);
-  border-radius: 20px;
-  transition: background 0.15s, color 0.15s;
   display: flex;
   align-items: center;
-  gap: 8px;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border: 2px solid var(--black);
+  border-radius: 50%; /* Torna os botões circulares */
+  color: var(--black);
+  text-decoration: none;
+  transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .sobre-link:hover {
   background: var(--black);
-  color: white;
+  color: var(--bg);
+  transform: translateY(-4px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 }
 
 .sobre-edicoes {
