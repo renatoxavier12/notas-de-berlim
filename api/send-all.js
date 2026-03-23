@@ -9,10 +9,10 @@ function buildEmailHtml(markdown, slug) {
     .split('\n\n')
     .map(p => p.trim())
     .filter(p => p !== '---')
-    .slice(0, 2)
+    .slice(0, 3) 
     .map(p => {
-      if (p.startsWith('#')) return `<h2 style="font-size:20px;margin:32px 0 12px;">${p.replace(/^#+\s*/, '')}</h2>`
-      return `<p style="margin:0 0 20px;line-height:1.7;">${p
+      if (p.startsWith('#')) return `<h2 style="font-size:19px;margin:24px 0 12px;font-family:sans-serif;">${p.replace(/^#+\s*/, '')}</h2>`
+      return `<p style="margin:0 0 16px;line-height:1.6;font-size:17px;">${p
         .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
         .replace(/\*(.+?)\*/g, '<em>$1</em>')
         .replace(/\n/g, '<br>')
@@ -22,26 +22,46 @@ function buildEmailHtml(markdown, slug) {
 
   const edicaoUrl = `https://notasdeberlim.com/edicoes/${slug}`
   const capaHtml = capa
-    ? `<img src="https://notasdeberlim.com${capa}" alt="${title}" style="width:100%;max-height:400px;object-fit:cover;display:block;margin-bottom:32px;">`
+    ? `<div style="margin-bottom:32px;"><img src="https://notasdeberlim.com${capa}" alt="${title}" style="width:100%;max-width:600px;height:auto;display:block;border-radius:4px;"></div>`
     : ''
 
   return `<!doctype html>
-<html>
-<head><meta charset="utf-8"></head>
-<body style="margin:0;padding:0;background:#f5f5f5;">
-  <div style="font-family:Georgia,serif;max-width:600px;margin:40px auto;padding:40px;background:#fff;color:#0a0a0a;">
-    <div style="border-top:4px solid #F0D722;padding-top:24px;margin-bottom:32px;">
-      <a href="https://notasdeberlim.com" style="font-family:monospace;font-size:12px;color:#666;text-decoration:none;text-transform:uppercase;letter-spacing:2px;">Notas de Berlim</a>
-    </div>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>${title}</title>
+</head>
+<body style="margin:0;padding:0;background-color:#ffffff;font-family:Georgia,serif;-webkit-font-smoothing:antialiased;">
+  <div style="display:none;max-height:0;overflow:hidden;">
+    Berlim, 2026. Notas sobre comida, cultura e a vida na capital alemã.
+  </div>
+
+  <div style="max-width:600px;margin:0 auto;padding:20px;color:#1a1a1a;">
+    <header style="margin-bottom:32px;padding-bottom:12px;border-bottom:1px solid #eee;">
+      <a href="https://notasdeberlim.com" style="color:#666;text-decoration:none;font-size:12px;text-transform:uppercase;letter-spacing:1px;font-family:sans-serif;">
+        Notas de Berlim
+      </a>
+    </header>
+
     ${capaHtml}
-    <h1 style="font-size:28px;font-weight:bold;margin:0 0 32px;line-height:1.3;">${title}</h1>
-    ${htmlBody}
-    <div style="margin-top:40px;padding-top:24px;border-top:1px solid #e0e0e0;">
-      <a href="${edicaoUrl}" style="background:#F0D722;color:#0a0a0a;padding:12px 24px;text-decoration:none;font-weight:bold;font-family:monospace;display:inline-block;">Ler no site →</a>
+
+    <h1 style="font-size:32px;font-weight:700;margin:0 0 24px;line-height:1.2;">${title}</h1>
+    
+    <div style="color:#222;">
+      ${htmlBody}
     </div>
-    <div style="margin-top:40px;font-family:monospace;font-size:11px;color:#999;">
-      Você assinou o Entrelaçe e agora nos encontra aqui também. Casa nova, mesma escrita.
+
+    <div style="margin-top:40px;padding:32px 0;border-top:1px solid #eee;text-align:center;">
+      <a href="${edicaoUrl}" style="background-color:#F0D722;color:#000000;padding:14px 28px;text-decoration:none;font-weight:700;font-size:14px;border-radius:4px;display:inline-block;font-family:sans-serif;">
+        LER EDIÇÃO COMPLETA
+      </a>
     </div>
+
+    <footer style="margin-top:40px;padding-top:20px;color:#888;font-size:12px;font-family:sans-serif;line-height:1.5;">
+      <p>Você recebeu esta nota porque se inscreveu no site Notas de Berlim.</p>
+      <p>Berlim, Alemanha.</p>
+    </footer>
   </div>
 </body>
 </html>`
