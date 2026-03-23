@@ -43,7 +43,7 @@ Ah, aliás: a leiteira que encontramos é elétrica. Dá até para arriscar uma 
 
 ---
 
-E, no meio dessas andanças, uma das melhores surpresas até agora tem sido a comida de rua — eu vou sempre repetir isso.
+E, no meio dessas andanças, uma das melhores surpresas até agora tem sido a comida de rua, eu vou sempre repetir isso.
 
 Provamos um Döner bem tradicional num lugar chamado **Zagros Gemüsekebap**. Tipo um "Estadão", só que de döner, e bom mesmo. Impressionante como a comida de rua é, até agora, uma das melhores surpresas dessa cidade.
 
