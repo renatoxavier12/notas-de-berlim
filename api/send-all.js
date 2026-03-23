@@ -108,7 +108,7 @@ export default async function handler(req, res) {
     body: JSON.stringify({
       name: `Notas de Berlim — ${title}`,
       subject: title,
-      sender: { name: 'Renato Xavier', email: 'renatoxavier12@gmail.com' },
+      sender: { name: 'Renato do Notas de Berlim', email: 'renatoxavier12@gmail.com' },
       type: 'classic',
       htmlContent,
       recipients: { listIds: [2] },
