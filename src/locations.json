@@ -50,6 +50,46 @@
     "imageUrl": "https://commons.wikimedia.org/w/thumb.php?f=Burgermeister-Schlesisches-Tor_zugeschnitten.jpg&w=800"
   },
   {
+    "id": 206,
+    "name": "Landwehrkanal",
+    "coords": [52.4985, 13.4447],
+    "description": "Canal ao lado do apartamento em Heckmannufer. Já está florido — a primavera chegou quase de um dia pro outro.",
+    "line": "U1",
+    "color": "#79B643",
+    "edicaoId": 2,
+    "imageUrl": "https://commons.wikimedia.org/w/thumb.php?f=Landwehrkanal_Berlin.jpg&w=800"
+  },
+  {
+    "id": 207,
+    "name": "Zagros Gemüsekebap",
+    "coords": [52.4991, 13.4186],
+    "description": "Döner de frango em Skalitzer Str. 100. Tipo um Estadão, só que de döner — e bom mesmo.",
+    "line": "U1",
+    "color": "#79B643",
+    "edicaoId": 2,
+    "imageUrl": ""
+  },
+  {
+    "id": 208,
+    "name": "Spätify",
+    "coords": [52.4983, 13.4292],
+    "description": "A Späti mais criativa do bairro. Wiener Str. 7.",
+    "line": "U1",
+    "color": "#79B643",
+    "edicaoId": 2,
+    "imageUrl": ""
+  },
+  {
+    "id": 209,
+    "name": "Marheineke Markthalle",
+    "coords": [52.4879, 13.3968],
+    "description": "Mercado histórico no Bergmannkiez. Tem quiosque brasileiro: coxinha, torresmo, tortilha e cerveja alemã.",
+    "line": "U7",
+    "color": "#6F4E9C",
+    "edicaoId": 2,
+    "imageUrl": "https://commons.wikimedia.org/w/thumb.php?f=Marheineke_Markthalle_Berlin.jpg&w=800"
+  },
+  {
     "id": 210,
     "name": "Bürgeramt Kreuzberg",
     "coords": [52.4862, 13.3912],
