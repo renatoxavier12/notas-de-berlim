@@ -41,11 +41,12 @@ function buildEmailHtml(markdown, slug) {
   <div style="max-width:600px;margin:0 auto;padding:20px;color:#1a1a1a;">
     <header style="margin-bottom:32px;padding-bottom:12px;border-bottom:1px solid #eee;">
       <a href="https://notasdeberlim.com" style="color:#666;text-decoration:none;font-size:12px;text-transform:uppercase;letter-spacing:1px;font-family:sans-serif;">
-        Notas de Berlim
+        NOTAS DE BERLIM — RENATO XAVIER
       </a>
     </header>
+    ...
+    const { content } = await ghRes.json()
 
-    ${capaHtml}
 
     <h1 style="font-size:32px;font-weight:700;margin:0 0 24px;line-height:1.2;">${title}</h1>
     

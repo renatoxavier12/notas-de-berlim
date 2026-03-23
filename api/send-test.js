@@ -40,7 +40,7 @@ function buildEmailHtml(markdown, slug) {
   <div style="max-width:600px;margin:0 auto;padding:20px;color:#1a1a1a;">
     <header style="margin-bottom:32px;padding-bottom:12px;border-bottom:1px solid #eee;">
       <a href="https://notasdeberlim.com" style="color:#666;text-decoration:none;font-size:12px;text-transform:uppercase;letter-spacing:1px;font-family:sans-serif;">
-        Notas de Berlim
+        NOTAS DE BERLIM — RENATO XAVIER
       </a>
     </header>
 
@@ -104,7 +104,7 @@ export default async function handler(req, res) {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
-      sender: { name: 'Renato Xavier Notas de Berlim', email: 'renatoxavier12@gmail.com' },
+      sender: { name: 'Notas de Berlim', email: 'renatoxavier12@gmail.com' },
       to: [{ email: 'renatoxavier12@gmail.com', name: 'Renato Xavier' }],
       subject: title,
       htmlContent,
