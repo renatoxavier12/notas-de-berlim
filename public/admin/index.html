@@ -17,6 +17,7 @@
     <div style="display:flex;gap:20px;align-items:center;">
       <a href="/" style="color:#888;text-decoration:none;letter-spacing:1px;text-transform:uppercase;font-weight:bold;">⌂ Site</a>
       <a href="/admin/preview.html" style="color:#F0D722;text-decoration:none;letter-spacing:1px;text-transform:uppercase;">Preview de Email →</a>
+      <button onclick="logout()" style="background:none;border:none;color:#e74c3c;cursor:pointer;font-size:10px;">SAIR</button>
     </div>
   </div>
 
@@ -37,7 +38,26 @@
   </div>
 
   <script>
+    let adminSecret = localStorage.getItem('nb_admin_secret');
+
+    function checkAuth() {
+      if (!adminSecret) {
+        adminSecret = prompt('Senha de administração (Secret):');
+        if (adminSecret) {
+          localStorage.setItem('nb_admin_secret', adminSecret);
+        }
+      }
+      return adminSecret;
+    }
+
+    function logout() {
+      localStorage.removeItem('nb_admin_secret');
+      location.reload();
+    }
+
     function toggleView(view) {
+      if (view !== 'cms' && !checkAuth()) return;
+
       const cms = document.querySelector('#nc-root');
       const comments = document.querySelector('#comments-admin');
       const audience = document.querySelector('#audience-admin');
@@ -57,7 +77,10 @@
 
     async function loadAudience() {
       try {
-        const res = await fetch('/api/audience');
+        const res = await fetch('/api/audience?secret=' + adminSecret, {
+          headers: { 'x-admin-secret': adminSecret }
+        });
+        if (!res.ok) throw new Error('Auth failed');
         const data = await res.json();
         document.querySelector('#audience-total').textContent = data.total ?? '—';
         document.querySelector('#audience-label').textContent = data.total === 1 ? 'inscrito' : 'inscritos';
@@ -87,14 +110,18 @@
             </tbody>
           </table>`;
       } catch {
-        document.querySelector('#audience-label').textContent = 'erro ao carregar';
+        document.querySelector('#audience-label').textContent = 'erro de autenticação';
+        logout();
       }
     }
 
     async function loadComments() {
       const list = document.querySelector('#comments-list');
       try {
-        const res = await fetch('/api/comments?action=admin_list');
+        const res = await fetch('/api/comments?action=admin_list&secret=' + adminSecret, {
+          headers: { 'x-admin-secret': adminSecret }
+        });
+        if (!res.ok) throw new Error('Auth failed');
         const data = await res.json();
         
         if (data.length === 0) {
@@ -119,7 +146,8 @@
           </div>
         `).join('');
       } catch (e) {
-        list.innerHTML = '<p>Erro ao carregar comentários.</p>';
+        list.innerHTML = '<p>Erro de autenticação.</p>';
+        logout();
       }
     }
 
@@ -128,9 +156,10 @@
       try {
         const res = await fetch(`/api/comments?action=${action}&slug=${slug}&id=${id}`, {
           method: 'POST',
-          headers: { 'x-admin-secret': '421ad3dcee53f40d2810b759b69062dc' }
+          headers: { 'x-admin-secret': adminSecret }
         });
         if (res.ok) loadComments();
+        else alert('Erro: ' + res.statusText);
       } catch (e) {
         alert('Erro na moderação');
       }

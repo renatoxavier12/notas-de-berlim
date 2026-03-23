@@ -23,7 +23,11 @@ export default async function handler(req, res) {
   if (req.method === 'GET') {
     try {
       if (action === 'admin_list') {
-        // TODO: Adicionar proteção de senha/auth aqui se necessário
+        // Proteção: requer secret do admin
+        const secret = req.headers['x-admin-secret'] || req.query.secret;
+        if (secret !== process.env.GITHUB_WEBHOOK_SECRET) {
+          return res.status(401).json({ error: 'Não autorizado' });
+        }
         const keys = await kv('keys', 'comment:*');
         const comments = [];
         for (const key of keys) {

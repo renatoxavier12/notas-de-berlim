@@ -1,6 +1,12 @@
 export default async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', 'https://notasdeberlim.com')
 
+  // Proteção: verificar secret do admin
+  const secret = req.headers['x-admin-secret'] || req.query.secret
+  if (secret !== process.env.GITHUB_WEBHOOK_SECRET) {
+    return res.status(401).json({ error: 'Não autorizado' })
+  }
+
   try {
     const listId = process.env.BREVO_LIST_ID
     const apiKey = process.env.BREVO_API_KEY
