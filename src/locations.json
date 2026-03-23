@@ -42,7 +42,7 @@
   {
     "id": 205,
     "name": "Burgermeister",
-    "coords": [52.5003, 13.4425],
+    "coords": [52.5011, 13.4423],
     "description": "Hambúrguer icônico num antigo banheiro público sob os trilhos da U1 no Schlesisches Tor.",
     "line": "U1",
     "color": "#79B643",
@@ -52,7 +52,7 @@
   {
     "id": 206,
     "name": "Landwehrkanal",
-    "coords": [52.4985, 13.4447],
+    "coords": [52.4974, 13.4441],
     "description": "Canal ao lado do apartamento em Heckmannufer. Já está florido — a primavera chegou quase de um dia pro outro.",
     "line": "U1",
     "color": "#79B643",
@@ -62,7 +62,7 @@
   {
     "id": 207,
     "name": "Zagros Gemüsekebap",
-    "coords": [52.4991, 13.4186],
+    "coords": [52.4995, 13.4285],
     "description": "Döner de frango em Skalitzer Str. 100. Tipo um Estadão, só que de döner — e bom mesmo.",
     "line": "U1",
     "color": "#79B643",
@@ -72,7 +72,7 @@
   {
     "id": 208,
     "name": "Spätify",
-    "coords": [52.4983, 13.4292],
+    "coords": [52.4991, 13.4289],
     "description": "A Späti mais criativa do bairro. Wiener Str. 7.",
     "line": "U1",
     "color": "#79B643",
@@ -92,7 +92,7 @@
   {
     "id": 211,
     "name": "Pizza Espresso",
-    "coords": [52.5001, 13.4452],
+    "coords": [52.5001, 13.4415],
     "description": "Pizza do ítalo-turco-alemão. Dúzias montadas na vitrine, forno na hora. Come-se ali mesmo, sem talheres, sem frescura.",
     "line": "U1",
     "color": "#79B643",
