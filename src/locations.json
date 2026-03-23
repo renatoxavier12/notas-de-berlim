@@ -67,7 +67,7 @@
     "line": "U1",
     "color": "#79B643",
     "edicaoId": 2,
-    "imageUrl": ""
+    "imageUrl": "https://commons.wikimedia.org/w/thumb.php?f=Doener_berlin_kotti.jpg&w=800"
   },
   {
     "id": 208,
@@ -77,7 +77,7 @@
     "line": "U1",
     "color": "#79B643",
     "edicaoId": 2,
-    "imageUrl": ""
+    "imageUrl": "https://commons.wikimedia.org/w/thumb.php?f=Spaeti_Berlin_Kreuzberg.jpg&w=800"
   },
   {
     "id": 209,
@@ -97,7 +97,7 @@
     "line": "U1",
     "color": "#79B643",
     "edicaoId": 2,
-    "imageUrl": ""
+    "imageUrl": "https://commons.wikimedia.org/w/thumb.php?f=Pizza_oven_in_Berlin.jpg&w=800"
   },
   {
     "id": 210,
@@ -107,6 +107,6 @@
     "line": "U7",
     "color": "#6F4E9C",
     "edicaoId": 2,
-    "imageUrl": ""
+    "imageUrl": "https://commons.wikimedia.org/w/thumb.php?f=Berlin_Rathaus_Kreuzberg.jpg&w=800"
   }
 ]

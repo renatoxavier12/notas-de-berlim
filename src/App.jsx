@@ -52,7 +52,7 @@ const EDICOES = Object.entries(markdownFiles)
       capa: meta.capa || null,
     }
   })
-  .sort((a, b) => a.id - b.id)
+  .sort((a, b) => b.id - a.id)
 
 let DefaultIcon = L.icon({
   iconUrl: markerIcon,
