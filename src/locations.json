@@ -57,7 +57,7 @@
     "line": "U1",
     "color": "#79B643",
     "edicaoId": 2,
-    "imageUrl": "https://commons.wikimedia.org/w/thumb.php?f=Landwehrkanal_Berlin.jpg&w=800"
+    "imageUrl": "https://commons.wikimedia.org/w/thumb.php?f=Landwehrkanal_Berlin20.JPG&w=800"
   },
   {
     "id": 207,
@@ -67,7 +67,7 @@
     "line": "U1",
     "color": "#79B643",
     "edicaoId": 2,
-    "imageUrl": "https://commons.wikimedia.org/w/thumb.php?f=Doener_berlin_kotti.jpg&w=800"
+    "imageUrl": "https://commons.wikimedia.org/w/thumb.php?f=Doener_berlin_kraeuter.jpg&w=800"
   },
   {
     "id": 208,
@@ -77,7 +77,7 @@
     "line": "U1",
     "color": "#79B643",
     "edicaoId": 2,
-    "imageUrl": "https://commons.wikimedia.org/w/thumb.php?f=Spaeti_Berlin_Kreuzberg.jpg&w=800"
+    "imageUrl": "https://commons.wikimedia.org/w/thumb.php?f=Kreuzberg%20Skalitzer%20Stra%C3%9Fe%20Sp%C3%A4ti.JPG&w=800"
   },
   {
     "id": 209,
@@ -87,7 +87,7 @@
     "line": "U7",
     "color": "#6F4E9C",
     "edicaoId": 2,
-    "imageUrl": "https://commons.wikimedia.org/w/thumb.php?f=Marheineke_Markthalle_Berlin.jpg&w=800"
+    "imageUrl": "https://commons.wikimedia.org/w/thumb.php?f=Marheineke-Markthalle%20B-Kreuzberg%2006-2017%20img1.jpg&w=800"
   },
   {
     "id": 211,
@@ -97,7 +97,7 @@
     "line": "U1",
     "color": "#79B643",
     "edicaoId": 2,
-    "imageUrl": "https://commons.wikimedia.org/w/thumb.php?f=Pizza_oven_in_Berlin.jpg&w=800"
+    "imageUrl": "https://commons.wikimedia.org/w/thumb.php?f=Pizza%20Margherita.jpg&w=800"
   },
   {
     "id": 210,
@@ -107,6 +107,6 @@
     "line": "U7",
     "color": "#6F4E9C",
     "edicaoId": 2,
-    "imageUrl": "https://commons.wikimedia.org/w/thumb.php?f=Berlin_Rathaus_Kreuzberg.jpg&w=800"
+    "imageUrl": "https://commons.wikimedia.org/w/thumb.php?f=Rathaus%20Kreuzberg%20an%20der%20Yorckstra%C3%9Fe.jpg&w=800"
   }
 ]
