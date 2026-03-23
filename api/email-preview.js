@@ -80,7 +80,7 @@ export default async function handler(req, res) {
   const file = `src/edicoes/${slug}.md`
 
   const ghRes = await fetch(
-    `https://api.github.com/repos/renatoxavier12/notas-de-berlim/contents/${file}`,
+    `https://api.github.com/repos/renatoxavier12/notas-de-berlim/contents/${file}?t=${Date.now()}`,
     {
       headers: {
         Authorization: `Bearer ${process.env.GITHUB_TOKEN}`,
