@@ -9,7 +9,7 @@ capa: /capa-02.jpg
 
 Duas semanas e alguns dias em Berlim.
 
-À beira do canal Landwehrkanal, tudo já está mais florido. A primavera chegou quase de um dia pro outro.
+À beira do canal Landwehrkanal, tudo já está mais florido, a primavera chegou quase de um dia pro outro.
 
 Não pegamos o inverno rigoroso do hemisfério norte: nevascas, lagos congelados, temperaturas bem abaixo de zero. Nada disso. Os últimos dias foram mais amenos, entre 4 e 14 graus. Com sol, um final de inverno ensolarado, quem diria.
 
@@ -27,7 +27,7 @@ Ir à prefeitura para nos registrar como moradores da cidade parece a coisa mais
 
 Apesar dos estereótipos, as pessoas sorriem, dão bom dia (em alguns momentos) e até te ajudam no mercado, especialmente quando você tenta pegar um croissant com uma pá enorme, sem perceber que ela não é para isso, mas para empurrar o pão na esteira.
 
-Do mercadinho Späti à Apotheke (farmácia, em alemão), essas pequenas coisas do dia a dia dizem muito sobre como uma cidade funciona. E, por falar nisso, são muitos Spätis por aqui, praticamente em toda esquina: pequenos comércios locais, geralmente tocados por imigrantes, que vendem de tudo — de cervejas a itens de papelaria, passando por alimentos no geral. Numa dessas, nos deparamos com a mais criativa delas: a **Spätify**. kkk.
+Do mercadinho Späti à Apotheke (farmácia, em alemão), essas pequenas coisas do dia a dia dizem muito sobre como uma cidade funciona. E, por falar nisso, são muitos Spätis por aqui, praticamente em toda esquina: pequenos comércios locais, geralmente tocados por imigrantes, que vendem de tudo, de cervejas a itens de papelaria, passando por alimentos no geral. Numa dessas, nos deparamos com a mais criativa delas: a **Spätify**. kkk.
 
 ---
 
@@ -51,11 +51,11 @@ De lanches rápidos a pizzas muito bem feitas, como a de um ítalo-turco-alemão
 
 E nessas andanças (alguns dias batendo 15 km) encontramos outro mercado tradicional, o **Marheineke Markthalle**. E não é que tem um quiosque de um brasileiro que frita coxinha na hora e serve feijoada? Ainda não estamos sentindo falta de feijoada, essa maravilha brasileira, mas a coxinha eu tive que pedir, óbvio. O quiosque mistura Espanha com Brasil: coxinha, torresmo, tortilha e, claro, cerveja alemã. Do jeitinho que tem que ser.
 
-Nesses dias, estamos totalmente no modo freestyle: sem seguir muitas recomendações, andando, sentindo a cidade, as coisas, as pessoas. E de vez em quando, passa alguém falando português. Dá um certo quentinho no coração. A comunidade brasileira aqui é relativamente grande — até o Duvivier esteve por aqui em Berlim, numa turnê pela Europa neste fim de semana, apresentando a peça *O Céu da Língua*. E, para quem ainda não foi, vá.
+Nesses dias, estamos totalmente no modo freestyle: sem seguir muitas recomendações, andando, sentindo a cidade, as coisas, as pessoas. E de vez em quando, passa alguém falando português. Dá um certo quentinho no coração. A comunidade brasileira aqui é relativamente grande, até o Duvivier esteve por aqui em Berlim, numa turnê pela Europa neste fim de semana, apresentando a peça *O Céu da Língua*. E, para quem ainda não foi, vá.
 
 ---
 
-> **Notinha 2:** Já compramos creme de leite achando que era iogurte — ou como se escreve em alemão — e a Bia repete todas as manhãs: *Joghurt* (com jota), ahahaha. E também um "sabão líquido" que era, na verdade, creme para as mãos. A língua é mesmo uma constelação. Claro que dá pra evitar tudo isso. Mas qual a graça de não errar?
+> **Notinha 2:** Já compramos creme de leite achando que era iogurte, ou como se escreve em alemão, e a Bia repete todas as manhãs: *Joghurt* (com jota), ahahaha. E também um "sabão líquido" que era, na verdade, creme para as mãos. A língua é mesmo uma constelação. Claro que dá pra evitar tudo isso. Mas qual a graça de não errar?
 
 ---
 
