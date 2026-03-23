@@ -109,11 +109,11 @@ export function buildEmailContent(markdown, slug) {
 
     <footer style="margin-top:36px;padding-top:18px;color:#5f5f5f;font-size:12px;line-height:1.6;font-family:Arial,sans-serif;">
       <p style="margin:0 0 8px;">Você recebeu este e-mail porque se inscreveu na newsletter Entrelace.</p>
-      <p style="margin:0;">Renato Xavier, Berlim.</p>
+      <p style="margin:0;">Notas de Berlim, por Renato Xavier.</p>
     </footer>
   </div>
 </body>
 </html>`,
-    text: `${title}\n\n${textBody}\n\nContinue lendo: ${editionUrl}\n\nRenato Xavier, Berlim.`,
+    text: `${title}\n\n${textBody}\n\nContinue lendo: ${editionUrl}\n\nNotas de Berlim, por Renato Xavier.`,
   }
 }
