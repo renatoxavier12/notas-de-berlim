@@ -101,13 +101,14 @@ export function buildEmailContent(markdown, slug) {
       ${htmlBody}
     </div>
 
-    <p style="margin:32px 0 0;font-size:18px;line-height:1.7;">
-      Continue lendo em
-      <a href="${editionUrl}" style="color:#1a1a1a;text-decoration:underline;">notasdeberlim.com</a>.
-    </p>
+    <div style="margin-top:40px;padding-top:32px;border-top:1px solid #dedad2;">
+      <a href="${editionUrl}" style="background-color:#F0D722;color:#000000;padding:14px 24px;text-decoration:none;font-weight:700;font-size:14px;display:inline-block;font-family:Arial,sans-serif;text-transform:uppercase;letter-spacing:0.5px;">
+        Ler no site &rarr;
+      </a>
+    </div>
 
-    <footer style="margin-top:36px;padding-top:18px;border-top:1px solid #dedad2;color:#5f5f5f;font-size:12px;line-height:1.6;font-family:Arial,sans-serif;">
-      <p style="margin:0 0 8px;">Este email foi enviado para assinantes do Notas de Berlim.</p>
+    <footer style="margin-top:36px;padding-top:18px;color:#5f5f5f;font-size:12px;line-height:1.6;font-family:Arial,sans-serif;">
+      <p style="margin:0 0 8px;">Você recebeu este e-mail porque se inscreveu na newsletter Entrelace.</p>
       <p style="margin:0;">Renato Xavier, Berlim.</p>
     </footer>
   </div>
