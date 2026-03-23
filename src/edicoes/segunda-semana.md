@@ -39,7 +39,7 @@ Ah, aliás: a leiteira que encontramos é elétrica. Dá até para arriscar uma 
 
 ---
 
-> **Notinha 1:** o objetivo desta news é também informar que estamos de casa nova. Se você clicou para ler mais no seu e-mail, já deve estar lendo a partir do nosso novo endereço, [notasdeberlim.com](https://notasdeberlim.com). A casa é nova, mas o esquema é o mesmo: você está aqui porque assinou a Substack Entrelaçe. Fique à vontade por aqui para entrar e sair quando quiser, mas torço para que queira ficar.
+> **Notinha 1:** o objetivo desta news é também informar que estamos de casa nova. Se você clicou para ler mais no seu e-mail, já deve estar lendo a partir do nosso novo endereço, [notasdeberlim.com](https://notasdeberlim.com). A casa é nova, mas o esquema é o mesmo: você está aqui porque assinou a Entrelace. A casa mudou, quem escreve não.
 
 ---
 
