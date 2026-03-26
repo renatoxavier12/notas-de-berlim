@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { MapPinned } from 'lucide-react'
-import { EDICOES, formatEditionRelativeDate, getEditionCopy, getEditionKiezes } from '../lib/site'
+import { EDICOES, formatEditionRelativeDate, getEditionCopy, getEditionKiezes, normalizeEmail, setCookie } from '../lib/site'
 
 function SubscribeForm() {
   const { t } = useTranslation()
@@ -10,17 +10,19 @@ function SubscribeForm() {
 
   async function handleSubmit(event) {
     event.preventDefault()
-    if (!email) return
+    const normalizedEmail = normalizeEmail(email)
+    if (!normalizedEmail) return
     setStatus('loading')
 
     try {
       const response = await fetch('/api/subscribe', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email }),
+        body: JSON.stringify({ email: normalizedEmail }),
       })
 
       if (response.ok) {
+        setCookie('nb_email', normalizedEmail)
         setStatus('ok')
         setEmail('')
       } else {
@@ -42,7 +44,7 @@ function SubscribeForm() {
             type="email"
             placeholder={t('subscribe.placeholder')}
             value={email}
-            onChange={event => setEmail(event.target.value)}
+            onChange={event => setEmail(normalizeEmail(event.target.value))}
             className="subscribe-input"
             required
           />

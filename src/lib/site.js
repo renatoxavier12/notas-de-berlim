@@ -78,6 +78,10 @@ export function setCookie(name, value, days = 365) {
   document.cookie = `${name}=${encodeURIComponent(value)};expires=${expires};path=/;SameSite=Lax`
 }
 
+export function normalizeEmail(email) {
+  return typeof email === 'string' ? email.trim().toLowerCase() : ''
+}
+
 export function parseFrontmatter(raw) {
   const match = raw.match(/^---\n([\s\S]*?)\n---\n?([\s\S]*)$/)
   if (!match) return { meta: {}, content: raw }

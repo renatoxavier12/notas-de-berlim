@@ -4,23 +4,25 @@ import { MapPinned } from 'lucide-react'
 import ReactMarkdown from 'react-markdown'
 import { normalizeLanguage } from '../i18n'
 import LOCATIONS from '../locations.json'
-import { EDICOES, absoluteUrl, formatEditionDate, formatEditionRelativeDate, getCookie, getEditionAroundReadings, getEditionCopy, getGlossaryTerms, getMarkdownForEdicao, readingTime, setCookie } from '../lib/site'
+import { EDICOES, absoluteUrl, formatEditionDate, formatEditionRelativeDate, getCookie, getEditionAroundReadings, getEditionCopy, getGlossaryTerms, getMarkdownForEdicao, normalizeEmail, readingTime, setCookie } from '../lib/site'
 
 function EdicaoGate({ onUnlock }) {
   const { t } = useTranslation()
-  const [email, setEmail] = useState('')
+  const [email, setEmail] = useState(() => normalizeEmail(getCookie('nb_email')))
   const [status, setStatus] = useState(null)
 
   async function handleSubmit(event) {
     event.preventDefault()
+    const normalizedEmail = normalizeEmail(email)
+    if (!normalizedEmail) return
     setStatus('loading')
 
     try {
-      const response = await fetch(`/api/check?email=${encodeURIComponent(email)}`)
+      const response = await fetch(`/api/check?email=${encodeURIComponent(normalizedEmail)}`)
       if (response.ok) {
         const data = await response.json()
         if (data.isSubscribed) {
-          setCookie('nb_email', email)
+          setCookie('nb_email', normalizedEmail)
           onUnlock()
         } else {
           setStatus('not_subscribed')
@@ -44,7 +46,7 @@ function EdicaoGate({ onUnlock }) {
             type="email"
             placeholder={t('subscribe.placeholder')}
             value={email}
-            onChange={event => setEmail(event.target.value)}
+            onChange={event => setEmail(normalizeEmail(event.target.value))}
             className="subscribe-input"
             required
           />

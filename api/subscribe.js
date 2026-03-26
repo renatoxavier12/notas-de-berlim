@@ -16,6 +16,10 @@ function isRateLimited(ip) {
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
+function normalizeEmail(email) {
+  return typeof email === 'string' ? email.trim().toLowerCase() : ''
+}
+
 export default async function handler(req, res) {
   if (req.method === 'OPTIONS') {
     return res.status(200).end()
@@ -30,8 +34,8 @@ export default async function handler(req, res) {
     return res.status(429).json({ error: 'Too many requests. Tente de novo em alguns minutos.' })
   }
 
-  const { email } = req.body
-  if (!email || typeof email !== 'string' || email.length > 254 || !EMAIL_RE.test(email)) {
+  const email = normalizeEmail(req.body?.email)
+  if (!email || email.length > 254 || !EMAIL_RE.test(email)) {
     return res.status(400).json({ error: 'Email inválido.' })
   }
 
