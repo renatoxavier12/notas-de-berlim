@@ -1,0 +1,95 @@
+{
+  "site": {
+    "name": "Notizen aus Berlin",
+    "description": "Essen, Drinks, Kultur. Leben in Berlin."
+  },
+  "nav": {
+    "archive": "Archiv",
+    "map": "Karte",
+    "about": "Über",
+    "themeLight": "Heller Modus",
+    "themeDark": "Dunkler Modus"
+  },
+  "common": {
+    "loading": "Wird geladen...",
+    "sending": "Wird gesendet..."
+  },
+  "home": {
+    "kicker": "BERLIN, 2026",
+    "title": "Notizen aus Berlin",
+    "subtitle": "Essen, Drinks, Kultur. Leben in Berlin.",
+    "editions": "AUSGABEN",
+    "searchPlaceholder": "Suchen...",
+    "noResults": "Keine Ausgaben gefunden."
+  },
+  "subscribe": {
+    "label": "PER E-MAIL ERHALTEN",
+    "placeholder": "deine@email.com",
+    "submit": "Abonnieren",
+    "success": "Abonniert. Bis zur nächsten Ausgabe.",
+    "error": "Etwas ist schiefgelaufen. Versuche es erneut."
+  },
+  "about": {
+    "back": "← Archiv",
+    "kicker": "DER AUTOR",
+    "name": "Renato Xavier",
+    "bio1": "Postdoktorand am CEBRAP/FAPESP und Gastforscher am Ibero-Amerikanischen Institut (IAI) in Berlin. Er forscht zu politischer Theorie und internationalen Beziehungen mit Fokus auf W.E.B. Du Bois, Algorithmen und Rasse. Im März 2026 kamen wir in Kreuzberg an: Bia, Tiãozinho (unser deutscher Spitz) und ich. Mit Koffern, aber ohne Milchkanne.",
+    "bio2": "Notizen aus Berlin ist ein offenes Notizbuch ohne Seiten.",
+    "support": "Unterstütze mich",
+    "published": "VERÖFFENTLICHTE AUSGABEN",
+    "photoAlt": "Renato Xavier und Tião"
+  },
+  "map": {
+    "title": "Karte",
+    "subtitle": "Orte aus den Ausgaben",
+    "city": "Berlin",
+    "readEdition": "Ausgabe #{{id}} lesen →",
+    "openList": "☰ Orte",
+    "closeList": "✕ Schließen",
+    "line": "Linie {{line}}"
+  },
+  "edition": {
+    "back": "← Archiv",
+    "continue": "WEITERLESEN",
+    "exclusive": "Diese Ausgabe ist exklusiv für Abonnent:innen.",
+    "access": "Öffnen",
+    "emailMissing": "E-Mail nicht in der Liste gefunden.",
+    "subscribeFirst": "Abonnieren",
+    "emailNotFound": "E-Mail nicht gefunden. Bitte auf der Startseite abonnieren.",
+    "mapLink": "Orte dieser Ausgabe auf der Karte ansehen →",
+    "share": "TEILEN",
+    "copyLink": "Link kopieren",
+    "like": "Gefällt mir",
+    "unlike": "Gefällt mir entfernen",
+    "comments": "KOMMENTARE",
+    "firstComment": "Sei der erste Kommentar.",
+    "leaveComment": "KOMMENTAR HINTERLASSEN",
+    "commentName": "Dein Name (optional)",
+    "commentText": "Schreibe deine Notiz...",
+    "sendComment": "Kommentar senden",
+    "commentSuccess": "Danke. Dein Kommentar wurde zur Moderation gesendet und erscheint bald.",
+    "commentError": "Fehler beim Senden. Bitte versuche es erneut.",
+    "translateEnglish": "Read in English",
+    "translateGerman": "Auf Deutsch lesen",
+    "translateLoading": "Wird übersetzt...",
+    "translatedTitleEn": "Übersetzte englische Version",
+    "translatedTitleDe": "Übersetzte deutsche Version",
+    "translateError": "Diese Ausgabe konnte gerade nicht übersetzt werden."
+  },
+  "meta": {
+    "mapTitle": "Karte | Notizen aus Berlin",
+    "mapDescription": "In den Ausgaben von Notizen aus Berlin erwähnte Orte auf einer interaktiven Karte.",
+    "aboutTitle": "Über | Notizen aus Berlin",
+    "aboutDescription": "Lerne den Autor kennen und sieh dir die veröffentlichten Ausgaben von Notizen aus Berlin an."
+  },
+  "editions": {
+    "primeira-semana": {
+      "title": "Erste Woche",
+      "teaser": "Wir sind angekommen. Die Wohnung ist ein Altbau, eine Milchkanne fehlt, und die Deutschen recyceln sogar Wecker."
+    },
+    "segunda-semana": {
+      "title": "Zweite Woche",
+      "teaser": "Briefkastenschild, Milchkanne gefunden und Spätify um die Ecke."
+    }
+  }
+}

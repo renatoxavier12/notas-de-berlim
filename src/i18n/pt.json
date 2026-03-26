@@ -1,0 +1,95 @@
+{
+  "site": {
+    "name": "Notas de Berlim",
+    "description": "Comida, drink, Kultur. Vida em Berlim."
+  },
+  "nav": {
+    "archive": "Arquivo",
+    "map": "Mapa",
+    "about": "Sobre",
+    "themeLight": "Modo claro",
+    "themeDark": "Modo escuro"
+  },
+  "common": {
+    "loading": "Carregando...",
+    "sending": "Enviando..."
+  },
+  "home": {
+    "kicker": "BERLIM, 2026",
+    "title": "Notas de Berlim",
+    "subtitle": "Comida, drink, Kultur. Vida em Berlim.",
+    "editions": "EDIÇÕES",
+    "searchPlaceholder": "Buscar...",
+    "noResults": "Nenhuma edição encontrada."
+  },
+  "subscribe": {
+    "label": "RECEBA POR EMAIL",
+    "placeholder": "seu@email.com",
+    "submit": "Assinar",
+    "success": "Inscrito. Até a próxima edição.",
+    "error": "Algo deu errado. Tenta de novo."
+  },
+  "about": {
+    "back": "← Arquivo",
+    "kicker": "O AUTOR",
+    "name": "Renato Xavier",
+    "bio1": "Pós-doutorando CEBRAP/FAPESP e pesquisador visitante no Ibero-Amerikanisches Institut (IAI), em Berlim. Pesquisador de teoria política e relações internacionais, com foco em W.E.B. Du Bois, algoritmos e raça. Em março de 2026, chegamos a Kreuzberg: Bia, Tiãozinho (nosso spitz alemão) e eu. Com mala e sem leiteira.",
+    "bio2": "Notas de Berlim é um caderno aberto sem folhas.",
+    "support": "Apoie-me",
+    "published": "EDIÇÕES PUBLICADAS",
+    "photoAlt": "Renato Xavier e Tião"
+  },
+  "map": {
+    "title": "Mapa",
+    "subtitle": "Locais citados nas edições",
+    "city": "Berlim",
+    "readEdition": "Ler edição #{{id}} →",
+    "openList": "☰ Locais",
+    "closeList": "✕ Fechar",
+    "line": "Linha {{line}}"
+  },
+  "edition": {
+    "back": "← Arquivo",
+    "continue": "CONTINUAR LENDO",
+    "exclusive": "Esta edição é exclusiva para inscritos.",
+    "access": "Acessar",
+    "emailMissing": "Email não encontrado na lista.",
+    "subscribeFirst": "Inscreva-se",
+    "emailNotFound": "Email não encontrado. Inscreva-se na página inicial.",
+    "mapLink": "Ver lugares desta edição no mapa →",
+    "share": "COMPARTILHAR",
+    "copyLink": "Copiar link",
+    "like": "Curtir",
+    "unlike": "Remover curtida",
+    "comments": "COMENTÁRIOS",
+    "firstComment": "Seja o primeiro a comentar.",
+    "leaveComment": "DEIXE UM COMENTÁRIO",
+    "commentName": "Seu nome (opcional)",
+    "commentText": "Escreva sua nota...",
+    "sendComment": "Enviar Comentário",
+    "commentSuccess": "Obrigado! Seu comentário foi enviado para moderação e aparecerá em breve.",
+    "commentError": "Erro ao enviar. Tente novamente.",
+    "translateEnglish": "Translate to English",
+    "translateGerman": "Auf Deutsch lesen",
+    "translateLoading": "Traduzindo...",
+    "translatedTitleEn": "Versão traduzida em inglês",
+    "translatedTitleDe": "Versão traduzida em alemão",
+    "translateError": "Não foi possível traduzir esta edição agora."
+  },
+  "meta": {
+    "mapTitle": "Mapa | Notas de Berlim",
+    "mapDescription": "Locais citados nas edições de Notas de Berlim em um mapa interativo.",
+    "aboutTitle": "Sobre | Notas de Berlim",
+    "aboutDescription": "Conheça o autor e acompanhe as edições publicadas de Notas de Berlim."
+  },
+  "editions": {
+    "primeira-semana": {
+      "title": "Primeira Semana",
+      "teaser": "Chegamos. O apartamento é Altbau, falta uma leiteira, e os alemães reciclam até o despertador."
+    },
+    "segunda-semana": {
+      "title": "Segunda Semana",
+      "teaser": "Etiqueta na caixinha de correio, leiteira achada, e a Spätify na esquina."
+    }
+  }
+}

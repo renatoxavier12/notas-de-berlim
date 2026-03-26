@@ -1,5 +1,7 @@
 import { Suspense, lazy, useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import './App.css'
+import LangSwitcher from './components/LangSwitcher'
 import { findEdicaoBySlug, getCookie, setCookie } from './lib/site'
 import RouteMeta from './components/RouteMeta'
 
@@ -9,34 +11,37 @@ const MapaView = lazy(() => import('./routes/MapaView'))
 const SobreView = lazy(() => import('./routes/SobreView'))
 
 function Nav({ view, setView, dark, setDark }) {
+  const { t } = useTranslation()
+
   return (
     <nav className="site-nav">
       <button className="nav-logo" onClick={() => setView('home')}>
-        Notas de Berlim
+        {t('site.name')}
       </button>
       <div className="nav-links">
         <button
           className={view === 'home' || view === 'edicao' ? 'active' : ''}
           onClick={() => setView('home')}
         >
-          Arquivo
+          {t('nav.archive')}
         </button>
         <button
           className={view === 'mapa' ? 'active' : ''}
           onClick={() => setView('mapa')}
         >
-          Mapa
+          {t('nav.map')}
         </button>
         <button
           className={view === 'sobre' ? 'active' : ''}
           onClick={() => setView('sobre')}
         >
-          Sobre
+          {t('nav.about')}
         </button>
+        <LangSwitcher />
         <button
           className="nav-theme-toggle"
           onClick={() => setDark(value => !value)}
-          aria-label={dark ? 'Modo claro' : 'Modo escuro'}
+          aria-label={dark ? t('nav.themeLight') : t('nav.themeDark')}
         >
           {dark ? '☀' : '☽'}
         </button>
@@ -60,10 +65,12 @@ function routeStateFromPath(pathname) {
 }
 
 function LoadingFallback() {
-  return <div className="page-loading">Carregando...</div>
+  const { t } = useTranslation()
+  return <div className="page-loading">{t('common.loading')}</div>
 }
 
 function App() {
+  const { i18n } = useTranslation()
   const initialRoute = routeStateFromPath(window.location.pathname)
   const [view, setView] = useState(initialRoute.view)
   const [edicaoAtiva, setEdicaoAtiva] = useState(initialRoute.edicao)
@@ -73,6 +80,16 @@ function App() {
     document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light')
     setCookie('theme', dark ? 'dark' : 'light')
   }, [dark])
+
+  useEffect(() => {
+    const htmlLang = i18n.resolvedLanguage === 'de'
+      ? 'de-DE'
+      : i18n.resolvedLanguage === 'en'
+        ? 'en'
+        : 'pt-BR'
+
+    document.documentElement.lang = htmlLang
+  }, [i18n.resolvedLanguage])
 
   useEffect(() => {
     function handlePopState() {

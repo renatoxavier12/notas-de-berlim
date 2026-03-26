@@ -90,6 +90,7 @@ button {
 .nav-links {
   display: flex;
   gap: 4px;
+  align-items: center;
 }
 
 .nav-links button {
@@ -106,6 +107,23 @@ button {
 
 .nav-links button:hover,
 .nav-links button.active {
+  border-color: var(--yellow);
+}
+
+.lang-switcher {
+  display: flex;
+  gap: 2px;
+  margin-left: 8px;
+  padding-left: 8px;
+  border-left: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+.lang-switcher button {
+  min-width: 38px;
+  padding: 6px 8px;
+}
+
+.lang-switcher button.active {
   border-color: var(--yellow);
 }
 
@@ -652,6 +670,39 @@ button:focus-visible, a:focus-visible {
   color: var(--yellow);
 }
 
+.translation-box {
+  margin: 36px 0 12px;
+}
+
+.translate-btn {
+  background: var(--yellow);
+  color: var(--black);
+  font-family: var(--font-ui);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 12px 16px;
+}
+
+.translate-btn:disabled {
+  opacity: 0.7;
+  cursor: wait;
+}
+
+.translated-content {
+  margin-top: 24px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+}
+
+.translate-error {
+  margin-top: 12px;
+  color: #c0392b;
+  font-family: var(--font-ui);
+  font-size: 12px;
+}
+
 /* ── Share & Like ── */
 .share-bar {
   margin-top: 56px;
@@ -709,6 +760,8 @@ button:focus-visible, a:focus-visible {
 .share-icon-btn[title="Telegram"]   { background: #2AABEE; }
 .share-icon-btn[title="LinkedIn"]   { background: #0A66C2; }
 .share-icon-btn[title="Copiar link"]{ background: #555; }
+
+.copy-share-btn { background: #555; }
 
 .like-btn {
   display: flex;
@@ -1103,6 +1156,14 @@ html[data-theme="dark"] .search-input {
 
 html[data-theme="dark"] .search-input:focus {
   border-color: #888;
+}
+
+html[data-theme="dark"] .lang-switcher {
+  border-left-color: rgba(255, 255, 255, 0.18);
+}
+
+html[data-theme="dark"] .translated-content {
+  border-top-color: #2a2a2a;
 }
 
 html[data-theme="dark"] .sidebar {

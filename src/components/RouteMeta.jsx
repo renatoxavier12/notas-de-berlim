@@ -1,13 +1,18 @@
 import { Helmet } from 'react-helmet-async'
-import { absoluteUrl, DEFAULT_OG_IMAGE, SITE_DESCRIPTION, SITE_NAME, SITE_URL } from '../lib/site'
+import { useTranslation } from 'react-i18next'
+import { absoluteUrl, DEFAULT_OG_IMAGE, getEditionCopy, SITE_URL } from '../lib/site'
 
-function buildMeta(view, edicao) {
+function buildMeta(view, edicao, t) {
+  const siteName = t('site.name')
+  const siteDescription = t('site.description')
+
   if (view === 'edicao' && edicao) {
-    const description = edicao.teaser || SITE_DESCRIPTION
+    const editionCopy = getEditionCopy(edicao, t)
+    const description = editionCopy.teaser || siteDescription
     const image = absoluteUrl(edicao.capa || '/og.jpg')
     const url = absoluteUrl(`/edicoes/${edicao.slug}`)
     return {
-      title: `${edicao.titulo} | ${SITE_NAME}`,
+      title: `${editionCopy.titulo} | ${siteName}`,
       description,
       image,
       url,
@@ -16,8 +21,8 @@ function buildMeta(view, edicao) {
 
   if (view === 'mapa') {
     return {
-      title: `Mapa | ${SITE_NAME}`,
-      description: 'Locais citados nas edições de Notas de Berlim em um mapa interativo.',
+      title: t('meta.mapTitle'),
+      description: t('meta.mapDescription'),
       image: absoluteUrl('/hero.jpg'),
       url: absoluteUrl('/mapa'),
     }
@@ -25,31 +30,37 @@ function buildMeta(view, edicao) {
 
   if (view === 'sobre') {
     return {
-      title: `Sobre | ${SITE_NAME}`,
-      description: 'Conheça o autor e acompanhe as edições publicadas de Notas de Berlim.',
+      title: t('meta.aboutTitle'),
+      description: t('meta.aboutDescription'),
       image: DEFAULT_OG_IMAGE,
       url: absoluteUrl('/sobre'),
     }
   }
 
   return {
-    title: SITE_NAME,
-    description: SITE_DESCRIPTION,
+    title: siteName,
+    description: siteDescription,
     image: DEFAULT_OG_IMAGE,
     url: SITE_URL,
   }
 }
 
 export default function RouteMeta({ view, edicao }) {
-  const meta = buildMeta(view, edicao)
+  const { t, i18n } = useTranslation()
+  const meta = buildMeta(view, edicao, t)
+  const ogLocale = i18n.resolvedLanguage === 'de'
+    ? 'de_DE'
+    : i18n.resolvedLanguage === 'en'
+      ? 'en_US'
+      : 'pt_BR'
 
   return (
     <Helmet prioritizeSeoTags>
       <title>{meta.title}</title>
       <meta name="description" content={meta.description} />
       <meta property="og:type" content="website" />
-      <meta property="og:locale" content="pt_BR" />
-      <meta property="og:site_name" content={SITE_NAME} />
+      <meta property="og:locale" content={ogLocale} />
+      <meta property="og:site_name" content={t('site.name')} />
       <meta property="og:title" content={meta.title} />
       <meta property="og:description" content={meta.description} />
       <meta property="og:image" content={meta.image} />

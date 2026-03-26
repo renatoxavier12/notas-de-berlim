@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import ReactMarkdown from 'react-markdown'
 import LOCATIONS from '../locations.json'
-import { absoluteUrl, getCookie, getMarkdownForEdicao, readingTime, setCookie } from '../lib/site'
+import { absoluteUrl, getCookie, getEditionCopy, getMarkdownForEdicao, readingTime, setCookie } from '../lib/site'
 
 function EdicaoGate({ onUnlock }) {
+  const { t } = useTranslation()
   const [email, setEmail] = useState('')
   const [status, setStatus] = useState(null)
 
@@ -32,29 +34,31 @@ function EdicaoGate({ onUnlock }) {
   return (
     <div className="edicao-gate">
       <div className="gate-inner">
-        <p className="gate-label">CONTINUAR LENDO</p>
-        <p className="gate-text">Esta edição é exclusiva para inscritos.</p>
+        <p className="gate-label">{t('edition.continue')}</p>
+        <p className="gate-text">{t('edition.exclusive')}</p>
         <form className="subscribe-form" onSubmit={handleSubmit}>
           <input
             type="email"
-            placeholder="seu@email.com"
+            placeholder={t('subscribe.placeholder')}
             value={email}
             onChange={event => setEmail(event.target.value)}
             className="subscribe-input"
             required
           />
           <button type="submit" className="subscribe-btn" disabled={status === 'loading'}>
-            {status === 'loading' ? '...' : 'Acessar'}
+            {status === 'loading' ? '...' : t('edition.access')}
           </button>
         </form>
         {status === 'not_subscribed' && (
-          <p className="subscribe-error">Email não encontrado na lista. <a href="/" onClick={event => { event.preventDefault(); window.scrollTo(0, 0) }}>Inscreva-se</a> primeiro.</p>
+          <p className="subscribe-error">
+            {t('edition.emailMissing')} <a href="/" onClick={event => { event.preventDefault(); window.scrollTo(0, 0) }}>{t('edition.subscribeFirst')}</a>
+          </p>
         )}
         {status === 'not_found' && (
-          <p className="subscribe-error">Email não encontrado. Inscreva-se na página inicial.</p>
+          <p className="subscribe-error">{t('edition.emailNotFound')}</p>
         )}
         {status === 'error' && (
-          <p className="subscribe-error">Algo deu errado. Tenta de novo.</p>
+          <p className="subscribe-error">{t('subscribe.error')}</p>
         )}
       </div>
     </div>
@@ -99,6 +103,7 @@ const IconHeart = ({ filled }) => (
 )
 
 function LikeButton({ slug }) {
+  const { t } = useTranslation()
   const key = `nb_like_${slug}`
   const [liked, setLiked] = useState(() => getCookie(key) === 'true')
 
@@ -109,13 +114,14 @@ function LikeButton({ slug }) {
   }
 
   return (
-    <button className={`like-btn ${liked ? 'liked' : ''}`} onClick={toggle} title={liked ? 'Remover curtida' : 'Curtir'}>
+    <button className={`like-btn ${liked ? 'liked' : ''}`} onClick={toggle} title={liked ? t('edition.unlike') : t('edition.like')}>
       <IconHeart filled={liked} />
     </button>
   )
 }
 
 function CustomComments({ slug }) {
+  const { t, i18n } = useTranslation()
   const [comments, setComments] = useState([])
   const [formData, setFormData] = useState({ name: '', text: '', honeypot: '' })
   const [status, setStatus] = useState(null)
@@ -149,9 +155,11 @@ function CustomComments({ slug }) {
     }
   }
 
+  const locale = i18n.resolvedLanguage === 'de' ? 'de-DE' : i18n.resolvedLanguage === 'en' ? 'en-US' : 'pt-BR'
+
   return (
     <div className="comments-section">
-      <p className="share-label" style={{ marginBottom: 24 }}>COMENTÁRIOS</p>
+      <p className="share-label" style={{ marginBottom: 24 }}>{t('edition.comments')}</p>
       {comments.length > 0 ? (
         <div className="comments-list">
           {comments.map(comment => (
@@ -159,7 +167,7 @@ function CustomComments({ slug }) {
               <div className="comment-header">
                 <span className="comment-author">{comment.name}</span>
                 <span className="comment-date">
-                  {new Date(comment.timestamp).toLocaleDateString('pt-BR')}
+                  {new Date(comment.timestamp).toLocaleDateString(locale)}
                 </span>
               </div>
               <p className="comment-text">{comment.text}</p>
@@ -167,13 +175,13 @@ function CustomComments({ slug }) {
           ))}
         </div>
       ) : (
-        <p className="comments-empty">Seja o primeiro a comentar.</p>
+        <p className="comments-empty">{t('edition.firstComment')}</p>
       )}
 
       <div className="comment-form-container">
-        <p className="share-label" style={{ marginTop: 40, marginBottom: 16 }}>DEIXE UM COMENTÁRIO</p>
+        <p className="share-label" style={{ marginTop: 40, marginBottom: 16 }}>{t('edition.leaveComment')}</p>
         {status === 'ok' ? (
-          <p className="comment-success">Obrigado! Seu comentário foi enviado para moderação e aparecerá em breve.</p>
+          <p className="comment-success">{t('edition.commentSuccess')}</p>
         ) : (
           <form className="comment-form" onSubmit={handleSubmit}>
             <input
@@ -187,34 +195,36 @@ function CustomComments({ slug }) {
             />
             <input
               type="text"
-              placeholder="Seu nome (opcional)"
+              placeholder={t('edition.commentName')}
               className="comment-input-name"
               value={formData.name}
               onChange={event => setFormData({ ...formData, name: event.target.value })}
             />
             <textarea
-              placeholder="Escreva sua nota..."
+              placeholder={t('edition.commentText')}
               className="comment-input-text"
               required
               value={formData.text}
               onChange={event => setFormData({ ...formData, text: event.target.value })}
             />
             <button type="submit" className="comment-submit-btn" disabled={status === 'loading'}>
-              {status === 'loading' ? 'Enviando...' : 'Enviar Comentário'}
+              {status === 'loading' ? t('common.sending') : t('edition.sendComment')}
             </button>
           </form>
         )}
-        {status === 'error' && <p className="comment-error">Erro ao enviar. Tente novamente.</p>}
+        {status === 'error' && <p className="comment-error">{t('edition.commentError')}</p>}
       </div>
     </div>
   )
 }
 
 function ShareBar({ edicao }) {
+  const { t } = useTranslation()
+  const editionCopy = getEditionCopy(edicao, t)
   const [copied, setCopied] = useState(false)
   const canonicalUrl = absoluteUrl(`/edicoes/${edicao.slug}`)
   const pageUrl = encodeURIComponent(canonicalUrl)
-  const text = encodeURIComponent(`"${edicao.titulo}" — Notas de Berlim`)
+  const text = encodeURIComponent(`"${editionCopy.titulo}" — ${t('site.name')}`)
 
   const redes = [
     { label: 'X', icon: <IconX />, href: `https://twitter.com/intent/tweet?text=${text}&url=${pageUrl}` },
@@ -244,14 +254,14 @@ function ShareBar({ edicao }) {
       <div className="share-row">
         <LikeButton slug={edicao.slug} />
         <div className="share-links">
-          <p className="share-label">COMPARTILHAR</p>
+          <p className="share-label">{t('edition.share')}</p>
           <div className="share-icons">
             {redes.map(rede => (
               <a key={rede.label} href={rede.href} target="_blank" rel="noopener noreferrer" className="share-icon-btn" title={rede.label}>
                 {rede.icon}
               </a>
             ))}
-            <button className="share-icon-btn" onClick={copiar} title="Copiar link" style={{ background: copied ? '#2ecc71' : '#555' }}>
+            <button className="share-icon-btn copy-share-btn" onClick={copiar} title={t('edition.copyLink')} style={{ background: copied ? '#2ecc71' : '#555' }}>
               {copied ? (
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
                   <polyline points="20 6 9 17 4 12" />
@@ -287,29 +297,67 @@ function ReadingProgress() {
 }
 
 export default function EdicaoView({ edicao, setView }) {
+  const { t, i18n } = useTranslation()
   const raw = getMarkdownForEdicao(edicao.slug)
   const content = raw.replace(/^---[\s\S]*?---\n?/, '')
   const parts = content.split(/\n---\n/)
   const teaser = parts[0]
   const hasMore = parts.length > 1
   const rest = parts.slice(1).join('\n\n---\n\n')
+  const editionCopy = getEditionCopy(edicao, t)
   const [unlocked, setUnlocked] = useState(() => !!getCookie('nb_email'))
+  const [translations, setTranslations] = useState({})
+  const [translationStatus, setTranslationStatus] = useState('idle')
+  const [translationError, setTranslationError] = useState(null)
+
+  const targetLanguage = i18n.resolvedLanguage === 'de' ? 'DE' : 'EN'
+  const translatedContent = translations[targetLanguage] || null
+
+  async function translateEdition() {
+    if (translatedContent) return
+
+    setTranslationStatus('loading')
+    setTranslationError(null)
+
+    try {
+      const response = await fetch('/api/translate', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          slug: edicao.slug,
+          targetLang: targetLanguage,
+          text: content,
+        }),
+      })
+
+      const data = await response.json()
+      if (!response.ok || !data.translation) {
+        throw new Error(data.error || 'Translation failed')
+      }
+
+      setTranslations(current => ({ ...current, [targetLanguage]: data.translation }))
+      setTranslationStatus('success')
+    } catch {
+      setTranslationStatus('error')
+      setTranslationError(t('edition.translateError'))
+    }
+  }
 
   return (
     <div className="edicao-view">
       <ReadingProgress />
       <div className="edicao-view-inner">
         <button className="back-btn" onClick={() => setView('home')}>
-          ← Arquivo
+          {t('edition.back')}
         </button>
         {edicao.capa && (
-          <img src={edicao.capa} alt={edicao.titulo} className="edicao-capa" />
+          <img src={edicao.capa} alt={editionCopy.titulo} className="edicao-capa" />
         )}
         <header className="edicao-header">
           <span className="edicao-numero-big">#{String(edicao.id).padStart(2, '0')}</span>
-          <h1>{edicao.titulo}</h1>
+          <h1>{editionCopy.titulo}</h1>
           <p className="edicao-meta">
-            {edicao.data} · {edicao.bairro} · {readingTime(content)}
+            {edicao.data} · {editionCopy.bairro} · {readingTime(content)}
           </p>
         </header>
         <article className="edicao-content">
@@ -321,9 +369,27 @@ export default function EdicaoView({ edicao, setView }) {
           <>
             {LOCATIONS.some(location => location.edicaoId === edicao.id) && (
               <button className="mapa-link-btn" onClick={() => setView('mapa')}>
-                Ver lugares desta edição no mapa →
+                {t('edition.mapLink')}
               </button>
             )}
+            <div className="translation-box">
+              <button className="translate-btn" onClick={translateEdition} disabled={translationStatus === 'loading'}>
+                {translationStatus === 'loading'
+                  ? t('edition.translateLoading')
+                  : targetLanguage === 'DE'
+                    ? t('edition.translateGerman')
+                    : t('edition.translateEnglish')}
+              </button>
+              {translationError && <p className="translate-error">{translationError}</p>}
+              {translatedContent && (
+                <div className="translated-content">
+                  <p className="share-label" style={{ marginBottom: 20 }}>
+                    {targetLanguage === 'DE' ? t('edition.translatedTitleDe') : t('edition.translatedTitleEn')}
+                  </p>
+                  <ReactMarkdown>{translatedContent}</ReactMarkdown>
+                </div>
+              )}
+            </div>
             <ShareBar edicao={edicao} />
           </>
         )}

@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { MapContainer, Marker, Popup, TileLayer, useMap } from 'react-leaflet'
 import L from 'leaflet'
 import 'leaflet/dist/leaflet.css'
@@ -36,6 +37,7 @@ function MapRecenter({ coords }) {
 }
 
 export default function MapaView({ setView, setEdicaoAtiva }) {
+  const { t } = useTranslation()
   const [activeLocation, setActiveLocation] = useState(null)
   const [center, setCenter] = useState([52.501, 13.41])
   const [sidebarOpen, setSidebarOpen] = useState(false)
@@ -43,15 +45,15 @@ export default function MapaView({ setView, setEdicaoAtiva }) {
   return (
     <div className="mapa-view">
       <button className="mapa-toggle-btn" onClick={() => setSidebarOpen(open => !open)}>
-        {sidebarOpen ? '✕ Fechar' : '☰ Locais'}
+        {sidebarOpen ? t('map.closeList') : t('map.openList')}
       </button>
       <div className={`sidebar ${sidebarOpen ? 'sidebar-open' : ''}`}>
         <header className="sidebar-header">
-          <h1>Mapa</h1>
+          <h1>{t('map.title')}</h1>
         </header>
         <div className="sidebar-content">
           <p style={{ fontSize: '13px', color: '#666', marginBottom: '16px' }}>
-            Locais citados nas edições
+            {t('map.subtitle')}
           </p>
           {LOCATIONS.map(location => (
             <div
@@ -71,7 +73,7 @@ export default function MapaView({ setView, setEdicaoAtiva }) {
                 <span className="u-line-tag" style={{ backgroundColor: location.color }}>
                   {location.line}
                 </span>
-                <span style={{ fontSize: '12px', color: '#888' }}>Berlim</span>
+                <span style={{ fontSize: '12px', color: '#888' }}>{t('map.city')}</span>
               </div>
               <p>{location.description}</p>
             </div>
@@ -106,7 +108,7 @@ export default function MapaView({ setView, setEdicaoAtiva }) {
                     <img src={location.imageUrl} alt={location.name} className="popup-img" referrerPolicy="no-referrer" />
                   )}
                   <p style={{ margin: '0 0 8px', fontSize: '13px' }}>{location.description}</p>
-                  <span style={{ fontWeight: 'bold', fontSize: '12px', color: '#888' }}>Linha {location.line}</span>
+                  <span style={{ fontWeight: 'bold', fontSize: '12px', color: '#888' }}>{t('map.line', { line: location.line })}</span>
                   {location.edicaoId && (() => {
                     const edicao = EDICOES.find(item => item.id === location.edicaoId)
                     return edicao ? (
@@ -129,7 +131,7 @@ export default function MapaView({ setView, setEdicaoAtiva }) {
                           textAlign: 'center',
                         }}
                       >
-                        Ler edição #{String(edicao.id).padStart(2, '0')} →
+                        {t('map.readEdition', { id: String(edicao.id).padStart(2, '0') })}
                       </button>
                     ) : null
                   })()}

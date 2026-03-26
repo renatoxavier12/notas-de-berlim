@@ -1,4 +1,5 @@
-import { EDICOES } from '../lib/site'
+import { useTranslation } from 'react-i18next'
+import { EDICOES, getEditionCopy } from '../lib/site'
 
 const IconInstagram = () => (
   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -31,23 +32,25 @@ const IconKofi = () => (
 )
 
 export default function SobreView({ setView, setEdicaoAtiva }) {
+  const { t } = useTranslation()
+
   return (
     <div className="sobre-view">
       <div className="sobre-inner">
-        <button className="back-btn" onClick={() => setView('home')}>← Arquivo</button>
+        <button className="back-btn" onClick={() => setView('home')}>{t('about.back')}</button>
 
         <div className="sobre-hero">
           <div className="sobre-foto-placeholder">
-            <img src="/euetiao.jpg" alt="Renato Xavier e Tião" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+            <img src="/euetiao.jpg" alt={t('about.photoAlt')} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
           </div>
           <div className="sobre-bio">
-            <p className="home-kicker">O AUTOR</p>
-            <h1 className="sobre-nome">Renato Xavier</h1>
+            <p className="home-kicker">{t('about.kicker')}</p>
+            <h1 className="sobre-nome">{t('about.name')}</h1>
             <p className="sobre-texto">
-              Pós-doutorando CEBRAP/FAPESP e pesquisador visitante no Ibero-Amerikanisches Institut (IAI), em Berlim. Pesquisador de teoria política e relações internacionais, com foco em W.E.B. Du Bois, algoritmos e raça. Em março de 2026, chegamos a Kreuzberg: Bia, Tiãozinho (nosso spitz alemão) e eu. Com mala e sem leiteira.
+              {t('about.bio1')}
             </p>
             <p className="sobre-texto">
-              <em>Notas de Berlim</em> é um caderno aberto sem folhas.
+              <em>{t('about.bio2')}</em>
             </p>
             <div className="sobre-links">
               <div className="social-group">
@@ -63,31 +66,35 @@ export default function SobreView({ setView, setEdicaoAtiva }) {
               </div>
               <a href="https://ko-fi.com/renatoxavier" target="_blank" rel="noopener noreferrer" className="sobre-link support-btn support-btn--yellow">
                 <span style={{ display: 'flex' }}><IconKofi /></span>
-                <span className="support-text">Apoie-me</span>
+                <span className="support-text">{t('about.support')}</span>
               </a>
             </div>
           </div>
         </div>
 
         <div className="sobre-edicoes">
-          <p className="section-label">EDIÇÕES PUBLICADAS</p>
-          {EDICOES.map(edicao => (
-            <button
-              key={edicao.id}
-              className="edicao-card"
-              onClick={() => {
-                setEdicaoAtiva(edicao)
-                setView('edicao')
-              }}
-            >
-              <span className="edicao-numero">#{String(edicao.id).padStart(2, '0')}</span>
-              <div className="edicao-info">
-                <h2>{edicao.titulo}</h2>
-                <p className="edicao-meta">{edicao.data} · {edicao.bairro}</p>
-              </div>
-              <span className="edicao-arrow">→</span>
-            </button>
-          ))}
+          <p className="section-label">{t('about.published')}</p>
+          {EDICOES.map(edicao => {
+            const editionCopy = getEditionCopy(edicao, t)
+
+            return (
+              <button
+                key={edicao.id}
+                className="edicao-card"
+                onClick={() => {
+                  setEdicaoAtiva(edicao)
+                  setView('edicao')
+                }}
+              >
+                <span className="edicao-numero">#{String(edicao.id).padStart(2, '0')}</span>
+                <div className="edicao-info">
+                  <h2>{editionCopy.titulo}</h2>
+                  <p className="edicao-meta">{edicao.data} · {editionCopy.bairro}</p>
+                </div>
+                <span className="edicao-arrow">→</span>
+              </button>
+            )
+          })}
         </div>
       </div>
     </div>

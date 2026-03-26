@@ -1,0 +1,95 @@
+{
+  "site": {
+    "name": "Notes from Berlin",
+    "description": "Food, drinks, Kultur. Life in Berlin."
+  },
+  "nav": {
+    "archive": "Archive",
+    "map": "Map",
+    "about": "About",
+    "themeLight": "Light mode",
+    "themeDark": "Dark mode"
+  },
+  "common": {
+    "loading": "Loading...",
+    "sending": "Sending..."
+  },
+  "home": {
+    "kicker": "BERLIN, 2026",
+    "title": "Notes from Berlin",
+    "subtitle": "Food, drinks, Kultur. Life in Berlin.",
+    "editions": "EDITIONS",
+    "searchPlaceholder": "Search...",
+    "noResults": "No editions found."
+  },
+  "subscribe": {
+    "label": "GET IT BY EMAIL",
+    "placeholder": "your@email.com",
+    "submit": "Subscribe",
+    "success": "Subscribed. See you in the next edition.",
+    "error": "Something went wrong. Try again."
+  },
+  "about": {
+    "back": "← Archive",
+    "kicker": "THE AUTHOR",
+    "name": "Renato Xavier",
+    "bio1": "Postdoctoral researcher at CEBRAP/FAPESP and visiting scholar at the Ibero-Amerikanisches Institut (IAI) in Berlin. He researches political theory and international relations, with a focus on W.E.B. Du Bois, algorithms, and race. In March 2026, we arrived in Kreuzberg: Bia, Tiãozinho (our German Spitz), and me. With luggage and no milk pot.",
+    "bio2": "Notes from Berlin is an open notebook without pages.",
+    "support": "Support me",
+    "published": "PUBLISHED EDITIONS",
+    "photoAlt": "Renato Xavier and Tião"
+  },
+  "map": {
+    "title": "Map",
+    "subtitle": "Places mentioned in the editions",
+    "city": "Berlin",
+    "readEdition": "Read edition #{{id}} →",
+    "openList": "☰ Places",
+    "closeList": "✕ Close",
+    "line": "Line {{line}}"
+  },
+  "edition": {
+    "back": "← Archive",
+    "continue": "KEEP READING",
+    "exclusive": "This edition is exclusive to subscribers.",
+    "access": "Access",
+    "emailMissing": "Email not found on the list.",
+    "subscribeFirst": "Subscribe",
+    "emailNotFound": "Email not found. Subscribe on the homepage.",
+    "mapLink": "See places from this edition on the map →",
+    "share": "SHARE",
+    "copyLink": "Copy link",
+    "like": "Like",
+    "unlike": "Remove like",
+    "comments": "COMMENTS",
+    "firstComment": "Be the first to comment.",
+    "leaveComment": "LEAVE A COMMENT",
+    "commentName": "Your name (optional)",
+    "commentText": "Write your note...",
+    "sendComment": "Send Comment",
+    "commentSuccess": "Thanks. Your comment was sent for moderation and will appear soon.",
+    "commentError": "Error while sending. Try again.",
+    "translateEnglish": "Translate to English",
+    "translateGerman": "Read in German",
+    "translateLoading": "Translating...",
+    "translatedTitleEn": "Translated English version",
+    "translatedTitleDe": "Translated German version",
+    "translateError": "This edition could not be translated right now."
+  },
+  "meta": {
+    "mapTitle": "Map | Notes from Berlin",
+    "mapDescription": "Places mentioned in Notes from Berlin on an interactive map.",
+    "aboutTitle": "About | Notes from Berlin",
+    "aboutDescription": "Meet the author and browse the published editions of Notes from Berlin."
+  },
+  "editions": {
+    "primeira-semana": {
+      "title": "First Week",
+      "teaser": "We arrived. The apartment is an Altbau, there is no milk pot, and Germans recycle even alarm clocks."
+    },
+    "segunda-semana": {
+      "title": "Second Week",
+      "teaser": "Mailbox label, milk pot found, and Spätify around the corner."
+    }
+  }
+}

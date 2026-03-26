@@ -69,3 +69,11 @@ export function absoluteUrl(path = '/') {
   if (path.startsWith('http://') || path.startsWith('https://')) return path
   return `${SITE_URL}${path.startsWith('/') ? path : `/${path}`}`
 }
+
+export function getEditionCopy(edicao, t) {
+  return {
+    titulo: t(`editions.${edicao.slug}.title`, { defaultValue: edicao.titulo }),
+    teaser: t(`editions.${edicao.slug}.teaser`, { defaultValue: edicao.teaser }),
+    bairro: t(`editions.${edicao.slug}.bairro`, { defaultValue: edicao.bairro }),
+  }
+}
