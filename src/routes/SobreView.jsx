@@ -22,9 +22,9 @@ const IconMail = () => (
   </svg>
 )
 
-const IconPix = () => (
+const IconSupport = () => (
   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M15.8 8.2 12 12l-3.8-3.8a2.58 2.58 0 0 0-3.64 0l-.36.36L8 12.36l-3.8 3.8.36.36a2.58 2.58 0 0 0 3.64 0L12 12.72l3.8 3.8a2.58 2.58 0 0 0 3.64 0l.36-.36-3.8-3.8 3.8-3.8-.36-.36a2.58 2.58 0 0 0-3.64 0z" />
+    <path d="M12 21s-6.5-4.35-9-8.19C.78 9.39 2.16 5 6.26 5c2.24 0 3.62 1.24 4.4 2.48C11.44 6.24 12.82 5 15.06 5c4.1 0 5.48 4.39 3.26 7.81C18.5 16.65 12 21 12 21z" />
   </svg>
 )
 
@@ -62,7 +62,7 @@ export default function SobreView({ setView, setEdicaoAtiva }) {
                 </a>
               </div>
               <button type="button" onClick={() => setView('apoiar')} className="sobre-link support-btn support-btn--yellow">
-                <span style={{ display: 'flex' }}><IconPix /></span>
+                <span style={{ display: 'flex' }}><IconSupport /></span>
                 <span className="support-text">{t('about.support')}</span>
               </button>
             </div>
