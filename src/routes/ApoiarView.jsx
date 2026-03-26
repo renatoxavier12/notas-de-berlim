@@ -1,4 +1,18 @@
+import { useState } from 'react'
+import { PIX_KEY, PIX_LABEL, SUPPORT_BANK, SUPPORT_RECEIVER } from '../lib/supportConfig'
+
 export default function ApoiarView({ setView }) {
+  const [copyStatus, setCopyStatus] = useState('idle')
+
+  async function handleCopyPix() {
+    try {
+      await navigator.clipboard.writeText(PIX_KEY)
+      setCopyStatus('copied')
+    } catch {
+      setCopyStatus('error')
+    }
+  }
+
   return (
     <div className="apoiar-view">
       <div className="apoiar-inner">
@@ -11,20 +25,22 @@ export default function ApoiarView({ setView }) {
 
         <div className="apoiar-body">
           <p>Notas de Berlim não tem anúncios. Não tem paywall. Não tem algoritmo tentando te prender. É um caderno aberto — textos sobre viver em Berlim, escritos às pressas entre uma pesquisa e outra, entre um mercado e um U-Bahn.</p>
-          <p>Manter isso vivo tem um custo pequeno em dinheiro e um custo grande em tempo. Se uma edição te fez sorrir, pensar, ou sentir curiosidade por um lugar que você nunca visitou, você pode retribuir com qualquer valor.</p>
+          <p>Manter isso vivo tem um custo pequeno em dinheiro e um custo grande em tempo. Se uma edição te fez sorrir, pensar, ou sentir curiosidade por um lugar que você nunca visitou, você pode retribuir com qualquer valor, sem assinatura e sem cadastro.</p>
           <p>Todo apoio vai direto para o projeto — hospedagem, domínio, e para que eu continue escrevendo sem transformar isso em obrigação.</p>
         </div>
 
-        <a
-          href="https://ko-fi.com/renatoxavier"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="apoiar-btn"
-        >
-          Apoiar via Ko-fi →
-        </a>
+        <div className="apoiar-pix-box">
+          <p className="apoiar-pix-label">{PIX_LABEL}</p>
+          <code className="apoiar-pix-key">{PIX_KEY}</code>
+        </div>
 
-        <p className="apoiar-note">Pagamento seguro via Ko-fi. Qualquer valor, uma única vez ou mensalmente.</p>
+        <button type="button" onClick={handleCopyPix} className="apoiar-btn">
+          Apoie-me
+        </button>
+
+        <p className="apoiar-note">
+          {copyStatus === 'copied' ? 'Chave copiada.' : copyStatus === 'error' ? 'Nao foi possivel copiar automaticamente. Copie a chave manualmente.' : `Contribuicao destinada a ${SUPPORT_RECEIVER}, via ${SUPPORT_BANK}.`}
+        </p>
       </div>
     </div>
   )

@@ -1718,6 +1718,8 @@ html[data-theme="dark"] .comment-submit-btn {
 .apoiar-btn {
   display: inline-block;
   padding: 16px 32px;
+  border: 0;
+  cursor: pointer;
   background: var(--yellow);
   color: var(--black);
   font-family: var(--font-ui);
@@ -1743,6 +1745,29 @@ html[data-theme="dark"] .comment-submit-btn {
   letter-spacing: 0.04em;
 }
 
+.apoiar-pix-box {
+  margin-bottom: 20px;
+  padding: 18px 20px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  background: rgba(0, 0, 0, 0.02);
+}
+
+.apoiar-pix-label {
+  margin: 0 0 10px;
+  font-family: var(--font-ui);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gray);
+}
+
+.apoiar-pix-key {
+  display: block;
+  font-size: 16px;
+  line-height: 1.6;
+  word-break: break-all;
+}
+
 /* dark mode */
 html[data-theme="dark"] .edition-support-cta {
   border-color: #3a3a3a;
@@ -1764,4 +1789,9 @@ html[data-theme="dark"] .apoiar-body p {
 html[data-theme="dark"] .apoiar-btn:hover {
   background: var(--yellow);
   color: var(--black);
+}
+
+html[data-theme="dark"] .apoiar-pix-box {
+  border-color: #3a3a3a;
+  background: rgba(255, 255, 255, 0.03);
 }

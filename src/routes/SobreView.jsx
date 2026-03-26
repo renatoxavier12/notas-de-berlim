@@ -22,12 +22,9 @@ const IconMail = () => (
   </svg>
 )
 
-const IconKofi = () => (
-  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-    <path d="M5.5 1c0 0 .5 1-1 2s-1 2 0 3" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
-    <path d="M8.5 0c0 0 .5 1-1 2s-1 2 0 3" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
-    <path d="M11.5 1c0 0 .5 1-1 2s-1 2 0 3" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
-    <path d="M23.881 8.948c-.773-4.085-4.859-4.593-4.859-4.593H.724c-.304 0-.55.246-.55.55v15.82c0 .304.246.55.55.55h12.726c.304 0 .55-.246.55-.55v-2.035c3.546.109 4.812-1.449 5.069-2.25 1.479.059 4.393-.451 4.812-3.214.26-1.685-.021-3.278-.851-4.278zm-3.235 5.546c-.297 1.93-1.556 2.198-2.359 2.231V9.296c.553.053 2.129.231 2.584 1.449.25.669.155 2.172-.225 3.749z" />
+const IconPix = () => (
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M15.8 8.2 12 12l-3.8-3.8a2.58 2.58 0 0 0-3.64 0l-.36.36L8 12.36l-3.8 3.8.36.36a2.58 2.58 0 0 0 3.64 0L12 12.72l3.8 3.8a2.58 2.58 0 0 0 3.64 0l.36-.36-3.8-3.8 3.8-3.8-.36-.36a2.58 2.58 0 0 0-3.64 0z" />
   </svg>
 )
 
@@ -64,10 +61,10 @@ export default function SobreView({ setView, setEdicaoAtiva }) {
                   <span style={{ display: 'flex' }}><IconMail /></span>
                 </a>
               </div>
-              <a href="https://ko-fi.com/renatoxavier" target="_blank" rel="noopener noreferrer" className="sobre-link support-btn support-btn--yellow">
-                <span style={{ display: 'flex' }}><IconKofi /></span>
+              <button type="button" onClick={() => setView('apoiar')} className="sobre-link support-btn support-btn--yellow">
+                <span style={{ display: 'flex' }}><IconPix /></span>
                 <span className="support-text">{t('about.support')}</span>
-              </a>
+              </button>
             </div>
           </div>
         </div>
