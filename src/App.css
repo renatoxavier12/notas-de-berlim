@@ -62,7 +62,7 @@ button {
 .site-nav {
   height: var(--nav-h);
   background: var(--black);
-  border-bottom: 3px solid var(--yellow);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -83,7 +83,7 @@ button {
 .nav-logo {
   font-family: var(--font-title);
   font-size: 22px;
-  color: var(--yellow);
+  color: #f5f5f5;
   letter-spacing: 0.04em;
 }
 
@@ -96,44 +96,48 @@ button {
 .nav-links button {
   font-family: var(--font-ui);
   font-size: 12px;
-  font-weight: 700;
+  font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.08em;
   padding: 6px 14px;
-  color: white;
+  color: rgba(255, 255, 255, 0.85);
   border: 2px solid transparent;
-  transition: border-color 0.15s;
+  opacity: 0.82;
+  transition: color 0.25s ease, border-color 0.25s ease, opacity 0.25s ease;
 }
 
 .nav-links button:hover,
 .nav-links button.active {
+  color: var(--yellow);
+  opacity: 1;
   border-color: transparent;
-  border-bottom-color: var(--yellow);
+  border-bottom-color: rgba(255, 208, 0, 0.85);
 }
 
 .lang-switcher {
   position: relative;
   margin-left: 4px;
-  padding-left: 4px;
+  padding-left: 2px;
 }
 
 .lang-switcher-trigger {
   display: flex;
   align-items: center;
-  gap: 3px;
+  gap: 4px;
   min-width: 0;
   padding: 2px 0;
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  color: rgba(255, 255, 255, 0.72);
+  font-size: 8px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  color: rgba(255, 255, 255, 0.66);
   border: none;
+  text-transform: uppercase;
 }
 
 .lang-switcher-caret {
-  font-size: 12px;
+  font-size: 10px;
   line-height: 1;
-  opacity: 0.35;
+  opacity: 0.3;
 }
 
 .lang-switcher.open .lang-switcher-trigger,
@@ -165,8 +169,8 @@ button {
 
 .lang-switcher-menu button:hover,
 .lang-switcher-menu button.active {
-  border-color: rgba(255, 255, 255, 0.2);
-  background: rgba(255, 255, 255, 0.04);
+  border-color: rgba(255, 208, 0, 0.45);
+  background: rgba(255, 208, 0, 0.06);
 }
 
 .lang-switcher-code {
@@ -199,12 +203,26 @@ button {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(to bottom, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.2) 40%, rgba(0,0,0,0.55) 100%);
+  background:
+    linear-gradient(to bottom, rgba(0,0,0,0.56) 0%, rgba(0,0,0,0.32) 38%, rgba(0,0,0,0.6) 100%);
 }
 
 .home-header > * {
   position: relative;
   z-index: 1;
+  animation: hero-fade-in 0.9s ease both;
+}
+
+.home-header > *:nth-child(2) {
+  animation-delay: 0.08s;
+}
+
+.home-header > *:nth-child(3) {
+  animation-delay: 0.16s;
+}
+
+.home-header > *:nth-child(4) {
+  animation-delay: 0.24s;
 }
 
 .home-header::after {
@@ -214,7 +232,7 @@ button {
   left: 0;
   right: 0;
   height: 4px;
-  background: var(--yellow);
+  background: rgba(255, 255, 255, 0.18);
   z-index: 1;
 }
 
@@ -223,28 +241,31 @@ button {
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.2em;
-  color: var(--yellow);
+  color: rgba(255, 255, 255, 0.72);
   margin: 0 0 16px;
 }
 
 .home-title {
-  font-family: var(--font-title);
+  font-family: var(--font-display);
   font-size: clamp(72px, 12vw, 140px);
-  font-weight: normal;
-  margin: 0 0 24px;
-  line-height: 0.95;
-  letter-spacing: 0.02em;
+  font-weight: 600;
+  margin: 0;
+  line-height: 0.98;
+  letter-spacing: 0.005em;
   color: white;
+  text-wrap: balance;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.18);
 }
 
 .home-subtitle {
   font-family: var(--font-body);
   font-size: 18px;
-  color: rgba(255,255,255,0.6);
-  margin: 0 0 40px;
-  max-width: 480px;
+  color: rgba(255,255,255,0.84);
+  margin: 32px auto 52px;
+  max-width: 520px;
   margin-inline: auto;
   line-height: 1.6;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.24);
 }
 
 .subscribe-box {
@@ -258,13 +279,15 @@ button {
   font-weight: 700;
   letter-spacing: 0.15em;
   color: rgba(255,255,255,0.5);
-  margin: 0 0 12px;
+  margin: 0 0 14px;
 }
 
 .subscribe-form {
   display: flex;
   gap: 0;
-  border: 2px solid rgba(255,255,255,0.3);
+  border: 1px solid rgba(255,255,255,0.24);
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(6px);
 }
 
 .subscribe-input {
@@ -274,7 +297,8 @@ button {
   font-family: 'Inter', system-ui, sans-serif;
   font-size: 15px;
   outline: none;
-  background: white;
+  background: transparent;
+  color: var(--black);
 }
 
 .subscribe-btn {
@@ -286,12 +310,12 @@ button {
   font-weight: 700;
   letter-spacing: 0.05em;
   text-transform: uppercase;
-  transition: opacity 0.15s;
+  transition: background-color 0.15s, opacity 0.15s;
   flex-shrink: 0;
 }
 
 .subscribe-btn:hover:not(:disabled) {
-  opacity: 0.85;
+  background: #ffe066;
 }
 
 .subscribe-btn:disabled {
@@ -304,6 +328,18 @@ button {
   color: rgba(255,255,255,0.6);
   margin: 0;
   font-style: italic;
+}
+
+@keyframes hero-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .subscribe-error {
@@ -411,7 +447,7 @@ button {
   font-size: 10px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--yellow);
+  color: var(--gray);
   display: block;
   margin-bottom: 8px;
 }
@@ -1476,7 +1512,7 @@ html[data-theme="dark"] .card-title {
 }
 
 html[data-theme="dark"] .card-tag {
-  color: var(--yellow);
+  color: #9a9a9a;
 }
 
 html[data-theme="dark"] .card-image-wrap,
@@ -1672,22 +1708,23 @@ html[data-theme="dark"] .comment-submit-btn {
 
 /* ── Nav: botão Apoiar ── */
 .nav-apoiar {
-  background: var(--yellow);
-  color: var(--black);
-  border: 2px solid var(--yellow);
+  background: transparent;
+  color: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.28);
   padding: 6px 16px;
   font-family: var(--font-ui);
   font-size: 12px;
-  font-weight: 700;
+  font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   margin-left: 8px;
-  transition: background 0.15s, color 0.15s;
+  transition: border-color 0.15s, color 0.15s, background 0.15s;
 }
 
 .nav-apoiar:hover {
-  background: transparent;
+  background: rgba(255, 208, 0, 0.08);
   color: var(--yellow);
+  border-color: rgba(255, 208, 0, 0.55);
 }
 
 /* ── CTA de apoio dentro da edição ── */

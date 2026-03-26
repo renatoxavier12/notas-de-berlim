@@ -14,6 +14,7 @@ export default function LangSwitcher() {
   const rootRef = useRef(null)
   const currentCode = normalizeLanguage(i18n.resolvedLanguage || i18n.language)
   const currentLanguage = LANGUAGES.find(language => language.code === currentCode) || LANGUAGES[0]
+  const secondaryLabel = currentCode === 'en' ? 'PT' : 'EN'
 
   useEffect(() => {
     function handlePointerDown(event) {
@@ -52,7 +53,8 @@ export default function LangSwitcher() {
         aria-expanded={open}
       >
         <span>{currentLanguage.label}</span>
-        <span className="lang-switcher-caret">·</span>
+        <span className="lang-switcher-caret">/</span>
+        <span aria-hidden="true">{secondaryLabel}</span>
       </button>
 
       {open && (
