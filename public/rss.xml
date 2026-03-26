@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Notas de Berlim</title>
+    <link>https://notasdeberlim.com/</link>
+    <description>Comida, drink, Kultur. Vida em Berlim.</description>
+    <language>pt-BR</language>
+    <lastBuildDate>Thu, 26 Mar 2026 12:00:00 +0100</lastBuildDate>
+    <atom:link href="https://notasdeberlim.com/rss.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Segunda Semana</title>
+      <link>https://notasdeberlim.com/edicoes/segunda-semana</link>
+      <guid>https://notasdeberlim.com/edicoes/segunda-semana</guid>
+      <pubDate>Mon, 23 Mar 2026 08:00:00 +0100</pubDate>
+      <description>Etiqueta na caixinha de correio, leiteira achada, e a Spätify na esquina.</description>
+    </item>
+    <item>
+      <title>Primeira Semana</title>
+      <link>https://notasdeberlim.com/edicoes/primeira-semana</link>
+      <guid>https://notasdeberlim.com/edicoes/primeira-semana</guid>
+      <pubDate>Sat, 14 Mar 2026 08:00:00 +0100</pubDate>
+      <description>Chegamos. O apartamento é Altbau, falta uma leiteira, e os alemães reciclam até o despertador.</description>
+    </item>
+  </channel>
+</rss>
