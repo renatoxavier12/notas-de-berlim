@@ -4,7 +4,7 @@ title: Terceira Semana
 data: 26 de março de 2026
 bairro: Neukölln / Reuterkiez
 teaser: Banho do Tião, café no Reuterkiez, leiteira queimada e a sensação de que o presente sempre escapa.
-capa: /capa-03.jpg
+capa: /capa-03.jpeg
 ---
 
 Terceira semana, e eu corri com esse texto para acompanhar o tempo que está passando rápido demais (eu já falei isso, né?). Quando pensei em escrever sobre a primeira semana, já estávamos na segunda. Agora completamos três, começamos a quarta, e já faltam poucos dias para um mês.
@@ -23,11 +23,11 @@ Mas ele também aparece nas pequenas coisas.
 
 Hoje demos banho no Tião. Não em casa, nem num pet desses em que você deixa o bichinho e busca depois de algumas horas, mas num lugar em que você chega, eles te dão tudo e você mesmo faz o trabalho. O nome é sugestivo: **Dog Wash A-GO-GO**. Meio improvisado, meio engraçado, meio caótico. Mas gostoso, e deu muito certo, um você que se serve para banhar seu doguinho. No fim, custa basicamente um décimo do que você pagaria num desses pets em que você deixa o bichinho e busca depois de algumas horas.
 
-![Tião depois do banho no Dog Wash A-GO-GO.](/foto-03-tiao.jpg)
+![Tião depois do banho no Dog Wash A-GO-GO.](/foto-03-tiao.jpeg)
 
 Na volta, paramos num café ali pelo Reuterkiez, o **Bully's Bakery**.
 
-![Parada no Bully's Bakery, no Reuterkiez.](/foto-03-bullys.jpg)
+![Parada no Bully's Bakery, no Reuterkiez.](/foto-03-bullys.jpeg)
 
 E foi, sem exagero, um dos melhores cafés que tomamos até agora. Tudo feito com muita vontade: um bolo de laranja difícil de explicar, um matcha, que eu sempre tenho dificuldade de gostar, mas que estava delicioso. Não era por conta da friaca de 6 graus com vento, porque o quentinho te abraça, era mais do que isso. Vamos voltar para repetir a dose.
 
