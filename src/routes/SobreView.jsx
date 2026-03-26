@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { EDICOES, getEditionCopy } from '../lib/site'
 
-const PIX_KEY = 'SEU_PIX_AQUI'
+const PIX_KEY = '556945b8-d34c-4f62-83b5-eca24317b69c'
 
 function PixButton() {
   const [copied, setCopied] = useState(false)
