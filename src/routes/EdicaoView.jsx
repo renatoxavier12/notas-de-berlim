@@ -4,7 +4,7 @@ import { MapPinned } from 'lucide-react'
 import ReactMarkdown from 'react-markdown'
 import { normalizeLanguage } from '../i18n'
 import LOCATIONS from '../locations.json'
-import { absoluteUrl, formatEditionDate, formatEditionRelativeDate, getCookie, getEditionAroundReadings, getEditionCopy, getGlossaryTerms, getMarkdownForEdicao, readingTime, setCookie } from '../lib/site'
+import { EDICOES, absoluteUrl, formatEditionDate, formatEditionRelativeDate, getCookie, getEditionAroundReadings, getEditionCopy, getGlossaryTerms, getMarkdownForEdicao, readingTime, setCookie } from '../lib/site'
 
 function EdicaoGate({ onUnlock }) {
   const { t } = useTranslation()
@@ -307,6 +307,96 @@ function AroundReadingsCard({ items }) {
   )
 }
 
+function EditionFooterActions({ edicao, setView, hasMap }) {
+  const { t } = useTranslation()
+  const [copied, setCopied] = useState(false)
+  const canonicalUrl = absoluteUrl(`/edicoes/${edicao.slug}`)
+
+  async function copiar() {
+    try {
+      await navigator.clipboard.writeText(canonicalUrl)
+    } catch {
+      const el = document.createElement('textarea')
+      el.value = canonicalUrl
+      document.body.appendChild(el)
+      el.select()
+      document.execCommand('copy')
+      document.body.removeChild(el)
+    }
+    setCopied(true)
+    setTimeout(() => setCopied(false), 2000)
+  }
+
+  return (
+    <div className="edition-footer-actions">
+      <p className="share-label">{t('edition.shareEndLabel')}</p>
+      <div className="edition-footer-action-row">
+        <button type="button" className="edition-footer-action" onClick={copiar}>
+          {copied ? t('edition.copiedLink') : t('edition.copyLink')}
+        </button>
+        <LikePillButton slug={edicao.slug} />
+        {hasMap && (
+          <button type="button" className="edition-footer-action" onClick={() => setView('mapa')}>
+            {t('edition.mapLinkShort')}
+          </button>
+        )}
+      </div>
+    </div>
+  )
+}
+
+function EditionPager({ edicao, setView }) {
+  const { t } = useTranslation()
+  const currentIndex = EDICOES.findIndex(item => item.slug === edicao.slug)
+  const nextEdition = currentIndex > 0 ? EDICOES[currentIndex - 1] : null
+  const previousEdition = currentIndex >= 0 && currentIndex < EDICOES.length - 1 ? EDICOES[currentIndex + 1] : null
+
+  if (!nextEdition && !previousEdition) return null
+
+  function openEdition(target) {
+    if (!target) return
+    setView('edicao')
+    window.history.pushState({}, '', `/edicoes/${target.slug}`)
+    window.dispatchEvent(new PopStateEvent('popstate'))
+  }
+
+  return (
+    <div className="edition-pager">
+      <p className="share-label">{t('edition.moreLabel')}</p>
+      <div className="edition-pager-grid">
+        <button
+          type="button"
+          className={`edition-pager-card ${!previousEdition ? 'is-empty' : ''}`}
+          onClick={() => openEdition(previousEdition)}
+          disabled={!previousEdition}
+        >
+          {previousEdition && (
+            <>
+              {previousEdition.capa && <img src={previousEdition.capa} alt={previousEdition.titulo} className="edition-pager-image" />}
+              <span className="edition-pager-direction">{t('edition.previous')}</span>
+              <span className="edition-pager-title">{previousEdition.titulo}</span>
+            </>
+          )}
+        </button>
+        <button
+          type="button"
+          className={`edition-pager-card ${!nextEdition ? 'is-empty' : ''}`}
+          onClick={() => openEdition(nextEdition)}
+          disabled={!nextEdition}
+        >
+          {nextEdition && (
+            <>
+              {nextEdition.capa && <img src={nextEdition.capa} alt={nextEdition.titulo} className="edition-pager-image" />}
+              <span className="edition-pager-direction">{t('edition.next')}</span>
+              <span className="edition-pager-title">{nextEdition.titulo}</span>
+            </>
+          )}
+        </button>
+      </div>
+    </div>
+  )
+}
+
 export default function EdicaoView({ edicao, setView }) {
   const { t, i18n } = useTranslation()
   const raw = getMarkdownForEdicao(edicao.slug)
@@ -326,6 +416,7 @@ export default function EdicaoView({ edicao, setView }) {
   const absoluteDate = formatEditionDate(edicao.data, locale)
   const glossaryTerms = getGlossaryTerms(content)
   const aroundReadings = getEditionAroundReadings(edicao.slug)
+  const hasMap = LOCATIONS.some(location => location.edicaoId === edicao.id)
 
   return (
     <div className="edicao-view">
@@ -387,11 +478,13 @@ export default function EdicaoView({ edicao, setView }) {
           </article>
           {(unlocked || !hasMore) && (
             <>
-              {LOCATIONS.some(location => location.edicaoId === edicao.id) && (
+              {hasMap && (
                 <button className="mapa-link-btn" onClick={() => setView('mapa')}>
                   {t('edition.mapLink')}
                 </button>
               )}
+              <EditionFooterActions edicao={edicao} setView={setView} hasMap={hasMap} />
+              <EditionPager edicao={edicao} setView={setView} />
               <CustomComments slug={edicao.slug} />
             </>
           )}
