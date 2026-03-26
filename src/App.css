@@ -773,6 +773,51 @@ button:focus-visible, a:focus-visible {
   color: white !important;
 }
 
+.pix-section {
+  border-top: 3px solid var(--black);
+  padding: 32px 0;
+}
+
+.pix-text {
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.6;
+  color: #444;
+  margin: 8px 0 24px;
+}
+
+.pix-btn {
+  background: var(--yellow);
+  color: var(--black);
+  font-family: var(--font-ui);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 14px 28px;
+  border: none;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+
+.pix-btn:hover {
+  background: var(--black);
+  color: var(--yellow);
+}
+
+html[data-theme="dark"] .pix-section {
+  border-top-color: #3a3a3a;
+}
+
+html[data-theme="dark"] .pix-text {
+  color: #aaa;
+}
+
+html[data-theme="dark"] .pix-btn:hover {
+  background: var(--yellow);
+  color: var(--black);
+}
+
 .sobre-edicoes {
   border-top: 3px solid var(--black);
   padding-top: 32px;

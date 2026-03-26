@@ -1,5 +1,37 @@
+import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { EDICOES, getEditionCopy } from '../lib/site'
+
+const PIX_KEY = 'SEU_PIX_AQUI'
+
+function PixButton() {
+  const [copied, setCopied] = useState(false)
+
+  async function copiar() {
+    try {
+      await navigator.clipboard.writeText(PIX_KEY)
+    } catch {
+      const el = document.createElement('textarea')
+      el.value = PIX_KEY
+      document.body.appendChild(el)
+      el.select()
+      document.execCommand('copy')
+      document.body.removeChild(el)
+    }
+    setCopied(true)
+    setTimeout(() => setCopied(false), 2500)
+  }
+
+  return (
+    <div className="pix-section">
+      <p className="section-label">APOIE O NOTAS DE BERLIM</p>
+      <p className="pix-text">Se você gosta do que lê aqui, um PIX ajuda a manter o caderno aberto.</p>
+      <button className="pix-btn" onClick={copiar}>
+        {copied ? '✓ Chave copiada!' : 'Copiar chave PIX'}
+      </button>
+    </div>
+  )
+}
 
 const IconInstagram = () => (
   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -68,6 +100,8 @@ export default function SobreView({ setView, setEdicaoAtiva }) {
             </div>
           </div>
         </div>
+
+        <PixButton />
 
         <div className="sobre-edicoes">
           <p className="section-label">{t('about.published')}</p>
