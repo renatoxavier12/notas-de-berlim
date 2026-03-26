@@ -1,46 +1,39 @@
-import { useState } from 'react'
-import { PIX_KEY, PIX_LABEL, SUPPORT_BANK, SUPPORT_RECEIVER } from '../lib/supportConfig'
+import { useTranslation } from 'react-i18next'
 
 export default function ApoiarView({ setView }) {
-  const [copyStatus, setCopyStatus] = useState('idle')
-
-  async function handleCopyPix() {
-    try {
-      await navigator.clipboard.writeText(PIX_KEY)
-      setCopyStatus('copied')
-    } catch {
-      setCopyStatus('error')
-    }
-  }
+  const { t } = useTranslation()
 
   return (
     <div className="apoiar-view">
       <div className="apoiar-inner">
-        <button className="back-btn" onClick={() => setView('home')}>← Arquivo</button>
+        <button className="back-btn" onClick={() => setView('home')}>{t('about.back')}</button>
 
         <header className="apoiar-header">
           <p className="home-kicker">APOIAR O PROJETO</p>
-          <h1 className="apoiar-title">Este projeto existe porque você lê.</h1>
+          <h1 className="apoiar-title">Se este trabalho te acompanha, você pode apoiar sem fricção.</h1>
         </header>
 
         <div className="apoiar-body">
-          <p>Notas de Berlim não tem anúncios. Não tem paywall. Não tem algoritmo tentando te prender. É um caderno aberto — textos sobre viver em Berlim, escritos às pressas entre uma pesquisa e outra, entre um mercado e um U-Bahn.</p>
-          <p>Manter isso vivo tem um custo pequeno em dinheiro e um custo grande em tempo. Se uma edição te fez sorrir, pensar, ou sentir curiosidade por um lugar que você nunca visitou, você pode retribuir com qualquer valor, sem assinatura e sem cadastro.</p>
-          <p>Todo apoio vai direto para o projeto — hospedagem, domínio, e para que eu continue escrevendo sem transformar isso em obrigação.</p>
+          <p>Notas de Berlim é um projeto independente, sem anúncios e sem paywall. O apoio ajuda a manter o site no ar e dá fôlego para que novas edições continuem saindo com calma.</p>
+          <p>Se você quiser contribuir, o caminho mais simples é pelo Ko-fi. É discreto, direto e não expõe dados sensíveis na página.</p>
         </div>
 
-        <div className="apoiar-pix-box">
-          <p className="apoiar-pix-label">{PIX_LABEL}</p>
-          <code className="apoiar-pix-key">{PIX_KEY}</code>
+        <div className="apoiar-actions">
+          <a
+            href="https://ko-fi.com/renatoxavier"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="apoiar-btn"
+          >
+            Apoiar no Ko-fi
+          </a>
+          <a
+            href="mailto:renatoxavier12@gmail.com?subject=Apoio%20ao%20Notas%20de%20Berlim"
+            className="apoiar-link"
+          >
+            Prefere outro caminho? Fale comigo por e-mail.
+          </a>
         </div>
-
-        <button type="button" onClick={handleCopyPix} className="apoiar-btn">
-          Apoie-me
-        </button>
-
-        <p className="apoiar-note">
-          {copyStatus === 'copied' ? 'Chave copiada.' : copyStatus === 'error' ? 'Nao foi possivel copiar automaticamente. Copie a chave manualmente.' : `Contribuicao destinada a ${SUPPORT_RECEIVER}, via ${SUPPORT_BANK}.`}
-        </p>
       </div>
     </div>
   )

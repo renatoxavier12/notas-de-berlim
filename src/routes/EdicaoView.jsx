@@ -525,9 +525,9 @@ export default function EdicaoView({ edicao, setView }) {
               )}
               <div className="edition-support-cta">
                 <p className="share-label">APOIAR O PROJETO</p>
-                <p className="edition-support-text">Notas de Berlim é gratuito e sem anúncios. Se esta edição valeu seu tempo, considere apoiar o projeto com qualquer valor.</p>
+                <p className="edition-support-text">Notas de Berlim é gratuito e sem anúncios. Se esta edição valeu seu tempo, você pode apoiar o projeto de forma simples e discreta.</p>
                 <button type="button" onClick={() => setView('apoiar')} className="edition-support-btn">
-                  Apoie-me →
+                  Ver formas de apoio →
                 </button>
               </div>
               <CustomComments slug={edicao.slug} />

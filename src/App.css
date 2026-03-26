@@ -1715,6 +1715,13 @@ html[data-theme="dark"] .comment-submit-btn {
   margin: 0 0 1.5em;
 }
 
+.apoiar-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+}
+
 .apoiar-btn {
   display: inline-block;
   padding: 16px 32px;
@@ -1729,12 +1736,25 @@ html[data-theme="dark"] .comment-submit-btn {
   text-transform: uppercase;
   text-decoration: none;
   transition: background 0.15s, color 0.15s;
-  margin-bottom: 20px;
 }
 
 .apoiar-btn:hover {
   background: var(--black);
   color: var(--yellow);
+}
+
+.apoiar-link {
+  font-family: var(--font-ui);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--gray);
+  text-decoration: none;
+}
+
+.apoiar-link:hover {
+  color: var(--black);
 }
 
 .apoiar-note {
@@ -1743,29 +1763,6 @@ html[data-theme="dark"] .comment-submit-btn {
   color: var(--gray);
   margin: 0;
   letter-spacing: 0.04em;
-}
-
-.apoiar-pix-box {
-  margin-bottom: 20px;
-  padding: 18px 20px;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  background: rgba(0, 0, 0, 0.02);
-}
-
-.apoiar-pix-label {
-  margin: 0 0 10px;
-  font-family: var(--font-ui);
-  font-size: 12px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--gray);
-}
-
-.apoiar-pix-key {
-  display: block;
-  font-size: 16px;
-  line-height: 1.6;
-  word-break: break-all;
 }
 
 /* dark mode */
@@ -1791,7 +1788,6 @@ html[data-theme="dark"] .apoiar-btn:hover {
   color: var(--black);
 }
 
-html[data-theme="dark"] .apoiar-pix-box {
-  border-color: #3a3a3a;
-  background: rgba(255, 255, 255, 0.03);
+html[data-theme="dark"] .apoiar-link:hover {
+  color: #ddd8ce;
 }
