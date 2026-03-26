@@ -1624,3 +1624,144 @@ html[data-theme="dark"] .comment-submit-btn {
   letter-spacing: 0.16em;
   text-transform: uppercase;
 }
+
+/* ── Nav: botão Apoiar ── */
+.nav-apoiar {
+  background: var(--yellow);
+  color: var(--black);
+  border: 2px solid var(--yellow);
+  padding: 6px 16px;
+  font-family: var(--font-ui);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-left: 8px;
+  transition: background 0.15s, color 0.15s;
+}
+
+.nav-apoiar:hover {
+  background: transparent;
+  color: var(--yellow);
+}
+
+/* ── CTA de apoio dentro da edição ── */
+.edition-support-cta {
+  margin: 56px 0;
+  padding: 32px;
+  border: 2px solid var(--black);
+}
+
+.edition-support-text {
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.7;
+  color: #444;
+  margin: 8px 0 24px;
+}
+
+.edition-support-btn {
+  display: inline-block;
+  padding: 14px 28px;
+  background: var(--yellow);
+  color: var(--black);
+  font-family: var(--font-ui);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: background 0.15s, color 0.15s;
+}
+
+.edition-support-btn:hover {
+  background: var(--black);
+  color: var(--yellow);
+}
+
+/* ── Página /apoiar ── */
+.apoiar-view {
+  flex: 1;
+  padding: 40px 24px 80px;
+}
+
+.apoiar-inner {
+  max-width: 620px;
+  margin: 0 auto;
+}
+
+.apoiar-header {
+  margin: 48px 0 40px;
+}
+
+.apoiar-title {
+  font-family: var(--font-display);
+  font-size: clamp(36px, 5vw, 56px);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin: 16px 0 0;
+}
+
+.apoiar-body {
+  margin-bottom: 40px;
+}
+
+.apoiar-body p {
+  font-family: var(--font-body);
+  font-size: 19px;
+  line-height: 1.8;
+  color: #333;
+  margin: 0 0 1.5em;
+}
+
+.apoiar-btn {
+  display: inline-block;
+  padding: 16px 32px;
+  background: var(--yellow);
+  color: var(--black);
+  font-family: var(--font-ui);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: background 0.15s, color 0.15s;
+  margin-bottom: 20px;
+}
+
+.apoiar-btn:hover {
+  background: var(--black);
+  color: var(--yellow);
+}
+
+.apoiar-note {
+  font-family: var(--font-ui);
+  font-size: 12px;
+  color: var(--gray);
+  margin: 0;
+  letter-spacing: 0.04em;
+}
+
+/* dark mode */
+html[data-theme="dark"] .edition-support-cta {
+  border-color: #3a3a3a;
+}
+
+html[data-theme="dark"] .edition-support-text {
+  color: #aaa;
+}
+
+html[data-theme="dark"] .edition-support-btn:hover {
+  background: var(--yellow);
+  color: var(--black);
+}
+
+html[data-theme="dark"] .apoiar-body p {
+  color: #ccc8be;
+}
+
+html[data-theme="dark"] .apoiar-btn:hover {
+  background: var(--yellow);
+  color: var(--black);
+}

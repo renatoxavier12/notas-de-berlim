@@ -523,6 +523,13 @@ export default function EdicaoView({ edicao, setView }) {
                   {t('edition.mapLink')}
                 </button>
               )}
+              <div className="edition-support-cta">
+                <p className="share-label">APOIAR O PROJETO</p>
+                <p className="edition-support-text">Notas de Berlim é gratuito e sem anúncios. Se esta edição valeu seu tempo, considere apoiar o projeto com qualquer valor.</p>
+                <a href="https://ko-fi.com/renatoxavier" target="_blank" rel="noopener noreferrer" className="edition-support-btn">
+                  Apoiar via Ko-fi →
+                </a>
+              </div>
               <CustomComments slug={edicao.slug} />
             </>
           )}
