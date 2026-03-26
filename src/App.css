@@ -1330,9 +1330,12 @@ button:focus-visible, a:focus-visible {
   flex-shrink: 0;
   position: sticky;
   top: calc(var(--nav-h) + 24px);
+  max-height: calc(100vh - var(--nav-h) - 36px);
+  overflow-y: auto;
   display: flex;
   flex-direction: column;
   gap: 22px;
+  scrollbar-width: thin;
 }
 
 .edition-body {

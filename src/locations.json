@@ -108,5 +108,14 @@
     "color": "#6F4E9C",
     "edicaoId": 2,
     "imageUrl": "https://commons.wikimedia.org/w/thumb.php?f=Rathaus%20Kreuzberg%20an%20der%20Yorckstra%C3%9Fe.jpg&w=800"
+  },
+  {
+    "id": 301,
+    "name": "Reuterkiez",
+    "coords": [52.4894, 13.4296],
+    "description": "Microbairro de Neukölln onde ficam as andanças da terceira semana, entre cafés, sol e pequenas rotinas que já começam a parecer casa.",
+    "line": "U8",
+    "color": "#009AD3",
+    "edicaoId": 3
   }
 ]
