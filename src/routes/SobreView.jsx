@@ -38,7 +38,7 @@ export default function SobreView({ setView, setEdicaoAtiva }) {
 
         <div className="sobre-hero">
           <div className="sobre-foto-placeholder">
-            <span>Foto</span>
+            <img src="/euetiao.jpg" alt="Renato Xavier e Tião" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
           </div>
           <div className="sobre-bio">
             <p className="home-kicker">O AUTOR</p>
