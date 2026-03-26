@@ -107,7 +107,8 @@ button {
 
 .nav-links button:hover,
 .nav-links button.active {
-  border-color: var(--yellow);
+  border-color: transparent;
+  border-bottom-color: var(--yellow);
 }
 
 .lang-switcher {
