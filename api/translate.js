@@ -4,6 +4,89 @@ const WINDOW_MS = 60 * 1000
 const MAX_REQUESTS = 10
 const ALLOWED_TARGETS = new Set(['EN', 'DE'])
 
+function getProvider() {
+  const deepLApiKey = process.env.DEEPL_API_KEY || process.env.VITE_DEEPL_API_KEY
+  const openAIApiKey = process.env.OPENAI_API_KEY
+
+  if (deepLApiKey) {
+    return { name: 'deepl', apiKey: deepLApiKey }
+  }
+
+  if (openAIApiKey) {
+    return { name: 'openai', apiKey: openAIApiKey }
+  }
+
+  return null
+}
+
+async function translateWithDeepL(apiKey, text, targetLang) {
+  const body = new URLSearchParams({
+    text,
+    source_lang: 'PT-BR',
+    target_lang: targetLang,
+    preserve_formatting: '1',
+  })
+
+  const apiUrl = process.env.DEEPL_API_URL || 'https://api.deepl.com/v2/translate'
+  const response = await fetch(apiUrl, {
+    method: 'POST',
+    headers: {
+      Authorization: `DeepL-Auth-Key ${apiKey}`,
+      'Content-Type': 'application/x-www-form-urlencoded',
+    },
+    body,
+  })
+
+  const data = await response.json()
+  if (!response.ok) {
+    throw new Error(data.message || 'DeepL translation failed.')
+  }
+
+  const translation = data.translations?.[0]?.text
+  if (!translation) {
+    throw new Error('Empty DeepL translation.')
+  }
+
+  return translation
+}
+
+async function translateWithOpenAI(apiKey, text, targetLang) {
+  const targetLanguageName = targetLang === 'DE' ? 'German' : 'English'
+  const response = await fetch('https://api.openai.com/v1/chat/completions', {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${apiKey}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      model: process.env.OPENAI_TRANSLATION_MODEL || 'gpt-4o-mini',
+      temperature: 0.2,
+      messages: [
+        {
+          role: 'system',
+          content: `Translate Brazilian Portuguese text into ${targetLanguageName}. Preserve markdown, paragraph breaks, punctuation, and tone. Return only the translated text.`,
+        },
+        {
+          role: 'user',
+          content: text,
+        },
+      ],
+    }),
+  })
+
+  const data = await response.json()
+  if (!response.ok) {
+    throw new Error(data.error?.message || 'OpenAI translation failed.')
+  }
+
+  const translation = data.choices?.[0]?.message?.content?.trim()
+  if (!translation) {
+    throw new Error('Empty OpenAI translation.')
+  }
+
+  return translation
+}
+
 function isRateLimited(ip) {
   const now = Date.now()
   const record = ipRequests.get(ip)
@@ -26,9 +109,9 @@ export default async function handler(req, res) {
     return res.status(429).json({ error: 'Too many requests.' })
   }
 
-  const apiKey = process.env.DEEPL_API_KEY || process.env.VITE_DEEPL_API_KEY
-  if (!apiKey) {
-    return res.status(500).json({ error: 'DeepL API key not configured.' })
+  const provider = getProvider()
+  if (!provider) {
+    return res.status(500).json({ error: 'Translation provider not configured.' })
   }
 
   const { slug, text, targetLang } = req.body || {}
@@ -51,35 +134,13 @@ export default async function handler(req, res) {
   }
 
   try {
-    const body = new URLSearchParams({
-      text: normalizedText,
-      source_lang: 'PT-BR',
-      target_lang: targetLang,
-      preserve_formatting: '1',
-    })
-
-    const deepLResponse = await fetch('https://api-free.deepl.com/v2/translate', {
-      method: 'POST',
-      headers: {
-        Authorization: `DeepL-Auth-Key ${apiKey}`,
-        'Content-Type': 'application/x-www-form-urlencoded',
-      },
-      body,
-    })
-
-    const data = await deepLResponse.json()
-    if (!deepLResponse.ok) {
-      return res.status(deepLResponse.status).json({ error: data.message || 'Translation failed.' })
-    }
-
-    const translation = data.translations?.[0]?.text
-    if (!translation) {
-      return res.status(500).json({ error: 'Empty translation.' })
-    }
+    const translation = provider.name === 'deepl'
+      ? await translateWithDeepL(provider.apiKey, normalizedText, targetLang)
+      : await translateWithOpenAI(provider.apiKey, normalizedText, targetLang)
 
     translationCache.set(cacheKey, translation)
-    return res.status(200).json({ translation, cached: false })
-  } catch {
-    return res.status(500).json({ error: 'Internal server error' })
+    return res.status(200).json({ translation, cached: false, provider: provider.name })
+  } catch (error) {
+    return res.status(500).json({ error: error instanceof Error ? error.message : 'Internal server error' })
   }
 }
