@@ -406,9 +406,12 @@ export default function EdicaoView({ edicao, setView }) {
         return
       }
 
-      const needsTeaser = !translatedContent?.teaser
-      const needsRest = Boolean(unlocked && hasMore && rest.trim() && !translatedContent?.rest)
-      if (!needsTeaser && !needsRest) {
+      const shouldTranslateFull = unlocked || !hasMore
+      const needsVisibleTranslation = shouldTranslateFull
+        ? !translatedContent?.full
+        : !translatedContent?.teaser
+
+      if (!needsVisibleTranslation) {
         setTranslationStatus('success')
         return
       }
@@ -418,11 +421,11 @@ export default function EdicaoView({ edicao, setView }) {
 
       try {
         const next = { ...translatedContent }
-        if (needsTeaser) {
+
+        if (shouldTranslateFull) {
+          next.full = await translateText(content, 'full')
+        } else {
           next.teaser = await translateText(teaser, 'teaser')
-        }
-        if (needsRest) {
-          next.rest = await translateText(rest, 'rest')
         }
 
         if (!cancelled) {
@@ -444,9 +447,10 @@ export default function EdicaoView({ edicao, setView }) {
     }
   }, [edicao.slug, hasMore, rest, targetLanguage, t, teaser, translatedContent, unlocked])
 
-  const displayTeaser = translatedContent?.teaser || teaser
-  const displayRest = translatedContent?.rest || rest
-  const isAutoTranslating = targetLanguage !== 'PT' && !translatedContent?.teaser && translationStatus === 'loading'
+  const shouldShowTranslatedVersion = targetLanguage !== 'PT'
+  const translatedTeaser = translatedContent?.teaser || null
+  const translatedFull = translatedContent?.full || null
+  const visibleLoading = shouldShowTranslatedVersion && translationStatus === 'loading'
 
   return (
     <div className="edicao-view">
@@ -487,19 +491,30 @@ export default function EdicaoView({ edicao, setView }) {
             </p>
           )}
           <article className="edicao-content">
-            {isAutoTranslating ? (
-              <p className="translation-loading">{t('edition.translateLoading')}</p>
-            ) : (
-              <ReactMarkdown>{displayTeaser}</ReactMarkdown>
-            )}
-            {hasMore && !unlocked && <EdicaoGate onUnlock={() => setUnlocked(true)} />}
-            {hasMore && unlocked && (
-              targetLanguage !== 'PT' && !translatedContent?.rest && translationStatus === 'loading' ? (
+            {shouldShowTranslatedVersion && (unlocked || !hasMore) ? (
+              visibleLoading && !translatedFull ? (
                 <p className="translation-loading">{t('edition.translateLoading')}</p>
+              ) : translatedFull ? (
+                <ReactMarkdown>{translatedFull}</ReactMarkdown>
               ) : (
-                <ReactMarkdown>{displayRest}</ReactMarkdown>
+                <p className="translate-error">{translationError || t('edition.translateError')}</p>
               )
+            ) : shouldShowTranslatedVersion ? (
+              visibleLoading && !translatedTeaser ? (
+                <p className="translation-loading">{t('edition.translateLoading')}</p>
+              ) : translatedTeaser ? (
+                <ReactMarkdown>{translatedTeaser}</ReactMarkdown>
+              ) : (
+                <p className="translate-error">{translationError || t('edition.translateError')}</p>
+              )
+            ) : (
+              <>
+                <ReactMarkdown>{teaser}</ReactMarkdown>
+                {hasMore && !unlocked && <EdicaoGate onUnlock={() => setUnlocked(true)} />}
+                {hasMore && unlocked && <ReactMarkdown>{rest}</ReactMarkdown>}
+              </>
             )}
+            {shouldShowTranslatedVersion && hasMore && !unlocked && <EdicaoGate onUnlock={() => setUnlocked(true)} />}
           </article>
           {(unlocked || !hasMore) && (
             <>
@@ -508,7 +523,6 @@ export default function EdicaoView({ edicao, setView }) {
                   {t('edition.mapLink')}
                 </button>
               )}
-              {translationError && <p className="translate-error">{translationError}</p>}
               <CustomComments slug={edicao.slug} />
             </>
           )}
