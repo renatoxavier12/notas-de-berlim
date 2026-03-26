@@ -52,6 +52,16 @@ export const BERLINER_GLOSSARY = [
   },
 ]
 
+const EDITION_AROUND_READINGS = {
+  'terceira-semana': [
+    {
+      title: 'Jorge Luis Borges, "El tiempo"',
+      meta: 'Borges oral, 1979',
+      note: 'Conferência que atravessa esta edição: tempo, memória, sucessão e a estranheza do presente.',
+    },
+  ],
+}
+
 const markdownFiles = import.meta.glob('../edicoes/*.md', {
   query: '?raw',
   import: 'default',
@@ -177,6 +187,10 @@ export function toIsoDate(dateString) {
 
 export function getGlossaryTerms(markdown = '') {
   return BERLINER_GLOSSARY.filter(entry => entry.pattern.test(markdown))
+}
+
+export function getEditionAroundReadings(slug) {
+  return EDITION_AROUND_READINGS[slug] || []
 }
 
 export function getEditionCopy(edicao, t) {

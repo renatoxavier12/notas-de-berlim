@@ -4,7 +4,7 @@ import { MapPinned } from 'lucide-react'
 import ReactMarkdown from 'react-markdown'
 import { normalizeLanguage } from '../i18n'
 import LOCATIONS from '../locations.json'
-import { absoluteUrl, formatEditionDate, formatEditionRelativeDate, getCookie, getEditionCopy, getGlossaryTerms, getMarkdownForEdicao, readingTime, setCookie } from '../lib/site'
+import { absoluteUrl, formatEditionDate, formatEditionRelativeDate, getCookie, getEditionAroundReadings, getEditionCopy, getGlossaryTerms, getMarkdownForEdicao, readingTime, setCookie } from '../lib/site'
 
 function EdicaoGate({ onUnlock }) {
   const { t } = useTranslation()
@@ -287,6 +287,26 @@ function GlossaryCard({ terms }) {
   )
 }
 
+function AroundReadingsCard({ items }) {
+  const { t } = useTranslation()
+  if (!items.length) return null
+
+  return (
+    <div className="sidebar-reading-card">
+      <p className="share-label">{t('edition.aroundReadingsLabel')}</p>
+      <div className="reading-list">
+        {items.map(item => (
+          <div key={item.title} className="reading-item">
+            <p className="reading-title">{item.title}</p>
+            {item.meta && <p className="reading-meta">{item.meta}</p>}
+            {item.note && <p className="reading-note">{item.note}</p>}
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+}
+
 export default function EdicaoView({ edicao, setView }) {
   const { t, i18n } = useTranslation()
   const raw = getMarkdownForEdicao(edicao.slug)
@@ -305,6 +325,7 @@ export default function EdicaoView({ edicao, setView }) {
   const relativeDate = formatEditionRelativeDate(edicao.data, locale)
   const absoluteDate = formatEditionDate(edicao.data, locale)
   const glossaryTerms = getGlossaryTerms(content)
+  const aroundReadings = getEditionAroundReadings(edicao.slug)
 
   return (
     <div className="edicao-view">
@@ -334,6 +355,7 @@ export default function EdicaoView({ edicao, setView }) {
       <div className="edition-reading-layout">
         <aside className="edition-sidebar">
           <SidebarShare edicao={edicao} setView={setView} />
+          <AroundReadingsCard items={aroundReadings} />
           <GlossaryCard terms={glossaryTerms} />
         </aside>
 
