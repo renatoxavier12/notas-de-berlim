@@ -10,14 +10,17 @@
       ]
     }
   ],
-  "rewrites": [
+  "routes": [
     {
-      "source": "/sitemap.xml",
-      "destination": "/api/sitemap"
+      "src": "/sitemap.xml",
+      "dest": "/api/sitemap"
     },
     {
-      "source": "/((?!api/|assets/|favicon\\.svg|favicon-32x32\\.png|favicon-16x16\\.png|apple-touch-icon\\.png|robots\\.txt|rss\\.xml|sitemap\\.xml).*)",
-      "destination": "/index.html"
+      "handle": "filesystem"
+    },
+    {
+      "src": "/.*",
+      "dest": "/index.html"
     }
   ]
 }
