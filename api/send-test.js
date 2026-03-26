@@ -1,6 +1,6 @@
 /* global Buffer, process */
 
-import { buildEmailContent, getEmailConfig } from './_email.js'
+import { buildEmailContent, getEmailConfig } from '../src/lib/_email.js'
 
 export default async function handler(req, res) {
   const { slug, secret } = req.query
