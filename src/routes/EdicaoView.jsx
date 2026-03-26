@@ -102,7 +102,6 @@ function LikePillButton({ slug }) {
   return (
     <button className={`btn-like-pill ${liked ? 'liked' : ''}`} onClick={toggle} title={liked ? t('edition.unlike') : t('edition.like')}>
       <span className="icon"><IconHeart filled={liked} /></span>
-      {!liked && <span className="count">{t('edition.like')}</span>}
     </button>
   )
 }
