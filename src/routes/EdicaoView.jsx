@@ -88,6 +88,38 @@ const IconBookmark = ({ filled }) => (
   </svg>
 )
 
+const IconX = () => (
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+    <path d="M18.9 2H22l-6.77 7.73L23 22h-6.11l-4.78-6.27L6.62 22H3.5l7.24-8.28L1 2h6.27l4.32 5.7zM17.8 20h1.72L6.34 3.9H4.49z" />
+  </svg>
+)
+
+const IconBluesky = () => (
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+    <path d="M12 10.84c-1.33-2.59-4.96-6.62-8.32-8.99C2.6 1.1 1 1.58 1 3.57c0 .4.23 3.35.38 3.83.5 1.68 2.33 2.11 3.95 1.83-2.83.49-3.55 2.13-1.99 3.77 2.97 3.13 4.26-.79 4.6-1.79.06-.18.09-.26.16-.26s.1.08.16.26c.34 1 1.63 4.92 4.6 1.79 1.56-1.64.84-3.28-1.99-3.77 1.62.28 3.45-.15 3.95-1.83.15-.48.38-3.43.38-3.83 0-1.99-1.6-2.47-2.68-1.72C16.96 4.22 13.33 8.25 12 10.84z" />
+  </svg>
+)
+
+const IconLinkedIn = () => (
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+    <path d="M4.98 3.5A2.48 2.48 0 1 1 5 8.46a2.48 2.48 0 0 1-.02-4.96M3 9h4v12H3zm7 0h3.83v1.71h.05c.53-1 1.84-2.06 3.78-2.06C21.2 8.65 22 10.96 22 13.96V21h-4v-6.16c0-1.47-.03-3.36-2.05-3.36-2.05 0-2.37 1.6-2.37 3.25V21h-4z" />
+  </svg>
+)
+
+const IconFacebook = () => (
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+    <path d="M13.5 22v-8h2.7l.4-3h-3.1V9.1c0-.87.25-1.46 1.5-1.46H16.7V5.02C16.4 4.98 15.38 4.9 14.2 4.9c-2.46 0-4.15 1.5-4.15 4.26V11H7.3v3h2.75v8z" />
+  </svg>
+)
+
+const IconStories = () => (
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <rect x="4" y="3" width="16" height="18" rx="4" />
+    <circle cx="12" cy="12" r="3.5" />
+    <path d="M8.2 6.7h.01M15.8 6.7h.01" />
+  </svg>
+)
+
 function LikePillButton({ slug }) {
   const { t } = useTranslation()
   const key = `nb_like_${slug}`
@@ -326,6 +358,100 @@ function AroundReadingsCard({ items }) {
   )
 }
 
+function EditionShareStrip({ edicao, title, setView, hasMap }) {
+  const { t } = useTranslation()
+  const canonicalUrl = absoluteUrl(`/edicoes/${edicao.slug}`)
+  const shareText = `${title} — ${canonicalUrl}`
+  const shareTargets = [
+    {
+      key: 'x',
+      href: `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}`,
+      label: 'X',
+      icon: <IconX />,
+    },
+    {
+      key: 'bluesky',
+      href: `https://bsky.app/intent/compose?text=${encodeURIComponent(shareText)}`,
+      label: 'Bluesky',
+      icon: <IconBluesky />,
+    },
+    {
+      key: 'linkedin',
+      href: `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(canonicalUrl)}`,
+      label: 'LinkedIn',
+      icon: <IconLinkedIn />,
+    },
+    {
+      key: 'facebook',
+      href: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(canonicalUrl)}`,
+      label: 'Facebook',
+      icon: <IconFacebook />,
+    },
+  ]
+
+  async function shareToStories() {
+    try {
+      await navigator.clipboard.writeText(canonicalUrl)
+    } catch {
+      const el = document.createElement('textarea')
+      el.value = canonicalUrl
+      document.body.appendChild(el)
+      el.select()
+      document.execCommand('copy')
+      document.body.removeChild(el)
+    }
+
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          title,
+          text: shareText,
+          url: canonicalUrl,
+        })
+        return
+      } catch {
+        return
+      }
+    }
+
+    window.open('https://www.instagram.com/', '_blank', 'noopener,noreferrer')
+  }
+
+  return (
+    <div className="edition-actions-strip">
+      {hasMap && (
+        <button className="edition-map-inline" onClick={() => setView('mapa')}>
+          {t('edition.mapLinkShort')}
+        </button>
+      )}
+      <div className="edition-share-icons" aria-label={t('edition.shareElsewhere')}>
+        {shareTargets.map(target => (
+          <a
+            key={target.key}
+            href={target.href}
+            className="edition-share-icon"
+            target="_blank"
+            rel="noreferrer"
+            title={target.label}
+            aria-label={target.label}
+          >
+            {target.icon}
+          </a>
+        ))}
+        <button
+          type="button"
+          className="edition-share-icon edition-share-icon-story"
+          onClick={shareToStories}
+          title={t('edition.instagramStories')}
+          aria-label={t('edition.instagramStories')}
+        >
+          <IconStories />
+        </button>
+      </div>
+    </div>
+  )
+}
+
 function EditionPager({ edicao, setView }) {
   const { t } = useTranslation()
   const currentIndex = EDICOES.findIndex(item => item.slug === edicao.slug)
@@ -459,11 +585,7 @@ export default function EdicaoView({ edicao, setView }) {
           </article>
           {(unlocked || !hasMore) && (
             <>
-              {hasMap && (
-                <button className="edition-map-inline" onClick={() => setView('mapa')}>
-                  {t('edition.mapLinkShort')}
-                </button>
-              )}
+              <EditionShareStrip edicao={edicao} title={editionCopy.titulo} setView={setView} hasMap={hasMap} />
               <EditionPager edicao={edicao} setView={setView} />
               <CustomComments slug={edicao.slug} />
             </>
