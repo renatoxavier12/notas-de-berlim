@@ -19,6 +19,8 @@
     "title": "Notas de Berlim",
     "subtitle": "Ensaios sobre cidade, cultura e vida cotidiana em Berlim",
     "editions": "EDIÇÕES",
+    "allKiezes": "Todos os Kieze",
+    "kiezLabel": "Filtrar por Kiez",
     "searchPlaceholder": "Buscar...",
     "noResults": "Nenhuma edição encontrada."
   },
@@ -72,6 +74,7 @@
     "supportLabel": "APOIAR",
     "supportText": "Se esta edição te acompanhou bem, você pode apoiar o caderno com um PIX discreto.",
     "supportAction": "Ver chave PIX",
+    "glossaryLabel": "GLOSSÁRIO BERLINENSE",
     "comments": "COMENTÁRIOS",
     "firstComment": "Seja o primeiro a comentar.",
     "leaveComment": "DEIXE UM COMENTÁRIO",

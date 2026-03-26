@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { EDICOES, getEditionCopy } from '../lib/site'
+import { MapPinned } from 'lucide-react'
+import { EDICOES, formatEditionRelativeDate, getEditionCopy, getEditionKiezes } from '../lib/site'
 
 function SubscribeForm() {
   const { t } = useTranslation()
@@ -58,16 +59,27 @@ function SubscribeForm() {
 }
 
 export default function HomeView({ setView, setEdicaoAtiva }) {
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
   const [query, setQuery] = useState('')
+  const [selectedKiez, setSelectedKiez] = useState('all')
+  const locale = i18n.resolvedLanguage === 'de'
+    ? 'de-DE'
+    : i18n.resolvedLanguage === 'en'
+      ? 'en-US'
+      : 'pt-BR'
+  const kiezes = getEditionKiezes(EDICOES)
+
   const filtered = EDICOES.filter(edicao => {
     const editionCopy = getEditionCopy(edicao, t)
     const normalizedQuery = query.toLowerCase()
+    const matchesKiez = selectedKiez === 'all' || editionCopy.bairro.includes(selectedKiez)
 
-    return !query ||
+    return matchesKiez && (
+      !query ||
       editionCopy.titulo.toLowerCase().includes(normalizedQuery) ||
       (editionCopy.teaser || '').toLowerCase().includes(normalizedQuery) ||
       (editionCopy.bairro || '').toLowerCase().includes(normalizedQuery)
+    )
   })
 
   return (
@@ -84,13 +96,34 @@ export default function HomeView({ setView, setEdicaoAtiva }) {
       <main className="home-main">
         <div className="archive-header">
           <p className="section-label">{t('home.editions')}</p>
-          <input
-            className="search-input"
-            type="text"
-            placeholder={t('home.searchPlaceholder')}
-            value={query}
-            onChange={event => setQuery(event.target.value)}
-          />
+          <div className="archive-tools">
+            <input
+              className="search-input"
+              type="text"
+              placeholder={t('home.searchPlaceholder')}
+              value={query}
+              onChange={event => setQuery(event.target.value)}
+            />
+            <div className="kiez-filter-row" aria-label={t('home.kiezLabel')}>
+              <button
+                type="button"
+                className={`kiez-filter-chip ${selectedKiez === 'all' ? 'active' : ''}`}
+                onClick={() => setSelectedKiez('all')}
+              >
+                {t('home.allKiezes')}
+              </button>
+              {kiezes.map(kiez => (
+                <button
+                  key={kiez}
+                  type="button"
+                  className={`kiez-filter-chip ${selectedKiez === kiez ? 'active' : ''}`}
+                  onClick={() => setSelectedKiez(kiez)}
+                >
+                  {kiez}
+                </button>
+              ))}
+            </div>
+          </div>
         </div>
         <div className="edicoes-grid">
           {filtered.length === 0 && (
@@ -117,6 +150,13 @@ export default function HomeView({ setView, setEdicaoAtiva }) {
                 <div className="card-body">
                   <span className="card-tag">{editionCopy.bairro}</span>
                   <h2 className="card-title">{editionCopy.titulo}</h2>
+                  <p className="card-meta-row">
+                    <span>{formatEditionRelativeDate(edicao.data, locale)}</span>
+                    <span className="card-meta-kiez">
+                      <MapPinned size={13} strokeWidth={1.9} />
+                      {editionCopy.bairro}
+                    </span>
+                  </p>
                   <p className="card-teaser">{editionCopy.teaser}</p>
                 </div>
               </button>

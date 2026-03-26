@@ -19,6 +19,8 @@
     "title": "Notizen aus Berlin",
     "subtitle": "Essen, Drinks, Kultur. Leben in Berlin.",
     "editions": "AUSGABEN",
+    "allKiezes": "Alle Kieze",
+    "kiezLabel": "Nach Kiez filtern",
     "searchPlaceholder": "Suchen...",
     "noResults": "Keine Ausgaben gefunden."
   },
@@ -72,6 +74,7 @@
     "supportLabel": "UNTERSTÜTZEN",
     "supportText": "Wenn dich diese Ausgabe gut begleitet hat, kannst du das Notizbuch mit einem kleinen PIX unterstützen.",
     "supportAction": "PIX ansehen",
+    "glossaryLabel": "BERLINER GLOSSAR",
     "comments": "KOMMENTARE",
     "firstComment": "Sei der erste Kommentar.",
     "leaveComment": "KOMMENTAR HINTERLASSEN",

@@ -19,6 +19,8 @@
     "title": "Notes from Berlin",
     "subtitle": "Food, drinks, Kultur. Life in Berlin.",
     "editions": "EDITIONS",
+    "allKiezes": "All Kieze",
+    "kiezLabel": "Filter by Kiez",
     "searchPlaceholder": "Search...",
     "noResults": "No editions found."
   },
@@ -72,6 +74,7 @@
     "supportLabel": "SUPPORT",
     "supportText": "If this edition was good company, you can support the notebook with a small PIX contribution.",
     "supportAction": "See PIX details",
+    "glossaryLabel": "BERLIN GLOSSARY",
     "comments": "COMMENTS",
     "firstComment": "Be the first to comment.",
     "leaveComment": "LEAVE A COMMENT",

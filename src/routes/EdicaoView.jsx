@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import { MapPinned } from 'lucide-react'
 import ReactMarkdown from 'react-markdown'
 import { normalizeLanguage } from '../i18n'
 import LOCATIONS from '../locations.json'
-import { absoluteUrl, getCookie, getEditionCopy, getMarkdownForEdicao, readingTime, setCookie } from '../lib/site'
+import { absoluteUrl, formatEditionDate, formatEditionRelativeDate, getCookie, getEditionCopy, getGlossaryTerms, getMarkdownForEdicao, readingTime, setCookie } from '../lib/site'
 
 function EdicaoGate({ onUnlock }) {
   const { t } = useTranslation()
@@ -97,17 +98,6 @@ function LikePillButton({ slug }) {
       <span className="icon"><IconHeart filled={liked} /></span>
       <span className="count">{liked ? t('edition.liked') : t('edition.like')}</span>
     </button>
-  )
-}
-
-function TranslationFallbackNotice() {
-  const { t } = useTranslation()
-
-  return (
-    <div className="translation-fallback-note">
-      <p className="share-label">{t('edition.translationOriginalLabel')}</p>
-      <p>{t('edition.translationFallback')}</p>
-    </div>
   )
 }
 
@@ -278,8 +268,27 @@ function SidebarShare({ edicao, setView }) {
   )
 }
 
-export default function EdicaoView({ edicao, setView }) {
+function GlossaryCard({ terms }) {
   const { t } = useTranslation()
+  if (!terms.length) return null
+
+  return (
+    <div className="sidebar-glossary-card">
+      <p className="share-label">{t('edition.glossaryLabel')}</p>
+      <div className="glossary-list">
+        {terms.map(item => (
+          <div key={item.term} className="glossary-item">
+            <p className="glossary-term">{item.term}</p>
+            <p className="glossary-description">{item.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+}
+
+export default function EdicaoView({ edicao, setView }) {
+  const { t, i18n } = useTranslation()
   const raw = getMarkdownForEdicao(edicao.slug)
   const content = raw.replace(/^---[\s\S]*?---\n?/, '')
   const parts = content.split(/\n---\n/)
@@ -288,6 +297,14 @@ export default function EdicaoView({ edicao, setView }) {
   const rest = parts.slice(1).join('\n\n---\n\n')
   const editionCopy = getEditionCopy(edicao, t)
   const [unlocked, setUnlocked] = useState(() => !!getCookie('nb_email'))
+  const locale = i18n.resolvedLanguage === 'de'
+    ? 'de-DE'
+    : i18n.resolvedLanguage === 'en'
+      ? 'en-US'
+      : 'pt-BR'
+  const relativeDate = formatEditionRelativeDate(edicao.data, locale)
+  const absoluteDate = formatEditionDate(edicao.data, locale)
+  const glossaryTerms = getGlossaryTerms(content)
 
   return (
     <div className="edicao-view">
@@ -301,8 +318,15 @@ export default function EdicaoView({ edicao, setView }) {
       {edicao.capa && (
         <div className="edition-hero" style={{ backgroundImage: `url(${edicao.capa})` }}>
           <div className="edition-hero-content">
-            <span className="card-tag">{editionCopy.bairro}</span>
+            <p className="edition-hero-kicker">{relativeDate}</p>
             <h1 className="edition-hero-title">{editionCopy.titulo}</h1>
+            <div className="edition-hero-meta">
+              <span className="edition-kiez-detail">
+                <MapPinned size={14} strokeWidth={2} />
+                {editionCopy.bairro}
+              </span>
+              <span>{absoluteDate}</span>
+            </div>
           </div>
         </div>
       )}
@@ -310,6 +334,7 @@ export default function EdicaoView({ edicao, setView }) {
       <div className="edition-reading-layout">
         <aside className="edition-sidebar">
           <SidebarShare edicao={edicao} setView={setView} />
+          <GlossaryCard terms={glossaryTerms} />
         </aside>
 
         <div className="edition-body">
@@ -317,14 +342,18 @@ export default function EdicaoView({ edicao, setView }) {
             <header className="edicao-header">
               <span className="edicao-numero-big">#{String(edicao.id).padStart(2, '0')}</span>
               <h1>{editionCopy.titulo}</h1>
-              <p className="edicao-meta">
-                {editionCopy.data} · {editionCopy.bairro} · {readingTime(content)}
-              </p>
+              <div className="edition-meta-stack">
+                <p className="edicao-meta">{relativeDate} · {readingTime(content)}</p>
+                <p className="edition-kiez-detail">
+                  <MapPinned size={14} strokeWidth={2} />
+                  {editionCopy.bairro} · {absoluteDate}
+                </p>
+              </div>
             </header>
           )}
           {edicao.capa && (
             <p className="edicao-meta edition-meta-row">
-              #{String(edicao.id).padStart(2, '0')} · {editionCopy.data} · {readingTime(content)}
+              #{String(edicao.id).padStart(2, '0')} · {relativeDate} · {readingTime(content)}
             </p>
           )}
           <article className="edicao-content">

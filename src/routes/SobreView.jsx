@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next'
-import { EDICOES, getEditionCopy } from '../lib/site'
+import { EDICOES, formatEditionDate, getEditionCopy } from '../lib/site'
 
 const IconInstagram = () => (
   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -23,7 +23,12 @@ const IconMail = () => (
 )
 
 export default function SobreView({ setView, setEdicaoAtiva }) {
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
+  const locale = i18n.resolvedLanguage === 'de'
+    ? 'de-DE'
+    : i18n.resolvedLanguage === 'en'
+      ? 'en-US'
+      : 'pt-BR'
 
   return (
     <div className="sobre-view">
@@ -76,7 +81,7 @@ export default function SobreView({ setView, setEdicaoAtiva }) {
                 <span className="edicao-numero">#{String(edicao.id).padStart(2, '0')}</span>
                 <div className="edicao-info">
                   <h2>{editionCopy.titulo}</h2>
-                  <p className="edicao-meta">{edicao.data} · {editionCopy.bairro}</p>
+                  <p className="edicao-meta">{formatEditionDate(edicao.data, locale)} · {editionCopy.bairro}</p>
                 </div>
                 <span className="edicao-arrow">→</span>
               </button>

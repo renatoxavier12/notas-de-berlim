@@ -1,5 +1,33 @@
+/* global process */
+
 export const config = {
   matcher: ['/edicoes/:slug*'],
+}
+
+function toIsoDate(dateString) {
+  const match = dateString.match(/^(\d{1,2})\s+de\s+(.+?)\s+de\s+(\d{4})$/i)
+  if (!match) return ''
+
+  const months = {
+    janeiro: 0,
+    fevereiro: 1,
+    marco: 2,
+    março: 2,
+    abril: 3,
+    maio: 4,
+    junho: 5,
+    julho: 6,
+    agosto: 7,
+    setembro: 8,
+    outubro: 9,
+    novembro: 10,
+    dezembro: 11,
+  }
+
+  const month = months[match[2].trim().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '')]
+  if (month == null) return ''
+
+  return new Date(Number(match[3]), month, Number(match[1]), 12, 0, 0).toISOString()
 }
 
 export default async function middleware(request) {
@@ -39,9 +67,35 @@ export default async function middleware(request) {
 
     const title = esc(get('title') || 'Notas de Berlim')
     const teaser = esc(get('teaser') || 'Comida, bebida, cultura, ruas e vida em Kreuzberg.')
+    const bairro = esc(get('bairro') || 'Berlim')
+    const published = get('data')
+    const publishedIso = toIsoDate(published)
     const capa = get('capa')
     const image = capa ? `https://notasdeberlim.com${capa}` : 'https://notasdeberlim.com/og.jpg'
     const pageUrl = `https://notasdeberlim.com/edicoes/${slug}`
+    const jsonLd = JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'BlogPosting',
+      headline: get('title') || 'Notas de Berlim',
+      description: get('teaser') || 'Comida, bebida, cultura, ruas e vida em Kreuzberg.',
+      image: [image],
+      url: pageUrl,
+      mainEntityOfPage: pageUrl,
+      articleSection: get('bairro') || 'Berlim',
+      inLanguage: 'pt-BR',
+      isAccessibleForFree: true,
+      datePublished: publishedIso || undefined,
+      dateModified: publishedIso || undefined,
+      author: {
+        '@type': 'Person',
+        name: 'Renato Xavier',
+      },
+      publisher: {
+        '@type': 'Organization',
+        name: 'Notas de Berlim',
+        url: 'https://notasdeberlim.com',
+      },
+    }).replace(/</g, '\\u003c')
 
     const html = `<!doctype html>
 <html lang="pt-BR">
@@ -57,10 +111,13 @@ export default async function middleware(request) {
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:locale" content="pt_BR">
+  <meta property="article:section" content="${bairro}">
+  ${publishedIso ? `<meta property="article:published_time" content="${publishedIso}">` : ''}
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="${title} — Notas de Berlim">
   <meta name="twitter:description" content="${teaser}">
   <meta name="twitter:image" content="${image}">
+  <script type="application/ld+json">${jsonLd}</script>
   <meta http-equiv="refresh" content="0; url=${pageUrl}">
 </head>
 <body>
