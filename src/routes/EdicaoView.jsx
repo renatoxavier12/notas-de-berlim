@@ -279,8 +279,7 @@ function SidebarShare({ edicao, setView }) {
 }
 
 export default function EdicaoView({ edicao, setView }) {
-  const { t, i18n } = useTranslation()
-  const language = normalizeLanguage(i18n.resolvedLanguage || i18n.language)
+  const { t } = useTranslation()
   const raw = getMarkdownForEdicao(edicao.slug)
   const content = raw.replace(/^---[\s\S]*?---\n?/, '')
   const parts = content.split(/\n---\n/)
@@ -289,83 +288,6 @@ export default function EdicaoView({ edicao, setView }) {
   const rest = parts.slice(1).join('\n\n---\n\n')
   const editionCopy = getEditionCopy(edicao, t)
   const [unlocked, setUnlocked] = useState(() => !!getCookie('nb_email'))
-  const [translations, setTranslations] = useState({})
-  const [translationStatus, setTranslationStatus] = useState('idle')
-
-  const targetLanguage = language === 'de' ? 'DE' : language === 'en' ? 'EN' : 'PT'
-  const translatedContent = targetLanguage === 'PT' ? null : translations[targetLanguage] || null
-
-  useEffect(() => {
-    let cancelled = false
-
-    async function translateText(text, section) {
-      const response = await fetch('/api/translate', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          slug: `${edicao.slug}-${section}`,
-          targetLang: targetLanguage,
-          text,
-        }),
-      })
-
-      const data = await response.json()
-      if (!response.ok || !data.translation) {
-        throw new Error(data.error || 'Translation failed')
-      }
-
-      return data.translation
-    }
-
-    async function translateEdition() {
-      if (targetLanguage === 'PT') {
-        setTranslationStatus('idle')
-        return
-      }
-
-      const shouldTranslateFull = unlocked || !hasMore
-      const needsVisibleTranslation = shouldTranslateFull
-        ? !translatedContent?.full
-        : !translatedContent?.teaser
-
-      if (!needsVisibleTranslation) {
-        setTranslationStatus('success')
-        return
-      }
-
-      setTranslationStatus('loading')
-
-      try {
-        const next = { ...translatedContent }
-
-        if (shouldTranslateFull) {
-          next.full = await translateText(content, 'full')
-        } else {
-          next.teaser = await translateText(teaser, 'teaser')
-        }
-
-        if (!cancelled) {
-          setTranslations(current => ({ ...current, [targetLanguage]: next }))
-          setTranslationStatus('success')
-        }
-      } catch {
-        if (!cancelled) {
-          setTranslationStatus('error')
-        }
-      }
-    }
-
-    translateEdition()
-
-    return () => {
-      cancelled = true
-    }
-  }, [content, edicao.slug, hasMore, rest, targetLanguage, t, teaser, translatedContent, unlocked])
-
-  const shouldShowTranslatedVersion = targetLanguage !== 'PT'
-  const translatedTeaser = translatedContent?.teaser || null
-  const translatedFull = translatedContent?.full || null
-  const visibleLoading = shouldShowTranslatedVersion && translationStatus === 'loading'
 
   return (
     <div className="edicao-view">
@@ -406,36 +328,11 @@ export default function EdicaoView({ edicao, setView }) {
             </p>
           )}
           <article className="edicao-content">
-            {shouldShowTranslatedVersion && (unlocked || !hasMore) ? (
-              visibleLoading && !translatedFull ? (
-                <p className="translation-loading">{t('edition.translateLoading')}</p>
-              ) : translatedFull ? (
-                <ReactMarkdown>{translatedFull}</ReactMarkdown>
-              ) : (
-                <>
-                  <TranslationFallbackNotice />
-                  <ReactMarkdown>{content}</ReactMarkdown>
-                </>
-              )
-            ) : shouldShowTranslatedVersion ? (
-              visibleLoading && !translatedTeaser ? (
-                <p className="translation-loading">{t('edition.translateLoading')}</p>
-              ) : translatedTeaser ? (
-                <ReactMarkdown>{translatedTeaser}</ReactMarkdown>
-              ) : (
-                <>
-                  <TranslationFallbackNotice />
-                  <ReactMarkdown>{teaser}</ReactMarkdown>
-                </>
-              )
-            ) : (
-              <>
-                <ReactMarkdown>{teaser}</ReactMarkdown>
-                {hasMore && !unlocked && <EdicaoGate onUnlock={() => setUnlocked(true)} />}
-                {hasMore && unlocked && <ReactMarkdown>{rest}</ReactMarkdown>}
-              </>
-            )}
-            {shouldShowTranslatedVersion && hasMore && !unlocked && <EdicaoGate onUnlock={() => setUnlocked(true)} />}
+            <>
+              <ReactMarkdown>{teaser}</ReactMarkdown>
+              {hasMore && !unlocked && <EdicaoGate onUnlock={() => setUnlocked(true)} />}
+              {hasMore && unlocked && <ReactMarkdown>{rest}</ReactMarkdown>}
+            </>
           </article>
           {(unlocked || !hasMore) && (
             <>

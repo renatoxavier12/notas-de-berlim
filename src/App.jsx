@@ -1,7 +1,6 @@
 import { Suspense, lazy, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import './App.css'
-import LangSwitcher from './components/LangSwitcher'
 import { normalizeLanguage } from './i18n'
 import { findEdicaoBySlug, getCookie, setCookie } from './lib/site'
 import RouteMeta from './components/RouteMeta'
@@ -45,7 +44,6 @@ function Nav({ view, setView, dark, setDark }) {
         >
           Apoiar
         </button>
-        <LangSwitcher />
         <button
           className="nav-theme-toggle"
           onClick={() => setDark(value => !value)}
