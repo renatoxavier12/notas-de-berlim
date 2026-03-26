@@ -82,6 +82,12 @@ const IconHeart = ({ filled }) => (
   </svg>
 )
 
+const IconBookmark = ({ filled }) => (
+  <svg width="14" height="14" viewBox="0 0 24 24" fill={filled ? 'currentColor' : 'none'} stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M6 3h12a1 1 0 0 1 1 1v17l-7-4-7 4V4a1 1 0 0 1 1-1z" />
+  </svg>
+)
+
 function LikePillButton({ slug }) {
   const { t } = useTranslation()
   const key = `nb_like_${slug}`
@@ -221,6 +227,8 @@ function ReadingProgress() {
 function SidebarShare({ edicao, setView }) {
   const { t } = useTranslation()
   const [copied, setCopied] = useState(false)
+  const saveKey = `nb_save_${edicao.slug}`
+  const [saved, setSaved] = useState(() => getCookie(saveKey) === 'true')
   const canonicalUrl = absoluteUrl(`/edicoes/${edicao.slug}`)
 
   async function copiar() {
@@ -238,6 +246,12 @@ function SidebarShare({ edicao, setView }) {
     setTimeout(() => setCopied(false), 2000)
   }
 
+  function toggleSaved() {
+    const next = !saved
+    setSaved(next)
+    setCookie(saveKey, String(next))
+  }
+
   return (
     <div className="edition-sidebar-share">
       <div className="sidebar-share-block">
@@ -252,9 +266,14 @@ function SidebarShare({ edicao, setView }) {
               <IconLink />
             )}
           </button>
+          <button className={`mini-btn-circle ${saved ? 'saved' : ''}`} onClick={toggleSaved} title={saved ? t('edition.unsave') : t('edition.save')}>
+            <IconBookmark filled={saved} />
+          </button>
           <LikePillButton slug={edicao.slug} />
         </div>
-        <p className="sidebar-meta-note">{copied ? t('edition.copiedLink') : t('edition.copyHint')}</p>
+        <p className="sidebar-meta-note">
+          {copied ? t('edition.copiedLink') : saved ? t('edition.savedHint') : t('edition.copyHint')}
+        </p>
       </div>
 
       <div className="sidebar-support-card">
@@ -302,44 +321,6 @@ function AroundReadingsCard({ items }) {
             {item.note && <p className="reading-note">{item.note}</p>}
           </div>
         ))}
-      </div>
-    </div>
-  )
-}
-
-function EditionFooterActions({ edicao, setView, hasMap }) {
-  const { t } = useTranslation()
-  const [copied, setCopied] = useState(false)
-  const canonicalUrl = absoluteUrl(`/edicoes/${edicao.slug}`)
-
-  async function copiar() {
-    try {
-      await navigator.clipboard.writeText(canonicalUrl)
-    } catch {
-      const el = document.createElement('textarea')
-      el.value = canonicalUrl
-      document.body.appendChild(el)
-      el.select()
-      document.execCommand('copy')
-      document.body.removeChild(el)
-    }
-    setCopied(true)
-    setTimeout(() => setCopied(false), 2000)
-  }
-
-  return (
-    <div className="edition-footer-actions">
-      <p className="share-label">{t('edition.shareEndLabel')}</p>
-      <div className="edition-footer-action-row">
-        <button type="button" className="edition-footer-action" onClick={copiar}>
-          {copied ? t('edition.copiedLink') : t('edition.copyLink')}
-        </button>
-        <LikePillButton slug={edicao.slug} />
-        {hasMap && (
-          <button type="button" className="edition-footer-action" onClick={() => setView('mapa')}>
-            {t('edition.mapLinkShort')}
-          </button>
-        )}
       </div>
     </div>
   )
@@ -479,11 +460,10 @@ export default function EdicaoView({ edicao, setView }) {
           {(unlocked || !hasMore) && (
             <>
               {hasMap && (
-                <button className="mapa-link-btn" onClick={() => setView('mapa')}>
-                  {t('edition.mapLink')}
+                <button className="edition-map-inline" onClick={() => setView('mapa')}>
+                  {t('edition.mapLinkShort')}
                 </button>
               )}
-              <EditionFooterActions edicao={edicao} setView={setView} hasMap={hasMap} />
               <EditionPager edicao={edicao} setView={setView} />
               <CustomComments slug={edicao.slug} />
             </>
