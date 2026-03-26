@@ -120,19 +120,24 @@ button {
 .lang-switcher-trigger {
   display: flex;
   align-items: center;
-  gap: 6px;
-  min-width: 54px;
-  padding: 6px 8px;
+  gap: 4px;
+  min-width: 0;
+  padding: 4px 2px;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  color: rgba(255, 255, 255, 0.88);
+  border: none;
 }
 
 .lang-switcher-caret {
-  font-size: 10px;
-  opacity: 0.7;
+  font-size: 14px;
+  line-height: 1;
+  opacity: 0.45;
 }
 
 .lang-switcher.open .lang-switcher-trigger,
 .lang-switcher-trigger:hover {
-  border-color: var(--yellow);
+  color: var(--yellow);
 }
 
 .lang-switcher-menu {
@@ -142,7 +147,7 @@ button {
   min-width: 160px;
   padding: 6px;
   background: rgba(12, 12, 12, 0.96);
-  border: 1px solid rgba(240, 215, 34, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.14);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.28);
 }
 
@@ -159,7 +164,8 @@ button {
 
 .lang-switcher-menu button:hover,
 .lang-switcher-menu button.active {
-  border-color: rgba(240, 215, 34, 0.55);
+  border-color: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.04);
 }
 
 .lang-switcher-code {
@@ -823,6 +829,16 @@ button:focus-visible, a:focus-visible {
   color: #c0392b;
   font-family: var(--font-ui);
   font-size: 12px;
+}
+
+.translation-loading {
+  margin: 28px 0;
+  font-family: var(--font-ui);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gray);
 }
 
 /* ── Share & Like ── */

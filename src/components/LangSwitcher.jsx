@@ -50,7 +50,7 @@ export default function LangSwitcher() {
         aria-expanded={open}
       >
         <span>{currentLanguage.label}</span>
-        <span className="lang-switcher-caret">▾</span>
+        <span className="lang-switcher-caret">·</span>
       </button>
 
       {open && (
