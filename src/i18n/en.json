@@ -58,7 +58,9 @@
     "emailNotFound": "Email not found. Subscribe on the homepage.",
     "mapLink": "See places from this edition on the map →",
     "share": "SHARE",
+    "emailShare": "Email",
     "copyLink": "Copy link",
+    "copiedLink": "✓ Copied",
     "like": "Like",
     "unlike": "Remove like",
     "comments": "COMMENTS",
@@ -85,11 +87,13 @@
   "editions": {
     "primeira-semana": {
       "title": "First Week",
-      "teaser": "We arrived. The apartment is an Altbau, there is no milk pot, and Germans recycle even alarm clocks."
+      "teaser": "We arrived. The apartment is an Altbau, there is no milk pot, and Germans recycle even alarm clocks.",
+      "date": "March 14, 2026"
     },
     "segunda-semana": {
       "title": "Second Week",
-      "teaser": "Mailbox label, milk pot found, and Spätify around the corner."
+      "teaser": "Mailbox label, milk pot found, and Spätify around the corner.",
+      "date": "March 23, 2026"
     }
   }
 }

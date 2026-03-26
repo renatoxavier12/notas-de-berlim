@@ -1,5 +1,6 @@
 import { Helmet } from 'react-helmet-async'
 import { useTranslation } from 'react-i18next'
+import { normalizeLanguage } from '../i18n'
 import { absoluteUrl, DEFAULT_OG_IMAGE, getEditionCopy, SITE_URL } from '../lib/site'
 
 function buildMeta(view, edicao, t) {
@@ -47,10 +48,11 @@ function buildMeta(view, edicao, t) {
 
 export default function RouteMeta({ view, edicao }) {
   const { t, i18n } = useTranslation()
+  const language = normalizeLanguage(i18n.resolvedLanguage || i18n.language)
   const meta = buildMeta(view, edicao, t)
-  const ogLocale = i18n.resolvedLanguage === 'de'
+  const ogLocale = language === 'de'
     ? 'de_DE'
-    : i18n.resolvedLanguage === 'en'
+    : language === 'en'
       ? 'en_US'
       : 'pt_BR'
 

@@ -58,7 +58,9 @@
     "emailNotFound": "Email não encontrado. Inscreva-se na página inicial.",
     "mapLink": "Ver lugares desta edição no mapa →",
     "share": "COMPARTILHAR",
+    "emailShare": "E-mail",
     "copyLink": "Copiar link",
+    "copiedLink": "✓ Copiado",
     "like": "Curtir",
     "unlike": "Remover curtida",
     "comments": "COMENTÁRIOS",
@@ -89,7 +91,8 @@
     },
     "segunda-semana": {
       "title": "Segunda Semana",
-      "teaser": "Etiqueta na caixinha de correio, leiteira achada, e a Spätify na esquina."
+      "teaser": "Etiqueta na caixinha de correio, leiteira achada, e a Spätify na esquina.",
+      "date": "23 de março de 2026"
     }
   }
 }

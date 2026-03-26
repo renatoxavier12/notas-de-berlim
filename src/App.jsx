@@ -2,6 +2,7 @@ import { Suspense, lazy, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import './App.css'
 import LangSwitcher from './components/LangSwitcher'
+import { normalizeLanguage } from './i18n'
 import { findEdicaoBySlug, getCookie, setCookie } from './lib/site'
 import RouteMeta from './components/RouteMeta'
 
@@ -71,6 +72,7 @@ function LoadingFallback() {
 
 function App() {
   const { i18n } = useTranslation()
+  const language = normalizeLanguage(i18n.resolvedLanguage || i18n.language)
   const initialRoute = routeStateFromPath(window.location.pathname)
   const [view, setView] = useState(initialRoute.view)
   const [edicaoAtiva, setEdicaoAtiva] = useState(initialRoute.edicao)
@@ -82,14 +84,14 @@ function App() {
   }, [dark])
 
   useEffect(() => {
-    const htmlLang = i18n.resolvedLanguage === 'de'
+    const htmlLang = language === 'de'
       ? 'de-DE'
-      : i18n.resolvedLanguage === 'en'
+      : language === 'en'
         ? 'en'
         : 'pt-BR'
 
     document.documentElement.lang = htmlLang
-  }, [i18n.resolvedLanguage])
+  }, [language])
 
   useEffect(() => {
     function handlePopState() {

@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import { normalizeLanguage } from '../i18n'
 
 const LANGUAGES = [
   { code: 'pt', label: 'PT', name: 'Português' },
@@ -11,7 +12,8 @@ export default function LangSwitcher() {
   const { i18n } = useTranslation()
   const [open, setOpen] = useState(false)
   const rootRef = useRef(null)
-  const currentLanguage = LANGUAGES.find(language => language.code === i18n.resolvedLanguage) || LANGUAGES[0]
+  const currentCode = normalizeLanguage(i18n.resolvedLanguage || i18n.language)
+  const currentLanguage = LANGUAGES.find(language => language.code === currentCode) || LANGUAGES[0]
 
   useEffect(() => {
     function handlePointerDown(event) {
@@ -59,7 +61,7 @@ export default function LangSwitcher() {
             <button
               key={language.code}
               type="button"
-              className={language.code === currentLanguage.code ? 'active' : ''}
+              className={language.code === currentCode ? 'active' : ''}
               onClick={() => selectLanguage(language.code)}
               role="menuitem"
             >

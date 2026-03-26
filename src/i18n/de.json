@@ -58,7 +58,9 @@
     "emailNotFound": "E-Mail nicht gefunden. Bitte auf der Startseite abonnieren.",
     "mapLink": "Orte dieser Ausgabe auf der Karte ansehen →",
     "share": "TEILEN",
+    "emailShare": "E-Mail",
     "copyLink": "Link kopieren",
+    "copiedLink": "✓ Kopiert",
     "like": "Gefällt mir",
     "unlike": "Gefällt mir entfernen",
     "comments": "KOMMENTARE",
@@ -85,11 +87,13 @@
   "editions": {
     "primeira-semana": {
       "title": "Erste Woche",
-      "teaser": "Wir sind angekommen. Die Wohnung ist ein Altbau, eine Milchkanne fehlt, und die Deutschen recyceln sogar Wecker."
+      "teaser": "Wir sind angekommen. Die Wohnung ist ein Altbau, eine Milchkanne fehlt, und die Deutschen recyceln sogar Wecker.",
+      "date": "14. März 2026"
     },
     "segunda-semana": {
       "title": "Zweite Woche",
-      "teaser": "Briefkastenschild, Milchkanne gefunden und Spätify um die Ecke."
+      "teaser": "Briefkastenschild, Milchkanne gefunden und Spätify um die Ecke.",
+      "date": "23. März 2026"
     }
   }
 }

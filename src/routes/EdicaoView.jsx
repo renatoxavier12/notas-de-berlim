@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import ReactMarkdown from 'react-markdown'
+import { normalizeLanguage } from '../i18n'
 import LOCATIONS from '../locations.json'
 import { absoluteUrl, getCookie, getEditionCopy, getMarkdownForEdicao, readingTime, setCookie } from '../lib/site'
 
@@ -122,6 +123,7 @@ function LikeButton({ slug }) {
 
 function CustomComments({ slug }) {
   const { t, i18n } = useTranslation()
+  const language = normalizeLanguage(i18n.resolvedLanguage || i18n.language)
   const [comments, setComments] = useState([])
   const [formData, setFormData] = useState({ name: '', text: '', honeypot: '' })
   const [status, setStatus] = useState(null)
@@ -155,7 +157,7 @@ function CustomComments({ slug }) {
     }
   }
 
-  const locale = i18n.resolvedLanguage === 'de' ? 'de-DE' : i18n.resolvedLanguage === 'en' ? 'en-US' : 'pt-BR'
+  const locale = language === 'de' ? 'de-DE' : language === 'en' ? 'en-US' : 'pt-BR'
 
   return (
     <div className="comments-section">
@@ -331,10 +333,10 @@ function SidebarShare({ edicao }) {
       <p className="share-label">{t('edition.share')}</p>
       <div className="sidebar-share-actions">
         <a href={`mailto:?subject=${text}&body=${pageUrl}`} className="sidebar-share-btn">
-          Email
+          {t('edition.emailShare')}
         </a>
         <button className="sidebar-share-btn" onClick={copiar}>
-          {copied ? '✓ Copiado' : t('edition.copyLink')}
+          {copied ? t('edition.copiedLink') : t('edition.copyLink')}
         </button>
       </div>
       <div className="sidebar-share-icons">
@@ -359,6 +361,7 @@ function SidebarShare({ edicao }) {
 
 export default function EdicaoView({ edicao, setView }) {
   const { t, i18n } = useTranslation()
+  const language = normalizeLanguage(i18n.resolvedLanguage || i18n.language)
   const raw = getMarkdownForEdicao(edicao.slug)
   const content = raw.replace(/^---[\s\S]*?---\n?/, '')
   const parts = content.split(/\n---\n/)
@@ -371,7 +374,7 @@ export default function EdicaoView({ edicao, setView }) {
   const [translationStatus, setTranslationStatus] = useState('idle')
   const [translationError, setTranslationError] = useState(null)
 
-  const targetLanguage = i18n.resolvedLanguage === 'de' ? 'DE' : i18n.resolvedLanguage === 'en' ? 'EN' : 'PT'
+  const targetLanguage = language === 'de' ? 'DE' : language === 'en' ? 'EN' : 'PT'
   const translatedContent = targetLanguage === 'PT' ? null : translations[targetLanguage] || null
 
   useEffect(() => {
@@ -474,13 +477,13 @@ export default function EdicaoView({ edicao, setView }) {
               <span className="edicao-numero-big">#{String(edicao.id).padStart(2, '0')}</span>
               <h1>{editionCopy.titulo}</h1>
               <p className="edicao-meta">
-                {edicao.data} · {editionCopy.bairro} · {readingTime(content)}
+                {editionCopy.data} · {editionCopy.bairro} · {readingTime(content)}
               </p>
             </header>
           )}
           {edicao.capa && (
             <p className="edicao-meta edition-meta-row">
-              #{String(edicao.id).padStart(2, '0')} · {edicao.data} · {readingTime(content)}
+              #{String(edicao.id).padStart(2, '0')} · {editionCopy.data} · {readingTime(content)}
             </p>
           )}
           <article className="edicao-content">

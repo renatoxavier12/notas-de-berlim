@@ -5,6 +5,10 @@ import de from './de.json'
 import en from './en.json'
 import pt from './pt.json'
 
+export function normalizeLanguage(language) {
+  return (language || 'pt').toLowerCase().split('-')[0]
+}
+
 i18n
   .use(LanguageDetector)
   .use(initReactI18next)
@@ -16,6 +20,9 @@ i18n
     },
     fallbackLng: 'pt',
     supportedLngs: ['pt', 'en', 'de'],
+    load: 'languageOnly',
+    cleanCode: true,
+    nonExplicitSupportedLngs: true,
     interpolation: {
       escapeValue: false,
     },

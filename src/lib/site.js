@@ -75,5 +75,6 @@ export function getEditionCopy(edicao, t) {
     titulo: t(`editions.${edicao.slug}.title`, { defaultValue: edicao.titulo }),
     teaser: t(`editions.${edicao.slug}.teaser`, { defaultValue: edicao.teaser }),
     bairro: t(`editions.${edicao.slug}.bairro`, { defaultValue: edicao.bairro }),
+    data: t(`editions.${edicao.slug}.date`, { defaultValue: edicao.data }),
   }
 }
