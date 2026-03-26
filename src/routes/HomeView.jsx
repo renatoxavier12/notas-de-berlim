@@ -92,7 +92,7 @@ export default function HomeView({ setView, setEdicaoAtiva }) {
             onChange={event => setQuery(event.target.value)}
           />
         </div>
-        <div className="edicoes-list">
+        <div className="edicoes-grid">
           {filtered.length === 0 && (
             <p className="search-empty">{t('home.noResults')}</p>
           )}
@@ -108,15 +108,17 @@ export default function HomeView({ setView, setEdicaoAtiva }) {
                   setView('edicao')
                 }}
               >
-                <span className="edicao-numero">#{String(edicao.id).padStart(2, '0')}</span>
-                <div className="edicao-info">
-                  <h2>{editionCopy.titulo}</h2>
-                  <p className="edicao-meta">
-                    {edicao.data} · {editionCopy.bairro}
-                  </p>
-                  <p className="edicao-teaser">{editionCopy.teaser}</p>
+                <div className="card-image-wrap">
+                  {edicao.capa
+                    ? <img src={edicao.capa} alt={editionCopy.titulo} className="card-image" />
+                    : <div className="card-image-placeholder" />
+                  }
                 </div>
-                <span className="edicao-arrow">→</span>
+                <div className="card-body">
+                  <span className="card-tag">{editionCopy.bairro}</span>
+                  <h2 className="card-title">{editionCopy.titulo}</h2>
+                  <p className="card-teaser">{editionCopy.teaser}</p>
+                </div>
               </button>
             )
           })}

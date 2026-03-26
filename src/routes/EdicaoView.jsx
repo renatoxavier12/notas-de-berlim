@@ -296,6 +296,67 @@ function ReadingProgress() {
   return <div className="reading-progress-bar" style={{ width: `${progress}%` }} />
 }
 
+function SidebarShare({ edicao }) {
+  const { t } = useTranslation()
+  const editionCopy = getEditionCopy(edicao, t)
+  const [copied, setCopied] = useState(false)
+  const canonicalUrl = absoluteUrl(`/edicoes/${edicao.slug}`)
+  const pageUrl = encodeURIComponent(canonicalUrl)
+  const text = encodeURIComponent(`"${editionCopy.titulo}" — ${t('site.name')}`)
+
+  const redes = [
+    { label: 'X', icon: <IconX />, href: `https://twitter.com/intent/tweet?text=${text}&url=${pageUrl}`, bg: '#000' },
+    { label: 'WhatsApp', icon: <IconWhatsApp />, href: `https://wa.me/?text=${text}%20${pageUrl}`, bg: '#25D366' },
+    { label: 'Telegram', icon: <IconTelegram />, href: `https://t.me/share/url?url=${pageUrl}&text=${text}`, bg: '#2AABEE' },
+    { label: 'LinkedIn', icon: <IconLinkedIn />, href: `https://www.linkedin.com/sharing/share-offsite/?url=${pageUrl}`, bg: '#0A66C2' },
+  ]
+
+  async function copiar() {
+    try {
+      await navigator.clipboard.writeText(canonicalUrl)
+    } catch {
+      const el = document.createElement('textarea')
+      el.value = canonicalUrl
+      document.body.appendChild(el)
+      el.select()
+      document.execCommand('copy')
+      document.body.removeChild(el)
+    }
+    setCopied(true)
+    setTimeout(() => setCopied(false), 2000)
+  }
+
+  return (
+    <div className="edition-sidebar-share">
+      <p className="share-label">{t('edition.share')}</p>
+      <div className="sidebar-share-actions">
+        <a href={`mailto:?subject=${text}&body=${pageUrl}`} className="sidebar-share-btn">
+          Email
+        </a>
+        <button className="sidebar-share-btn" onClick={copiar}>
+          {copied ? '✓ Copiado' : t('edition.copyLink')}
+        </button>
+      </div>
+      <div className="sidebar-share-icons">
+        {redes.map(rede => (
+          <a
+            key={rede.label}
+            href={rede.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="share-icon-btn"
+            title={rede.label}
+            style={{ background: rede.bg }}
+          >
+            {rede.icon}
+          </a>
+        ))}
+      </div>
+      <LikeButton slug={edicao.slug} />
+    </div>
+  )
+}
+
 export default function EdicaoView({ edicao, setView }) {
   const { t, i18n } = useTranslation()
   const raw = getMarkdownForEdicao(edicao.slug)
@@ -346,53 +407,75 @@ export default function EdicaoView({ edicao, setView }) {
   return (
     <div className="edicao-view">
       <ReadingProgress />
-      <div className="edicao-view-inner">
+      <div className="edition-topbar">
         <button className="back-btn" onClick={() => setView('home')}>
           {t('edition.back')}
         </button>
-        {edicao.capa && (
-          <img src={edicao.capa} alt={editionCopy.titulo} className="edicao-capa" />
-        )}
-        <header className="edicao-header">
-          <span className="edicao-numero-big">#{String(edicao.id).padStart(2, '0')}</span>
-          <h1>{editionCopy.titulo}</h1>
-          <p className="edicao-meta">
-            {edicao.data} · {editionCopy.bairro} · {readingTime(content)}
-          </p>
-        </header>
-        <article className="edicao-content">
-          <ReactMarkdown>{teaser}</ReactMarkdown>
-          {hasMore && !unlocked && <EdicaoGate onUnlock={() => setUnlocked(true)} />}
-          {hasMore && unlocked && <ReactMarkdown>{rest}</ReactMarkdown>}
-        </article>
-        {(unlocked || !hasMore) && (
-          <>
-            {LOCATIONS.some(location => location.edicaoId === edicao.id) && (
-              <button className="mapa-link-btn" onClick={() => setView('mapa')}>
-                {t('edition.mapLink')}
-              </button>
-            )}
-            <div className="translation-box">
-              <button className="translate-btn" onClick={translateEdition} disabled={translationStatus === 'loading'}>
-                {translationStatus === 'loading'
-                  ? t('edition.translateLoading')
-                  : targetLanguage === 'DE'
-                    ? t('edition.translateGerman')
-                    : t('edition.translateEnglish')}
-              </button>
-              {translationError && <p className="translate-error">{translationError}</p>}
-              {translatedContent && (
-                <div className="translated-content">
-                  <p className="share-label" style={{ marginBottom: 20 }}>
-                    {targetLanguage === 'DE' ? t('edition.translatedTitleDe') : t('edition.translatedTitleEn')}
-                  </p>
-                  <ReactMarkdown>{translatedContent}</ReactMarkdown>
-                </div>
+      </div>
+
+      {edicao.capa && (
+        <div className="edition-hero" style={{ backgroundImage: `url(${edicao.capa})` }}>
+          <div className="edition-hero-content">
+            <span className="card-tag">{editionCopy.bairro}</span>
+            <h1 className="edition-hero-title">{editionCopy.titulo}</h1>
+          </div>
+        </div>
+      )}
+
+      <div className="edition-reading-layout">
+        <aside className="edition-sidebar">
+          <SidebarShare edicao={edicao} />
+        </aside>
+
+        <div className="edition-body">
+          {!edicao.capa && (
+            <header className="edicao-header">
+              <span className="edicao-numero-big">#{String(edicao.id).padStart(2, '0')}</span>
+              <h1>{editionCopy.titulo}</h1>
+              <p className="edicao-meta">
+                {edicao.data} · {editionCopy.bairro} · {readingTime(content)}
+              </p>
+            </header>
+          )}
+          {edicao.capa && (
+            <p className="edicao-meta edition-meta-row">
+              #{String(edicao.id).padStart(2, '0')} · {edicao.data} · {readingTime(content)}
+            </p>
+          )}
+          <article className="edicao-content">
+            <ReactMarkdown>{teaser}</ReactMarkdown>
+            {hasMore && !unlocked && <EdicaoGate onUnlock={() => setUnlocked(true)} />}
+            {hasMore && unlocked && <ReactMarkdown>{rest}</ReactMarkdown>}
+          </article>
+          {(unlocked || !hasMore) && (
+            <>
+              {LOCATIONS.some(location => location.edicaoId === edicao.id) && (
+                <button className="mapa-link-btn" onClick={() => setView('mapa')}>
+                  {t('edition.mapLink')}
+                </button>
               )}
-            </div>
-            <ShareBar edicao={edicao} />
-          </>
-        )}
+              <div className="translation-box">
+                <button className="translate-btn" onClick={translateEdition} disabled={translationStatus === 'loading'}>
+                  {translationStatus === 'loading'
+                    ? t('edition.translateLoading')
+                    : targetLanguage === 'DE'
+                      ? t('edition.translateGerman')
+                      : t('edition.translateEnglish')}
+                </button>
+                {translationError && <p className="translate-error">{translationError}</p>}
+                {translatedContent && (
+                  <div className="translated-content">
+                    <p className="share-label" style={{ marginBottom: 20 }}>
+                      {targetLanguage === 'DE' ? t('edition.translatedTitleDe') : t('edition.translatedTitleEn')}
+                    </p>
+                    <ReactMarkdown>{translatedContent}</ReactMarkdown>
+                  </div>
+                )}
+              </div>
+              <CustomComments slug={edicao.slug} />
+            </>
+          )}
+        </div>
       </div>
     </div>
   )
