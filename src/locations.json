@@ -117,5 +117,23 @@
     "line": "U8",
     "color": "#009AD3",
     "edicaoId": 3
+  },
+  {
+    "id": 302,
+    "name": "Dog Wash A-GO-GO",
+    "coords": [52.4818, 13.4246],
+    "description": "Hermannstraße 30, 12049 Berlin. O lugar do banho do Tião, meio improvisado, meio engraçado, meio caótico e muito funcional.",
+    "line": "U8",
+    "color": "#009AD3",
+    "edicaoId": 3
+  },
+  {
+    "id": 303,
+    "name": "Bully's Bakery",
+    "coords": [52.4880, 13.4281],
+    "description": "Friedelstraße 7, 12047 Berlin. A parada de café, bolo de laranja, matcha e aquele quentinho que ficou maior do que a friaca do dia.",
+    "line": "U8",
+    "color": "#009AD3",
+    "edicaoId": 3
   }
 ]
