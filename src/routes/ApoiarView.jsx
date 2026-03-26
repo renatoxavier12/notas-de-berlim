@@ -36,11 +36,12 @@ export default function ApoiarView({ setView }) {
           <p>Todo apoio vai direto para o projeto — hospedagem, domínio, e para que eu continue escrevendo sem transformar isso em obrigação.</p>
         </div>
 
-        <button className="apoiar-btn" onClick={copiar}>
-          {copied ? '✓ Chave PIX copiada!' : 'Copiar chave PIX'}
-        </button>
-
-        <p className="apoiar-note">Qualquer valor, uma única vez ou quando quiser.</p>
+        <div className="apoiar-actions">
+          <button className="apoiar-btn" onClick={copiar}>
+            {copied ? '✓ Chave PIX copiada!' : 'Copiar chave PIX'}
+          </button>
+          <p className="apoiar-note">Qualquer valor, uma única vez ou quando quiser.</p>
+        </div>
       </div>
     </div>
   )

@@ -1,37 +1,5 @@
-import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { EDICOES, getEditionCopy } from '../lib/site'
-
-const PIX_KEY = '556945b8-d34c-4f62-83b5-eca24317b69c'
-
-function PixButton() {
-  const [copied, setCopied] = useState(false)
-
-  async function copiar() {
-    try {
-      await navigator.clipboard.writeText(PIX_KEY)
-    } catch {
-      const el = document.createElement('textarea')
-      el.value = PIX_KEY
-      document.body.appendChild(el)
-      el.select()
-      document.execCommand('copy')
-      document.body.removeChild(el)
-    }
-    setCopied(true)
-    setTimeout(() => setCopied(false), 2500)
-  }
-
-  return (
-    <div className="pix-section">
-      <p className="section-label">APOIE O NOTAS DE BERLIM</p>
-      <p className="pix-text">Se você gosta do que lê aqui, um PIX ajuda a manter o caderno aberto.</p>
-      <button className="pix-btn" onClick={copiar}>
-        {copied ? '✓ Chave copiada!' : 'Copiar chave PIX'}
-      </button>
-    </div>
-  )
-}
 
 const IconInstagram = () => (
   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -51,12 +19,6 @@ const IconMail = () => (
   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
     <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
     <polyline points="22,6 12,13 2,6" />
-  </svg>
-)
-
-const IconSupport = () => (
-  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M12 21s-6.5-4.35-9-8.19C.78 9.39 2.16 5 6.26 5c2.24 0 3.62 1.24 4.4 2.48C11.44 6.24 12.82 5 15.06 5c4.1 0 5.48 4.39 3.26 7.81C18.5 16.65 12 21 12 21z" />
   </svg>
 )
 
@@ -93,15 +55,9 @@ export default function SobreView({ setView, setEdicaoAtiva }) {
                   <span style={{ display: 'flex' }}><IconMail /></span>
                 </a>
               </div>
-              <button type="button" onClick={() => setView('apoiar')} className="sobre-link support-btn support-btn--yellow">
-                <span style={{ display: 'flex' }}><IconSupport /></span>
-                <span className="support-text">{t('about.support')}</span>
-              </button>
             </div>
           </div>
         </div>
-
-        <PixButton />
 
         <div className="sobre-edicoes">
           <p className="section-label">{t('about.published')}</p>

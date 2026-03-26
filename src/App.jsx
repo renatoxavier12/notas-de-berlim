@@ -58,94 +58,109 @@ function Nav({ view, setView, dark, setDark }) {
   )
 }
 
-function routeStateFromPath(pathname) {
-  if (pathname.startsWith('/edicoes/')) {
-    const slug = pathname.replace('/edicoes/', '')
-    const edicao = findEdicaoBySlug(slug)
+function routeStateFromPath(pathname, i18n) {
+  const supportedLngs = i18n.options.supportedLngs || ['pt', 'en', 'de'];
+  const parts = pathname.split('/').filter(p => p);
+  let language = 'pt';
+  let path = pathname;
+
+  if (supportedLngs.includes(parts[0])) {
+    language = parts[0];
+    path = '/' + parts.slice(1).join('/');
+  }
+
+  i18n.changeLanguage(language);
+
+  if (path.startsWith('/edicoes/')) {
+    const slug = path.replace('/edicoes/', '');
+    const edicao = findEdicaoBySlug(slug);
     if (edicao) {
-      return { view: 'edicao', edicao }
+      return { view: 'edicao', edicao, language };
     }
   }
 
-  if (pathname === '/mapa') return { view: 'mapa', edicao: null }
-  if (pathname === '/sobre') return { view: 'sobre', edicao: null }
-  if (pathname === '/apoiar') return { view: 'apoiar', edicao: null }
-  return { view: 'home', edicao: null }
+  if (path === '/mapa') return { view: 'mapa', edicao: null, language };
+  if (path === '/sobre') return { view: 'sobre', edicao: null, language };
+  if (path === '/apoiar') return { view: 'apoiar', edicao: null, language };
+  return { view: 'home', edicao: null, language };
 }
 
 function LoadingFallback() {
-  const { t } = useTranslation()
-  return <div className="page-loading">{t('common.loading')}</div>
+  const { t } = useTranslation();
+  return <div className="page-loading">{t('common.loading')}</div>;
 }
 
 function App() {
-  const { i18n } = useTranslation()
-  const language = normalizeLanguage(i18n.resolvedLanguage || i18n.language)
-  const initialRoute = routeStateFromPath(window.location.pathname)
-  const [view, setView] = useState(initialRoute.view)
-  const [edicaoAtiva, setEdicaoAtiva] = useState(initialRoute.edicao)
-  const [dark, setDark] = useState(() => getCookie('theme') === 'dark')
+  const { i18n } = useTranslation();
+  const initialRoute = routeStateFromPath(window.location.pathname, i18n);
+  const [view, setView] = useState(initialRoute.view);
+  const [edicaoAtiva, setEdicaoAtiva] = useState(initialRoute.edicao);
+  const [dark, setDark] = useState(() => getCookie('theme') === 'dark');
+  const language = normalizeLanguage(i18n.language);
 
   useEffect(() => {
-    document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light')
-    setCookie('theme', dark ? 'dark' : 'light')
-  }, [dark])
+    document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light');
+    setCookie('theme', dark ? 'dark' : 'light');
+  }, [dark]);
 
   useEffect(() => {
     const htmlLang = language === 'de'
       ? 'de-DE'
       : language === 'en'
         ? 'en'
-        : 'pt-BR'
+        : 'pt-BR';
 
-    document.documentElement.lang = htmlLang
-  }, [language])
+    document.documentElement.lang = htmlLang;
+  }, [language]);
 
   useEffect(() => {
     function handlePopState() {
-      const route = routeStateFromPath(window.location.pathname)
-      setView(route.view)
-      setEdicaoAtiva(route.edicao)
+      const route = routeStateFromPath(window.location.pathname, i18n);
+      setView(route.view);
+      setEdicaoAtiva(route.edicao);
     }
 
-    window.addEventListener('popstate', handlePopState)
-    return () => window.removeEventListener('popstate', handlePopState)
-  }, [])
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, [i18n]);
 
   useEffect(() => {
-    let count = 0
-    let timer
+    let count = 0;
+    let timer;
 
     function handleKey(event) {
       if (event.key === 'a' || event.key === 'A') {
-        count += 1
-        clearTimeout(timer)
+        count += 1;
+        clearTimeout(timer);
         timer = setTimeout(() => {
-          count = 0
-        }, 800)
+          count = 0;
+        }, 800);
 
         if (count >= 3) {
-          count = 0
-          window.location.href = '/admin'
+          count = 0;
+          window.location.href = '/admin';
         }
       }
     }
 
-    window.addEventListener('keydown', handleKey)
-    return () => window.removeEventListener('keydown', handleKey)
-  }, [])
+    window.addEventListener('keydown', handleKey);
+    return () => window.removeEventListener('keydown', handleKey);
+  }, []);
 
   useEffect(() => {
-    let newPath = '/'
-    if (view === 'edicao' && edicaoAtiva) newPath = `/edicoes/${edicaoAtiva.slug}`
-    if (view === 'mapa') newPath = '/mapa'
-    if (view === 'sobre') newPath = '/sobre'
-    if (view === 'apoiar') newPath = '/apoiar'
+    let basePath = '/';
+    if (view === 'edicao' && edicaoAtiva) basePath = `/edicoes/${edicaoAtiva.slug}`;
+    if (view === 'mapa') basePath = '/mapa';
+    if (view === 'sobre') basePath = '/sobre';
+    if (view === 'apoiar') basePath = '/apoiar';
+
+    const langPrefix = language === 'pt' ? '' : `/${language}`;
+    const newPath = `${langPrefix}${basePath === '/' ? '' : basePath}`;
 
     if (window.location.pathname !== newPath) {
-      window.history.pushState({}, '', newPath)
+      window.history.pushState({}, '', newPath || '/');
     }
-  }, [view, edicaoAtiva])
+  }, [view, edicaoAtiva, language]);
 
   return (
     <div className={`app-root view-${view}`}>
