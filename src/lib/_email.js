@@ -108,8 +108,7 @@ export function buildEmailContent(markdown, slug) {
     </div>
 
     <footer style="margin-top:36px;padding-top:18px;color:#5f5f5f;font-size:12px;line-height:1.6;font-family:Arial,sans-serif;">
-      <p style="margin:0 0 8px;">Você recebeu este e-mail porque se inscreveu na newsletter Entrelace.</p>
-      <p style="margin:0;">Notas de Berlim, por Renato Xavier.</p>
+      <p style="margin:0 0 8px;">Você está recebendo esta edição porque se inscreveu anteriormente na Entrelace.</p>
     </footer>
   </div>
 </body>
