@@ -13,34 +13,55 @@ const ApoiarView = lazy(() => import('./routes/ApoiarView'))
 
 function Nav({ view, setView, dark, setDark }) {
   const { t } = useTranslation()
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+
+  function navigate(nextView) {
+    setView(nextView)
+    setMobileMenuOpen(false)
+  }
+
+  useEffect(() => {
+    setMobileMenuOpen(false)
+  }, [view])
 
   return (
-    <nav className="site-nav">
-      <button className="nav-logo" onClick={() => setView('home')}>
+    <nav className={`site-nav ${mobileMenuOpen ? 'menu-open' : ''}`}>
+      <button className="nav-logo" onClick={() => navigate('home')}>
         {t('site.name')}
       </button>
-      <div className="nav-links">
+      <button
+        type="button"
+        className="nav-mobile-toggle"
+        aria-label={mobileMenuOpen ? t('map.closeList') : t('map.openList')}
+        aria-expanded={mobileMenuOpen}
+        onClick={() => setMobileMenuOpen(open => !open)}
+      >
+        <span />
+        <span />
+        <span />
+      </button>
+      <div className={`nav-links ${mobileMenuOpen ? 'nav-links-open' : ''}`}>
         <button
           className={view === 'home' || view === 'edicao' ? 'active' : ''}
-          onClick={() => setView('home')}
+          onClick={() => navigate('home')}
         >
           {t('nav.archive')}
         </button>
         <button
           className={view === 'mapa' ? 'active' : ''}
-          onClick={() => setView('mapa')}
+          onClick={() => navigate('mapa')}
         >
           {t('nav.map')}
         </button>
         <button
           className={view === 'sobre' ? 'active' : ''}
-          onClick={() => setView('sobre')}
+          onClick={() => navigate('sobre')}
         >
           {t('nav.about')}
         </button>
         <button
           className="nav-apoiar"
-          onClick={() => setView('apoiar')}
+          onClick={() => navigate('apoiar')}
         >
           Apoiar
         </button>
