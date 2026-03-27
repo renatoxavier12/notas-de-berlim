@@ -3,7 +3,7 @@
 import { buildEmailContent, getEmailConfig } from '../src/lib/_email.js'
 
 export default async function handler(req, res) {
-  const { slug, secret } = req.query
+  const { slug, secret, email: emailOverride } = req.query
 
   if (secret !== process.env.GITHUB_WEBHOOK_SECRET) {
     return res.status(401).json({ error: 'Não autorizado' })
@@ -30,6 +30,9 @@ export default async function handler(req, res) {
 
   const email = buildEmailContent(markdown, slug)
   const config = getEmailConfig()
+  const testToEmail = typeof emailOverride === 'string' && emailOverride.trim()
+    ? emailOverride.trim()
+    : config.testToEmail
 
   const sendRes = await fetch('https://api.brevo.com/v3/smtp/email', {
     method: 'POST',
@@ -39,7 +42,7 @@ export default async function handler(req, res) {
     },
     body: JSON.stringify({
       sender: { name: config.fromName, email: config.fromEmail },
-      to: [{ email: config.testToEmail, name: config.testToName }],
+      to: [{ email: testToEmail, name: config.testToName }],
       replyTo: { email: config.replyToEmail, name: config.fromName },
       subject: email.subject,
       htmlContent: email.html,
@@ -52,5 +55,5 @@ export default async function handler(req, res) {
     return res.status(500).json({ error: 'Falha ao enviar', details: err })
   }
 
-  return res.status(200).json({ ok: true, message: `Teste enviado para ${config.testToEmail}` })
+  return res.status(200).json({ ok: true, message: `Teste enviado para ${testToEmail}` })
 }

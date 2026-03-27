@@ -85,6 +85,8 @@
   <div class="controls">
     <label for="slug">Slug da edição:</label>
     <input type="text" id="slug" placeholder="ex: primeira-semana" />
+    <label for="test-email">Email de teste:</label>
+    <input type="text" id="test-email" placeholder="ex: bia@gmail.com" />
     <button class="btn-preview" onclick="loadPreview()">Ver Preview</button>
     <button class="btn-test" onclick="sendTest()">Enviar teste para meu email</button>
     <button class="btn-all" onclick="sendAll()">⚠ Enviar para todos os inscritos</button>
@@ -118,11 +120,13 @@
 
     async function sendTest() {
       const slug = getSlug()
+      const testEmail = document.getElementById('test-email').value.trim()
       if (!slug) { setStatus('Digite o slug', 'err'); return }
+      if (!testEmail) { setStatus('Digite o email de teste', 'err'); return }
 
       setStatus('Enviando...', 'loading')
       try {
-        const res = await fetch(`/api/send-test?slug=${encodeURIComponent(slug)}&secret=${SECRET}`)
+        const res = await fetch(`/api/send-test?slug=${encodeURIComponent(slug)}&email=${encodeURIComponent(testEmail)}&secret=${SECRET}`)
         const data = await res.json()
         if (res.ok) {
           setStatus('Email de teste enviado!', 'ok')
