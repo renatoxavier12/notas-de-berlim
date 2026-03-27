@@ -918,6 +918,7 @@ button:focus-visible, a:focus-visible {
 
   .edition-sidebar {
     width: 100%;
+    flex: none;
     max-width: none;
     padding-right: 0;
     padding-top: 32px;
@@ -961,29 +962,62 @@ button:focus-visible, a:focus-visible {
     transform: none;
   }
 
-  .edition-actions-strip,
-  .edition-share-icons,
-  .sidebar-share-row {
-    width: 100%;
-  }
-
   .edition-share-icons,
   .sidebar-share-row {
     flex-wrap: wrap;
   }
 
-  .edition-map-inline,
+  .edition-actions-strip {
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .edition-map-inline {
+    width: auto;
+    min-width: 164px;
+  }
+
+  .edition-share-icons {
+    width: auto;
+    gap: 8px;
+  }
+
   .edition-share-icon {
-    width: 100%;
+    width: auto;
+    min-width: 104px;
+    justify-content: center;
   }
 
   .edition-sidebar-share {
+    width: 100%;
     max-width: none;
+    gap: 14px;
   }
 
+  .sidebar-share-block,
+  .sidebar-support-card,
   .sidebar-glossary-card,
   .sidebar-reading-card {
+    width: 100%;
     max-width: none;
+    padding: 16px;
+    border: 1px solid rgba(10, 10, 10, 0.08);
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.6);
+  }
+
+  .sidebar-support-card,
+  .sidebar-glossary-card,
+  .sidebar-reading-card {
+    border-top: 1px solid rgba(10, 10, 10, 0.08);
+  }
+
+  .sidebar-meta-note,
+  .sidebar-support-text,
+  .reading-note,
+  .glossary-description {
+    max-width: none;
+    text-align: left;
   }
 
   .edition-pager-grid {
