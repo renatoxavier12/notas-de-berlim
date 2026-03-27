@@ -1762,7 +1762,11 @@ button:focus-visible, a:focus-visible {
   display: flex;
   flex-direction: column;
   gap: 22px;
-  scrollbar-width: thin;
+  scrollbar-width: none;
+}
+
+.edition-sidebar::-webkit-scrollbar {
+  display: none;
 }
 
 .edition-body {
