@@ -464,14 +464,21 @@ function EditionPager({ edicao, setView }) {
 
   function openEdition(target) {
     if (!target) return
+    document.activeElement?.blur()
     setView('edicao')
     window.history.pushState({}, '', `/edicoes/${target.slug}`)
     window.dispatchEvent(new PopStateEvent('popstate'))
   }
 
+  const pagerLabel = previousEdition && nextEdition
+    ? t('edition.moreLabel')
+    : nextEdition
+      ? t('edition.next').toUpperCase()
+      : t('edition.previous').toUpperCase()
+
   return (
     <div className="edition-pager">
-      <p className="share-label">{t('edition.moreLabel')}</p>
+      <p className="share-label">{pagerLabel}</p>
       <div className={`edition-pager-grid ${availableCount === 1 ? 'single-item' : ''}`}>
         <button
           type="button"

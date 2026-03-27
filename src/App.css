@@ -1370,8 +1370,7 @@ button:focus-visible, a:focus-visible {
 }
 
 .edition-pager-card.is-empty {
-  visibility: hidden;
-  pointer-events: none;
+  display: none;
 }
 
 .edition-pager-image {
