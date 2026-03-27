@@ -4,7 +4,7 @@ title: Terceira Semana
 data: 26 de março de 2026
 bairro: Neukölln / Reuterkiez
 teaser: Banho do Tião, café no Reuterkiez, leiteira queimada e a sensação de que o presente sempre escapa.
-capa: /capa-03.jpeg
+capa: /novacapa-03.jpg
 ---
 
 Terceira semana, e eu corri com esse texto para acompanhar o tempo que está passando rápido demais (eu já falei isso, né?). Quando pensei em escrever sobre a primeira semana, já estávamos na segunda. Agora completamos três, começamos a quarta, e já faltam poucos dias para um mês.
