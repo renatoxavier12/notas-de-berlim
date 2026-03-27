@@ -116,7 +116,7 @@ export default async function handler(req, res) {
                 <p><strong>Post:</strong> ${slug}</p>
                 <p><strong>Comentário:</strong> ${text}</p>
                 <hr>
-                <a href="https://notasdeberlim.com/admin" style="background:#000;color:#fff;padding:10px;text-decoration:none;">Aprovar no Admin</a>
+                <a href="https://notasdeberlim.com/painel-x7k2" style="background:#000;color:#fff;padding:10px;text-decoration:none;">Aprovar no Admin</a>
               </div>
             `,
           }),

@@ -21,6 +21,6 @@ export default async function handler(req, res) {
 
   const slug = newEditions[0].replace('src/edicoes/', '').replace('.md', '')
 
-  // Envio manual via /admin/preview — não dispara automaticamente
-  return res.status(200).json({ ok: true, slug, message: 'Edição detectada. Use /admin/preview para enviar.' })
+  // Envio manual via /painel-x7k2/preview — não dispara automaticamente
+  return res.status(200).json({ ok: true, slug, message: 'Edição detectada. Use /painel-x7k2/preview.html para enviar.' })
 }
