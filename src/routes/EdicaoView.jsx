@@ -467,9 +467,6 @@ function EditionPager({ edicao, setView }) {
     setView('edicao')
     window.history.pushState({}, '', `/edicoes/${target.slug}`)
     window.dispatchEvent(new PopStateEvent('popstate'))
-    window.requestAnimationFrame(() => {
-      window.scrollTo({ top: 0, left: 0, behavior: 'auto' })
-    })
   }
 
   return (
@@ -519,7 +516,12 @@ export default function EdicaoView({ edicao, setView }) {
   const rest = parts.slice(1).join('\n\n---\n\n')
   const editionCopy = getEditionCopy(edicao, t)
   const [unlocked, setUnlocked] = useState(() => !!getCookie('nb_email'))
-  const [checkingAccess, setCheckingAccess] = useState(false)
+  const [checkingAccess, setCheckingAccess] = useState(() => {
+    if (!hasMore) return false
+    if (getCookie('nb_email')) return false
+    const params = new URLSearchParams(window.location.search)
+    return !!normalizeEmail(params.get('email'))
+  })
   const locale = i18n.resolvedLanguage === 'de'
     ? 'de-DE'
     : i18n.resolvedLanguage === 'en'
@@ -530,6 +532,10 @@ export default function EdicaoView({ edicao, setView }) {
   const glossaryTerms = getGlossaryTerms(content)
   const aroundReadings = getEditionAroundReadings(edicao.slug)
   const hasMap = LOCATIONS.some(location => location.edicaoId === edicao.id)
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'auto' })
+  }, [edicao.slug])
 
   useEffect(() => {
     let cancelled = false
