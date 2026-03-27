@@ -39,6 +39,7 @@
 
   <script>
     let adminSecret = localStorage.getItem('nb_admin_secret');
+    let cmsInitialized = false;
 
     function checkAuth() {
       if (!adminSecret) {
@@ -50,13 +51,51 @@
       return adminSecret;
     }
 
+    function initCms() {
+      if (cmsInitialized) return;
+      cmsInitialized = true;
+
+      CMS.init({
+        config: {
+          publish_mode: 'editorial_workflow',
+          backend: {
+            name: 'github',
+            repo: 'renatoxavier12/notas-de-berlim',
+            branch: 'main',
+            base_url: 'https://notasdeberlim.com',
+            auth_endpoint: 'api/auth',
+          },
+          media_folder: 'public',
+          public_folder: '/',
+          collections: [
+            {
+              name: 'edicoes',
+              label: 'Edições',
+              folder: 'src/edicoes',
+              create: true,
+              slug: '{{slug}}',
+              fields: [
+                { label: 'Número (#)', name: 'id', widget: 'number', value_type: 'int' },
+                { label: 'Título', name: 'title', widget: 'string' },
+                { label: 'Data', name: 'data', widget: 'string', hint: 'Ex: 21 de março de 2026' },
+                { label: 'Bairro / Local', name: 'bairro', widget: 'string', hint: 'Ex: Kreuzberg / Wrangelkiez' },
+                { label: 'Teaser', name: 'teaser', widget: 'text', hint: 'Frase que aparece na lista de edições' },
+                { label: 'Foto de capa', name: 'capa', widget: 'image', required: false },
+                { label: 'Corpo', name: 'body', widget: 'markdown' },
+              ],
+            },
+          ],
+        },
+      })
+    }
+
     function logout() {
       localStorage.removeItem('nb_admin_secret');
       location.reload();
     }
 
     function toggleView(view) {
-      if (view !== 'cms' && !checkAuth()) return;
+      if (!checkAuth()) return;
 
       const cms = document.querySelector('#nc-root');
       const comments = document.querySelector('#comments-admin');
@@ -71,6 +110,7 @@
         document.querySelector(btns[k]).style.color = k === view ? '#F0D722' : '#888';
       });
 
+      if (view === 'cms') initCms();
       if (view === 'comments') loadComments();
       if (view === 'audience') loadAudience();
     }
@@ -164,40 +204,9 @@
         alert('Erro na moderação');
       }
     }
-  </script>
-  <script>
-    CMS.init({
-      config: {
-        publish_mode: 'editorial_workflow',
-        backend: {
-          name: 'github',
-          repo: 'renatoxavier12/notas-de-berlim',
-          branch: 'main',
-          base_url: 'https://notasdeberlim.com',
-          auth_endpoint: 'api/auth',
-        },
-        media_folder: 'public',
-        public_folder: '/',
-        collections: [
-          {
-            name: 'edicoes',
-            label: 'Edições',
-            folder: 'src/edicoes',
-            create: true,
-            slug: '{{slug}}',
-            fields: [
-              { label: 'Número (#)', name: 'id', widget: 'number', value_type: 'int' },
-              { label: 'Título', name: 'title', widget: 'string' },
-              { label: 'Data', name: 'data', widget: 'string', hint: 'Ex: 21 de março de 2026' },
-              { label: 'Bairro / Local', name: 'bairro', widget: 'string', hint: 'Ex: Kreuzberg / Wrangelkiez' },
-              { label: 'Teaser', name: 'teaser', widget: 'text', hint: 'Frase que aparece na lista de edições' },
-              { label: 'Foto de capa', name: 'capa', widget: 'image', required: false },
-              { label: 'Corpo', name: 'body', widget: 'markdown' },
-            ],
-          },
-        ],
-      },
-    })
+    if (checkAuth()) {
+      toggleView('cms');
+    }
   </script>
 </body>
 </html>

@@ -132,29 +132,6 @@ function App() {
   }, [])
 
   useEffect(() => {
-    let count = 0
-    let timer
-
-    function handleKey(event) {
-      if (event.key === 'a' || event.key === 'A') {
-        count += 1
-        clearTimeout(timer)
-        timer = setTimeout(() => {
-          count = 0
-        }, 800)
-
-        if (count >= 3) {
-          count = 0
-          window.location.href = '/admin'
-        }
-      }
-    }
-
-    window.addEventListener('keydown', handleKey)
-    return () => window.removeEventListener('keydown', handleKey)
-  }, [])
-
-  useEffect(() => {
     let newPath = '/'
     if (view === 'edicao' && edicaoAtiva) newPath = `/edicoes/${edicaoAtiva.slug}`
     if (view === 'mapa') newPath = '/mapa'
