@@ -43,7 +43,7 @@ export default async function handler(req, res) {
 
     if (brevoRes.ok) {
       const data = await brevoRes.json()
-      const listId = Number(process.env.BREVO_LIST_ID)
+      const listId = Number(process.env.BREVO_LIST_ID || 2)
       const isSubscribed = data.listIds && data.listIds.includes(listId)
       return res.status(200).json({ isSubscribed })
     } else {
