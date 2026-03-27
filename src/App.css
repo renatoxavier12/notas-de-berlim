@@ -983,9 +983,8 @@ button:focus-visible, a:focus-visible {
   }
 
   .edition-share-icon {
-    width: auto;
-    min-width: 104px;
-    justify-content: center;
+    width: 40px;
+    min-width: 0;
   }
 
   .edition-sidebar-share {
@@ -1186,6 +1185,8 @@ button:focus-visible, a:focus-visible {
   gap: 14px;
   flex-wrap: wrap;
   margin: 40px 0 0;
+  padding-top: 28px;
+  border-top: 1px solid var(--border);
 }
 
 .edition-map-inline {
@@ -1222,17 +1223,16 @@ button:focus-visible, a:focus-visible {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  width: 40px;
+  height: 40px;
   color: var(--gray);
   background: transparent;
   border: 1px solid rgba(10, 10, 10, 0.1);
-  padding: 8px 12px;
+  border-radius: 999px;
+  padding: 0;
   text-decoration: none;
   transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease;
-  font-family: var(--font-ui);
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
+  flex-shrink: 0;
 }
 
 .edition-share-icon:hover {
@@ -1353,14 +1353,20 @@ button:focus-visible, a:focus-visible {
   gap: 18px;
 }
 
+.edition-pager-grid.single-item {
+  grid-template-columns: minmax(0, 1fr);
+}
+
 .edition-pager-card {
   display: flex;
   flex-direction: column;
   gap: 12px;
   align-items: flex-start;
   text-align: left;
-  padding: 0;
+  padding: 18px;
   color: var(--black);
+  border: 1px solid rgba(10, 10, 10, 0.08);
+  background: rgba(255, 255, 255, 0.6);
 }
 
 .edition-pager-card.is-empty {

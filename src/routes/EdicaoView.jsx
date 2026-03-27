@@ -78,6 +78,38 @@ const IconLink = () => (
   </svg>
 )
 
+const IconX = () => (
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+    <path d="M18.9 2H22l-6.77 7.74L23 22h-6.1l-4.78-6.26L6.64 22H3.53l7.24-8.28L1 2h6.26l4.32 5.7L18.9 2Z" />
+  </svg>
+)
+
+const IconBluesky = () => (
+  <svg width="16" height="14" viewBox="0 0 64 57" fill="currentColor" aria-hidden="true">
+    <path d="M13.2 4.4c7.3 5.5 15.2 16.6 18.8 24 3.6-7.4 11.5-18.5 18.8-24C56 1 64 .1 64 9.7c0 1.9-1.1 16-1.8 18.3-2.4 8.1-11.1 10.1-18.9 8.8 13.6 2.3 17.1 9.9 9.6 17.4-14.3 14.3-20.6-3.6-22.2-8.2-.3-.8-.4-1.2-.7-1.2s-.4.4-.7 1.2c-1.6 4.6-7.9 22.5-22.2 8.2-7.5-7.5-4-15.1 9.6-17.4-7.8 1.3-16.5-.7-18.9-8.8C1.1 25.7 0 11.6 0 9.7 0 .1 8 1 13.2 4.4Z" />
+  </svg>
+)
+
+const IconLinkedIn = () => (
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+    <path d="M6.94 8.5H3.56V20h3.38V8.5ZM5.25 3C4.17 3 3.5 3.7 3.5 4.62c0 .9.65 1.62 1.71 1.62h.02c1.1 0 1.78-.72 1.78-1.62C6.99 3.7 6.35 3 5.27 3h-.02ZM20.5 13.02c0-3.53-1.89-5.17-4.42-5.17-2.04 0-2.95 1.13-3.46 1.92V8.5H9.24c.04.84 0 11.5 0 11.5h3.38v-6.42c0-.34.03-.68.13-.92.27-.68.88-1.39 1.9-1.39 1.34 0 1.88 1.03 1.88 2.53V20h3.38v-6.98Z" />
+  </svg>
+)
+
+const IconFacebook = () => (
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+    <path d="M13.5 21v-8.1H16l.38-3.15H13.5V7.73c0-.91.24-1.53 1.54-1.53h1.65V3.38c-.29-.04-1.28-.12-2.43-.12-2.41 0-4.06 1.47-4.06 4.17v2.31H7.96v3.15h2.24V21h3.3Z" />
+  </svg>
+)
+
+const IconStories = () => (
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <rect x="3" y="3" width="18" height="18" rx="5" />
+    <circle cx="12" cy="12" r="3.25" />
+    <circle cx="17.6" cy="6.4" r="1" fill="currentColor" stroke="none" />
+  </svg>
+)
+
 const IconHeart = ({ filled }) => (
   <svg width="18" height="18" viewBox="0 0 24 24" fill={filled ? 'currentColor' : 'none'} stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
     <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
@@ -336,21 +368,25 @@ function EditionShareStrip({ edicao, title, setView, hasMap }) {
       key: 'x',
       href: `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}`,
       label: 'X',
+      icon: <IconX />,
     },
     {
       key: 'bluesky',
       href: `https://bsky.app/intent/compose?text=${encodeURIComponent(shareText)}`,
       label: 'Bluesky',
+      icon: <IconBluesky />,
     },
     {
       key: 'linkedin',
       href: `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(canonicalUrl)}`,
       label: 'LinkedIn',
+      icon: <IconLinkedIn />,
     },
     {
       key: 'facebook',
       href: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(canonicalUrl)}`,
       label: 'Facebook',
+      icon: <IconFacebook />,
     },
   ]
 
@@ -400,7 +436,7 @@ function EditionShareStrip({ edicao, title, setView, hasMap }) {
             title={target.label}
             aria-label={target.label}
           >
-            <span>{target.label}</span>
+            {target.icon}
           </a>
         ))}
         <button
@@ -410,7 +446,7 @@ function EditionShareStrip({ edicao, title, setView, hasMap }) {
           title={t('edition.instagramStories')}
           aria-label={t('edition.instagramStories')}
         >
-          <span>Stories</span>
+          <IconStories />
         </button>
       </div>
     </div>
@@ -422,6 +458,7 @@ function EditionPager({ edicao, setView }) {
   const currentIndex = EDICOES.findIndex(item => item.slug === edicao.slug)
   const nextEdition = currentIndex > 0 ? EDICOES[currentIndex - 1] : null
   const previousEdition = currentIndex >= 0 && currentIndex < EDICOES.length - 1 ? EDICOES[currentIndex + 1] : null
+  const availableCount = Number(Boolean(previousEdition)) + Number(Boolean(nextEdition))
 
   if (!nextEdition && !previousEdition) return null
 
@@ -435,7 +472,7 @@ function EditionPager({ edicao, setView }) {
   return (
     <div className="edition-pager">
       <p className="share-label">{t('edition.moreLabel')}</p>
-      <div className="edition-pager-grid">
+      <div className={`edition-pager-grid ${availableCount === 1 ? 'single-item' : ''}`}>
         <button
           type="button"
           className={`edition-pager-card ${!previousEdition ? 'is-empty' : ''}`}
