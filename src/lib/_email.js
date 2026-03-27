@@ -64,7 +64,7 @@ export function buildEmailContent(markdown, slug) {
   const previewText = stripMarkdown(introParagraphs.join(' ')).slice(0, 140) || `Nova edição: ${title}`
   const htmlBody = introParagraphs.map(renderParagraph).join('\n')
   const textBody = introParagraphs.map((paragraph) => stripMarkdown(paragraph)).join('\n\n')
-  const editionUrl = `https://notasdeberlim.com/edicoes/${slug}`
+  const editionUrl = `https://notasdeberlim.com/edicoes/${slug}?email={{contact.EMAIL}}`
   const capaHtml = capa
     ? `<div style="margin:0 0 28px;"><img src="https://notasdeberlim.com${capa}" alt="${escapeHtml(
         title

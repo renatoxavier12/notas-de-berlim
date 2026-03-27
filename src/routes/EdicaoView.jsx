@@ -467,6 +467,9 @@ function EditionPager({ edicao, setView }) {
     setView('edicao')
     window.history.pushState({}, '', `/edicoes/${target.slug}`)
     window.dispatchEvent(new PopStateEvent('popstate'))
+    window.requestAnimationFrame(() => {
+      window.scrollTo({ top: 0, left: 0, behavior: 'auto' })
+    })
   }
 
   return (
@@ -516,6 +519,7 @@ export default function EdicaoView({ edicao, setView }) {
   const rest = parts.slice(1).join('\n\n---\n\n')
   const editionCopy = getEditionCopy(edicao, t)
   const [unlocked, setUnlocked] = useState(() => !!getCookie('nb_email'))
+  const [checkingAccess, setCheckingAccess] = useState(false)
   const locale = i18n.resolvedLanguage === 'de'
     ? 'de-DE'
     : i18n.resolvedLanguage === 'en'
@@ -526,6 +530,44 @@ export default function EdicaoView({ edicao, setView }) {
   const glossaryTerms = getGlossaryTerms(content)
   const aroundReadings = getEditionAroundReadings(edicao.slug)
   const hasMap = LOCATIONS.some(location => location.edicaoId === edicao.id)
+
+  useEffect(() => {
+    let cancelled = false
+    const params = new URLSearchParams(window.location.search)
+    const emailFromUrl = normalizeEmail(params.get('email'))
+
+    if (!hasMore || unlocked || !emailFromUrl) return
+
+    async function validateAccess() {
+      setCheckingAccess(true)
+
+      try {
+        const response = await fetch(`/api/check?email=${encodeURIComponent(emailFromUrl)}`)
+
+        if (!response.ok || cancelled) return
+
+        const data = await response.json()
+        if (data.isSubscribed) {
+          setCookie('nb_email', emailFromUrl)
+          if (!cancelled) setUnlocked(true)
+        }
+      } catch {
+        // Fall back to the manual gate if validation fails.
+      } finally {
+        params.delete('email')
+        const cleanQuery = params.toString()
+        const cleanUrl = `${window.location.pathname}${cleanQuery ? `?${cleanQuery}` : ''}${window.location.hash}`
+        window.history.replaceState({}, '', cleanUrl)
+        if (!cancelled) setCheckingAccess(false)
+      }
+    }
+
+    validateAccess()
+
+    return () => {
+      cancelled = true
+    }
+  }, [hasMore, unlocked, edicao.slug])
 
   return (
     <div className="edicao-view">
@@ -581,7 +623,8 @@ export default function EdicaoView({ edicao, setView }) {
           <article className="edicao-content">
             <>
               <ReactMarkdown>{teaser}</ReactMarkdown>
-              {hasMore && !unlocked && <EdicaoGate onUnlock={() => setUnlocked(true)} />}
+              {hasMore && checkingAccess && <p className="translation-loading">{t('common.loading')}</p>}
+              {hasMore && !unlocked && !checkingAccess && <EdicaoGate onUnlock={() => setUnlocked(true)} />}
               {hasMore && unlocked && <ReactMarkdown>{rest}</ReactMarkdown>}
             </>
           </article>
