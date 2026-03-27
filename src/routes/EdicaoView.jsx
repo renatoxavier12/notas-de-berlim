@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useLayoutEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { MapPinned } from 'lucide-react'
 import ReactMarkdown from 'react-markdown'
@@ -533,8 +533,8 @@ export default function EdicaoView({ edicao, setView }) {
   const aroundReadings = getEditionAroundReadings(edicao.slug)
   const hasMap = LOCATIONS.some(location => location.edicaoId === edicao.id)
 
-  useEffect(() => {
-    window.scrollTo({ top: 0, left: 0, behavior: 'auto' })
+  useLayoutEffect(() => {
+    window.scrollTo(0, 0)
   }, [edicao.slug])
 
   useEffect(() => {
