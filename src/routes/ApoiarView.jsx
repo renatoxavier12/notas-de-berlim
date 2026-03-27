@@ -31,9 +31,9 @@ export default function ApoiarView({ setView }) {
         </header>
 
         <div className="apoiar-body">
-          <p>Notas de Berlim não tem anúncios. Não tem paywall. Não tem algoritmo tentando te prender. É um caderno aberto — textos sobre viver em Berlim, escritos às pressas entre uma pesquisa e outra, entre um mercado e um U-Bahn.</p>
+          <p>Notas de Berlim não tem anúncios. Não tem paywall. Não tem algoritmo tentando te prender. É um caderno aberto, textos sobre viver em Berlim, escritos às pressas entre uma pesquisa e outra, entre um mercado e um U-Bahn.</p>
           <p>Manter isso vivo tem um custo pequeno em dinheiro e um custo grande em tempo. Se uma edição te fez sorrir, pensar, ou sentir curiosidade por um lugar que você nunca visitou, você pode retribuir com qualquer valor.</p>
-          <p>Todo apoio vai direto para o projeto — hospedagem, domínio, e para que eu continue escrevendo sem transformar isso em obrigação.</p>
+          <p>Todo apoio vai direto para o projeto, hospedagem, domínio, e para que eu continue escrevendo sem transformar isso em obrigação.</p>
         </div>
 
         <div className="apoiar-actions">
