@@ -470,44 +470,32 @@ function EditionPager({ edicao, setView }) {
     window.dispatchEvent(new PopStateEvent('popstate'))
   }
 
-  const pagerLabel = previousEdition && nextEdition
-    ? t('edition.moreLabel')
-    : nextEdition
-      ? t('edition.next').toUpperCase()
-      : t('edition.previous').toUpperCase()
-
   return (
     <div className="edition-pager">
-      <p className="share-label">{pagerLabel}</p>
+      <p className="share-label">{t('edition.moreLabel')}</p>
       <div className={`edition-pager-grid ${availableCount === 1 ? 'single-item' : ''}`}>
-        <button
-          type="button"
-          className={`edition-pager-card ${!previousEdition ? 'is-empty' : ''}`}
-          onClick={() => openEdition(previousEdition)}
-          disabled={!previousEdition}
-        >
-          {previousEdition && (
-            <>
-              {previousEdition.capa && <img src={previousEdition.capa} alt={previousEdition.titulo} className="edition-pager-image" />}
-              <span className="edition-pager-direction">{t('edition.previous')}</span>
-              <span className="edition-pager-title">{previousEdition.titulo}</span>
-            </>
-          )}
-        </button>
-        <button
-          type="button"
-          className={`edition-pager-card ${!nextEdition ? 'is-empty' : ''}`}
-          onClick={() => openEdition(nextEdition)}
-          disabled={!nextEdition}
-        >
-          {nextEdition && (
-            <>
-              {nextEdition.capa && <img src={nextEdition.capa} alt={nextEdition.titulo} className="edition-pager-image" />}
-              <span className="edition-pager-direction">{t('edition.next')}</span>
-              <span className="edition-pager-title">{nextEdition.titulo}</span>
-            </>
-          )}
-        </button>
+        {previousEdition && (
+          <button
+            type="button"
+            className="edition-pager-card"
+            onClick={() => openEdition(previousEdition)}
+          >
+            {previousEdition.capa && <img src={previousEdition.capa} alt={previousEdition.titulo} className="edition-pager-image" />}
+            <span className="edition-pager-direction">{t('edition.previous')}</span>
+            <span className="edition-pager-title">{previousEdition.titulo}</span>
+          </button>
+        )}
+        {nextEdition && (
+          <button
+            type="button"
+            className="edition-pager-card"
+            onClick={() => openEdition(nextEdition)}
+          >
+            {nextEdition.capa && <img src={nextEdition.capa} alt={nextEdition.titulo} className="edition-pager-image" />}
+            <span className="edition-pager-direction">{t('edition.next')}</span>
+            <span className="edition-pager-title">{nextEdition.titulo}</span>
+          </button>
+        )}
       </div>
     </div>
   )
@@ -515,6 +503,11 @@ function EditionPager({ edicao, setView }) {
 
 export default function EdicaoView({ edicao, setView }) {
   const { t, i18n } = useTranslation()
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'instant' })
+  }, [edicao.slug])
+
   const raw = getMarkdownForEdicao(edicao.slug)
   const content = raw.replace(/^---[\s\S]*?---\n?/, '')
   const parts = content.split(/\n---\n/)
