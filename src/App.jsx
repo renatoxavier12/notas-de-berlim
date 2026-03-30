@@ -2,7 +2,7 @@ import { Suspense, lazy, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import './App.css'
 import { normalizeLanguage } from './i18n'
-import { findEdicaoBySlug, getCookie, setCookie } from './lib/site'
+import { EDICOES, findEdicaoBySlug, getCookie, setCookie } from './lib/site'
 import RouteMeta from './components/RouteMeta'
 
 const HomeView = lazy(() => import('./routes/HomeView'))
@@ -11,12 +11,20 @@ const MapaView = lazy(() => import('./routes/MapaView'))
 const SobreView = lazy(() => import('./routes/SobreView'))
 const ApoiarView = lazy(() => import('./routes/ApoiarView'))
 
-function Nav({ view, setView, dark, setDark }) {
+function Nav({ view, edicaoAtiva, setView, dark, setDark }) {
   const { t } = useTranslation()
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   function navigate(nextView) {
     setView(nextView)
+    setMobileMenuOpen(false)
+  }
+
+  function openEdition(ed) {
+    if (!ed || ed.slug === edicaoAtiva?.slug) return
+    setView('edicao')
+    window.history.pushState({}, '', `/edicoes/${ed.slug}`)
+    window.dispatchEvent(new PopStateEvent('popstate'))
     setMobileMenuOpen(false)
   }
 
@@ -29,6 +37,22 @@ function Nav({ view, setView, dark, setDark }) {
       <button className="nav-logo" onClick={() => navigate('home')}>
         {t('site.name')}
       </button>
+      {view === 'edicao' && edicaoAtiva && (
+        <div className="nav-timeline">
+          {EDICOES.map(ed => (
+            <button
+              key={ed.slug}
+              className={`nav-timeline-dot${ed.slug === edicaoAtiva.slug ? ' current' : ''}`}
+              onClick={() => openEdition(ed)}
+              title={ed.titulo}
+              aria-label={ed.titulo}
+              aria-current={ed.slug === edicaoAtiva.slug ? 'page' : undefined}
+            >
+              {ed.id}
+            </button>
+          ))}
+        </div>
+      )}
       <button
         type="button"
         className="nav-mobile-toggle"
@@ -146,7 +170,7 @@ function App() {
   return (
     <div className={`app-root view-${view}`}>
       <RouteMeta view={view} edicao={edicaoAtiva} />
-      <Nav view={view} setView={setView} dark={dark} setDark={setDark} />
+      <Nav view={view} edicaoAtiva={edicaoAtiva} setView={setView} dark={dark} setDark={setDark} />
       <Suspense fallback={<LoadingFallback />}>
         {view === 'home' && (
           <HomeView setView={setView} setEdicaoAtiva={setEdicaoAtiva} />
