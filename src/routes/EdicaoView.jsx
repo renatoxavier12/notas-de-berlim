@@ -244,20 +244,15 @@ function ReadingProgress() {
 
   useEffect(() => {
     const root = document.getElementById('root')
-    const target = (root && root.scrollHeight > root.clientHeight) ? root : window
+    if (!root) return
 
     function update() {
-      const scrolled = target === window
-        ? (window.scrollY || document.documentElement.scrollTop || document.body.scrollTop)
-        : target.scrollTop
-      const total = target === window
-        ? document.documentElement.scrollHeight - window.innerHeight
-        : target.scrollHeight - target.clientHeight
-      setProgress(total > 0 ? Math.min(100, (scrolled / total) * 100) : 0)
+      const total = root.scrollHeight - root.clientHeight
+      setProgress(total > 0 ? Math.min(100, (root.scrollTop / total) * 100) : 0)
     }
 
-    target.addEventListener('scroll', update, { passive: true })
-    return () => target.removeEventListener('scroll', update)
+    root.addEventListener('scroll', update, { passive: true })
+    return () => root.removeEventListener('scroll', update)
   }, [])
 
   return <div className="reading-progress-bar" style={{ width: `${progress}%` }} />
