@@ -14,7 +14,6 @@ Blog pessoal sobre a experiência de viver em Berlim. Caderno de notas sobre o d
 
 - **Domínio:** notasdeberlim.com — configurado e funcionando
 - **Deploy:** automático via Vercel no push do GitHub (`main`)
-- **Ko-fi:** integrado (`ko-fi.com/renatoxavier`) — aguardando aprovação do Stripe para ativar pagamentos
 - **Comentários:** sistema customizado implementado
 - **Analytics:** Vercel Analytics
 
