@@ -454,6 +454,36 @@ function EditionShareStrip({ edicao, title, setView, hasMap }) {
   )
 }
 
+function EditionTimeline({ edicao, setView }) {
+  function openEdition(target) {
+    if (!target || target.slug === edicao.slug) return
+    document.activeElement?.blur()
+    setView('edicao')
+    window.history.pushState({}, '', `/edicoes/${target.slug}`)
+    window.dispatchEvent(new PopStateEvent('popstate'))
+  }
+
+  return (
+    <div className="edition-timeline">
+      {EDICOES.map(ed => {
+        const isCurrent = ed.slug === edicao.slug
+        return (
+          <button
+            key={ed.slug}
+            className={`edition-timeline-dot${isCurrent ? ' current' : ''}`}
+            onClick={() => openEdition(ed)}
+            title={ed.titulo}
+            aria-label={ed.titulo}
+            aria-current={isCurrent ? 'page' : undefined}
+          >
+            {ed.id}
+          </button>
+        )
+      })}
+    </div>
+  )
+}
+
 function EditionPager({ edicao, setView }) {
   const { t } = useTranslation()
   const currentIndex = EDICOES.findIndex(item => item.slug === edicao.slug)
@@ -583,6 +613,7 @@ export default function EdicaoView({ edicao, setView }) {
         <button className="back-btn" onClick={() => setView('home')}>
           {t('edition.back')}
         </button>
+        <EditionTimeline edicao={edicao} setView={setView} />
       </div>
 
       {edicao.capa && (
