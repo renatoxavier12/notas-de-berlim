@@ -239,6 +239,60 @@ function CustomComments({ slug }) {
   )
 }
 
+function TextHighlight({ slug }) {
+  const [tooltip, setTooltip] = useState(null)
+  const [copied, setCopied] = useState(false)
+
+  useEffect(() => {
+    function onSelect() {
+      const sel = window.getSelection()
+      const text = sel?.toString().trim()
+      if (!text || text.length < 15) { setTooltip(null); return }
+      const rect = sel.getRangeAt(0).getBoundingClientRect()
+      setTooltip({ text, x: rect.left + rect.width / 2, y: rect.top })
+      setCopied(false)
+    }
+    function onMouseDown(e) {
+      if (!e.target.closest('.highlight-tooltip')) setTooltip(null)
+    }
+    document.addEventListener('mouseup', onSelect)
+    document.addEventListener('touchend', onSelect)
+    document.addEventListener('mousedown', onMouseDown)
+    return () => {
+      document.removeEventListener('mouseup', onSelect)
+      document.removeEventListener('touchend', onSelect)
+      document.removeEventListener('mousedown', onMouseDown)
+    }
+  }, [slug])
+
+  if (!tooltip) return null
+
+  async function share() {
+    const url = absoluteUrl(`/edicoes/${slug}`)
+    const shareText = `"${tooltip.text}"\n\n— ${url}`
+    try {
+      await navigator.clipboard.writeText(shareText)
+    } catch {
+      const el = document.createElement('textarea')
+      el.value = shareText
+      document.body.appendChild(el)
+      el.select()
+      document.execCommand('copy')
+      document.body.removeChild(el)
+    }
+    setCopied(true)
+    setTimeout(() => { setTooltip(null); setCopied(false) }, 2000)
+  }
+
+  return (
+    <div className="highlight-tooltip" style={{ left: tooltip.x, top: tooltip.y }}>
+      <button onClick={share}>
+        {copied ? '✓ Copiado' : '✦ Copiar trecho'}
+      </button>
+    </div>
+  )
+}
+
 function ReadingProgress() {
   const [progress, setProgress] = useState(0)
 
@@ -581,6 +635,7 @@ export default function EdicaoView({ edicao, setView }) {
   return (
     <div className="edicao-view">
       <ReadingProgress />
+      <TextHighlight slug={edicao.slug} />
       <div className="edition-topbar">
         <button className="back-btn" onClick={() => setView('home')}>
           {t('edition.back')}
