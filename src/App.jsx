@@ -11,25 +11,6 @@ const MapaView = lazy(() => import('./routes/MapaView'))
 const SobreView = lazy(() => import('./routes/SobreView'))
 const ApoiarView = lazy(() => import('./routes/ApoiarView'))
 
-function ReadingProgress() {
-  const [progress, setProgress] = useState(0)
-
-  useEffect(() => {
-    function update() {
-      const el = document.documentElement
-      const scrolled = el.scrollTop || document.body.scrollTop
-      const total = el.scrollHeight - el.clientHeight
-      setProgress(total > 0 ? Math.min(100, (scrolled / total) * 100) : 0)
-    }
-    window.addEventListener('scroll', update, { passive: true })
-    return () => window.removeEventListener('scroll', update)
-  }, [])
-
-  return (
-    <div className="reading-progress-bar" style={{ width: `${progress}%` }} />
-  )
-}
-
 function Nav({ view, setView, dark, setDark }) {
   const { t } = useTranslation()
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
@@ -165,7 +146,6 @@ function App() {
   return (
     <div className={`app-root view-${view}`}>
       <RouteMeta view={view} edicao={edicaoAtiva} />
-      {view === 'edicao' && <ReadingProgress />}
       <Nav view={view} setView={setView} dark={dark} setDark={setDark} />
       <Suspense fallback={<LoadingFallback />}>
         {view === 'home' && (
