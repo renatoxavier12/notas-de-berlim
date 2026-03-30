@@ -506,7 +506,8 @@ export default function EdicaoView({ edicao, setView }) {
   const { t, i18n } = useTranslation()
 
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'instant' })
+    const root = document.getElementById('root')
+    if (root) root.scrollTop = 0
   }, [edicao.slug])
 
   const raw = getMarkdownForEdicao(edicao.slug)
@@ -535,7 +536,8 @@ export default function EdicaoView({ edicao, setView }) {
   const hasMap = LOCATIONS.some(location => location.edicaoId === edicao.id)
 
   useLayoutEffect(() => {
-    window.scrollTo(0, 0)
+    const root = document.getElementById('root')
+    if (root) root.scrollTop = 0
   }, [edicao.slug])
 
   useEffect(() => {
