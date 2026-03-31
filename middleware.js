@@ -63,8 +63,10 @@ export default async function middleware(request) {
     const bairro = esc(get('bairro') || 'Berlim')
     const published = get('data')
     const publishedIso = toIsoDate(published)
+    const ogImage = get('ogImage')
     const capa = get('capa')
-    const image = capa ? `https://notasdeberlim.com${capa}` : 'https://notasdeberlim.com/og.jpg'
+    const imagePath = ogImage || capa || '/og.jpg'
+    const image = `https://notasdeberlim.com${imagePath}`
     const pageUrl = `https://notasdeberlim.com/edicoes/${slug}`
     const jsonLd = JSON.stringify({
       '@context': 'https://schema.org',

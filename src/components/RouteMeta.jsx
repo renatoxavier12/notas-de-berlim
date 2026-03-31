@@ -10,7 +10,7 @@ function buildMeta(view, edicao, t) {
   if (view === 'edicao' && edicao) {
     const editionCopy = getEditionCopy(edicao, t)
     const description = editionCopy.teaser || siteDescription
-    const image = absoluteUrl(edicao.capa || '/og.jpg')
+    const image = absoluteUrl(edicao.ogImage || edicao.capa || '/og.jpg')
     const url = absoluteUrl(`/edicoes/${edicao.slug}`)
     const publishedAt = toIsoDate(edicao.data)
     return {

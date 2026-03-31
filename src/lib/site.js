@@ -131,6 +131,7 @@ export const EDICOES = Object.entries(markdownFiles)
       bairro: meta.bairro || '',
       teaser: meta.teaser || '',
       capa: meta.capa || null,
+      ogImage: meta.ogImage || null,
     }
   })
   .sort((a, b) => b.id - a.id)
