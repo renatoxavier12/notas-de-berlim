@@ -151,6 +151,7 @@ function DiarioPost({ post }) {
         <video
           className="diario-video-local"
           src={post.video}
+          poster={post.poster || undefined}
           controls
           playsInline
           preload="metadata"

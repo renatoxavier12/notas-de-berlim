@@ -85,7 +85,14 @@ export const DIARIO = Object.entries(diarioFiles)
   .map(([path, raw]) => {
     const slug = path.replace('../diario/', '').replace('.md', '')
     const { meta, content } = parseFrontmatter(raw)
-    return { slug, data: meta.data || '', foto: meta.foto || null, video: meta.video || null, content }
+    return {
+      slug,
+      data: meta.data || '',
+      foto: meta.foto || null,
+      video: meta.video || null,
+      poster: meta.poster || null,
+      content,
+    }
   })
   .sort((a, b) => b.slug.localeCompare(a.slug))
 
