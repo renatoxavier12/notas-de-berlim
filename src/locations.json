@@ -2,7 +2,7 @@
   {
     "id": 201,
     "name": "Wrangelkiez",
-    "coords": [52.4987, 13.4436],
+    "coords": [52.4975, 13.4445],
     "description": "Bairro em Kreuzberg, espremido entre o Spree e o Landwehrkanal.",
     "line": "U1",
     "color": "#79B643",
@@ -12,7 +12,7 @@
   {
     "id": 202,
     "name": "Markthalle Neun",
-    "coords": [52.5020, 13.4313],
+    "coords": [52.5022, 13.4315],
     "description": "Mercado histórico do séc. XIX. Vinhos em taça e produtores locais.",
     "line": "U1",
     "color": "#79B643",
@@ -22,7 +22,7 @@
   {
     "id": 203,
     "name": "Ibero-Amerikanisches Institut",
-    "coords": [52.5069, 13.3696],
+    "coords": [52.5068, 13.3697],
     "description": "Base de pesquisa do pós-doc. Perto da Potsdamer Platz.",
     "line": "U2",
     "color": "#DA421E",
@@ -52,7 +52,7 @@
   {
     "id": 206,
     "name": "Landwehrkanal",
-    "coords": [52.4967, 13.4472],
+    "coords": [52.4971, 13.4475],
     "description": "Canal ao lado do apartamento em Heckmannufer. Já está florido, a primavera chegou quase de um dia pro outro.",
     "line": "U1",
     "color": "#79B643",
@@ -62,7 +62,7 @@
   {
     "id": 207,
     "name": "Zagros Gemüsekebap",
-    "coords": [52.4997, 13.4284],
+    "coords": [52.4995, 13.4284],
     "description": "Döner de frango em Skalitzer Str. 100. Tipo um Estadão, só que de döner e bom mesmo.",
     "line": "U1",
     "color": "#79B643",
@@ -72,7 +72,7 @@
   {
     "id": 208,
     "name": "Spätify",
-    "coords": [52.4986, 13.4272],
+    "coords": [52.4988, 13.4273],
     "description": "A Späti mais criativa do bairro. Wiener Str. 7.",
     "line": "U1",
     "color": "#79B643",
@@ -92,7 +92,7 @@
   {
     "id": 211,
     "name": "Pizza Espresso",
-    "coords": [52.4977, 13.4475],
+    "coords": [52.5007, 13.4421],
     "description": "Pizza do ítalo-turco-alemão. Dúzias montadas na vitrine, forno na hora. Come-se ali mesmo, sem talheres, sem frescura.",
     "line": "U1",
     "color": "#79B643",
@@ -121,7 +121,7 @@
   {
     "id": 302,
     "name": "Dog Wash A-GO-GO",
-    "coords": [52.4818, 13.4246],
+    "coords": [52.4818, 13.4244],
     "description": "Hermannstraße 30, 12049 Berlin. O lugar do banho do Tião, meio improvisado, meio engraçado, meio caótico e muito funcional.",
     "line": "U8",
     "color": "#009AD3",
@@ -130,7 +130,7 @@
   {
     "id": 303,
     "name": "Bully's Bakery",
-    "coords": [52.4881, 13.4281],
+    "coords": [52.4882, 13.4281],
     "description": "Friedelstraße 7, 12047 Berlin. A parada de café, bolo de laranja, matcha e aquele quentinho que ficou maior do que a friaca do dia.",
     "line": "U8",
     "color": "#009AD3",
@@ -139,8 +139,8 @@
   {
     "id": 401,
     "name": "Passenger Coffee",
-    "coords": [52.4984, 13.4427],
-    "description": "Wrangelstraße 80, 10997 Berlin. Ambiente gostoso, café delicioso. Som europeu alternativo num volume bom. Estávamos de olho há três semanas.",
+    "coords": [52.4999, 13.4412],
+    "description": "Oppelner Straße 44, 10997 Berlin. Ambiente gostoso, café delicioso. Som europeu alternativo num volume bom. Estávamos de olho há três semanas.",
     "line": "U1",
     "color": "#79B643",
     "edicaoId": 4,
@@ -149,8 +149,8 @@
   {
     "id": 402,
     "name": "Eurogida",
-    "coords": [52.4976, 13.4450],
-    "description": "Wrangelstraße 70, 10997 Berlin. Frutas, verduras, muita coisa turca — e uma prateleira de feijão que dispensaria qualquer saudade: branco, preto, carioca, vermelho, mungo.",
+    "coords": [52.4989, 13.4414],
+    "description": "Wrangelstraße 85, 10997 Berlin. Frutas, verduras, muita coisa turca — e uma prateleira de feijão que dispensaria qualquer saudade: branco, preto, carioca, vermelho, mungo.",
     "line": "U1",
     "color": "#79B643",
     "edicaoId": 4,
