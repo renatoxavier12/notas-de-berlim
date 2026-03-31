@@ -649,6 +649,7 @@ export default function EdicaoView({ edicao, setView }) {
                 <MapPinned size={14} strokeWidth={2} />
                 {editionCopy.bairro}
               </span>
+              <span className="edition-hero-meta-divider" aria-hidden="true">·</span>
               <span>{absoluteDate}</span>
             </div>
           </div>
@@ -684,7 +685,7 @@ export default function EdicaoView({ edicao, setView }) {
           )}
           {edicao.capa && (
             <p className="edicao-meta edition-meta-row">
-              {displayNumber} · {relativeDate} · {readingTime(content)}
+              {displayNumber} <span className="edition-meta-divider" aria-hidden="true">·</span> {relativeDate} <span className="edition-meta-divider" aria-hidden="true">·</span> {readingTime(content)}
             </p>
           )}
           <article className="edicao-content">
