@@ -21,11 +21,11 @@ Por essas bandas berlinenses, o presente aparece de forma muito concreta. Crian�
 
 Mas ele também aparece nas pequenas coisas.
 
-Hoje demos banho no Tião. Não em casa, nem num pet desses em que você deixa o bichinho e busca depois de algumas horas, mas num lugar em que você chega, eles te dão tudo e você mesmo faz o trabalho. O nome é sugestivo: **Dog Wash A-GO-GO**. Meio improvisado, meio engraçado, meio caótico. Mas gostoso, e deu muito certo, um você que se serve para banhar seu doguinho. No fim, custa basicamente um décimo do que você pagaria num desses pets em que você deixa o bichinho e busca depois de algumas horas.
+Hoje demos banho no Tião. Não em casa, nem num pet desses em que você deixa o bichinho e busca depois de algumas horas, mas num lugar em que você chega, eles te dão tudo e você mesmo faz o trabalho. O nome é sugestivo: **Dog Wash A-GO-GO**^[Fica na Pannierstraße, no coração do Reuterkiez. Você paga pelo tempo de uso da banheira e dos produtos — saiu uns 12 euros no total.]. Meio improvisado, meio engraçado, meio caótico. Mas gostoso, e deu muito certo, um você que se serve para banhar seu doguinho. No fim, custa basicamente um décimo do que você pagaria num desses pets em que você deixa o bichinho e busca depois de algumas horas.
 
 ![Tião depois do banho no Dog Wash A-GO-GO.](/foto-03-tiao.jpeg)
 
-Na volta, paramos num café ali pelo Reuterkiez, o **Bully's Bakery**.
+Na volta, paramos num café ali pelo Reuterkiez, o **Bully's Bakery**^[Reuterstraße 68. Abre cedo, fecha quando acaba — e acaba rápido. Chega antes das 10h se quiser o bolo.].
 
 ![Parada no Bully's Bakery, no Reuterkiez.](/foto-03-bullys.jpeg)
 
@@ -53,7 +53,7 @@ Acho que essa primeira sequência de textos "semanais" termina por aqui.
 
 As próximas notas talvez sejam menos sobre o tempo e mais sobre o presente, ou sobre o que a gente insiste em chamar de presente.
 
-Como escreveu Jorge Luis Borges, o presente contém sempre partículas do passado e do futuro. Talvez seja isso que a gente tenta capturar, mesmo sabendo que escapa.
+Como escreveu Jorge Luis Borges^[Em "El tiempo", conferência de 1978 publicada em Borges oral. A frase exata é minha paráfrase — mas o espírito é fiel.], o presente contém sempre partículas do passado e do futuro. Talvez seja isso que a gente tenta capturar, mesmo sabendo que escapa.
 
 Partículas.
 
