@@ -40,14 +40,11 @@ export default async function middleware(request) {
   if (!isCrawler) return
 
   try {
+    const ghHeaders = { Accept: 'application/vnd.github.v3+json' }
+    if (process.env.GITHUB_TOKEN) ghHeaders['Authorization'] = `Bearer ${process.env.GITHUB_TOKEN}`
     const ghRes = await fetch(
       `https://api.github.com/repos/renatoxavier12/notas-de-berlim/contents/src/edicoes/${slug}.md`,
-      {
-        headers: {
-          Authorization: `Bearer ${process.env.GITHUB_TOKEN}`,
-          Accept: 'application/vnd.github.v3+json',
-        },
-      }
+      { headers: ghHeaders }
     )
     if (!ghRes.ok) return
 
