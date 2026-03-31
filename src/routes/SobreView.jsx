@@ -22,12 +22,13 @@ export default function SobreView({ setView, setEdicaoAtiva }) {
             <div className="sobre-bio-lines">
               <p>Sou Renato Xavier,</p>
               <p>pesquisador e autor deste caderno.</p>
+              <p>Uma das minhas paixões é cozinhar.</p>
               <br />
               <p>Moro em Berlim desde março de 2026,</p>
               <p>como visiting researcher no <em>Ibero-Amerikanisches Institut</em>, fellow da FAPESP.</p>
               <br />
-              <p>Pesquiso W.E.B. Du Bois, algoritmos e raça.</p>
-              <p>Associado do CEBRAP.</p>
+              <p>Sou pesquisador associado do CEBRAP</p>
+              <p>e meus interesses são W.E.B. Du Bois, algoritmos e raça.</p>
               <br />
               <p>Bia é minha parceira.</p>
               <p>Tião é nosso spitz alemão.</p>
