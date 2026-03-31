@@ -79,12 +79,6 @@ function Nav({ view, edicaoAtiva, setView, dark, setDark }) {
           {t('nav.map')}
         </button>
         <button
-          className={view === 'sobre' ? 'active' : ''}
-          onClick={() => navigate('sobre')}
-        >
-          {t('nav.about')}
-        </button>
-        <button
           className={view === 'diario' ? 'active' : ''}
           onClick={() => navigate('diario')}
         >
@@ -95,6 +89,12 @@ function Nav({ view, edicaoAtiva, setView, dark, setDark }) {
           onClick={() => navigate('apoiar')}
         >
           Apoiar
+        </button>
+        <button
+          className={view === 'sobre' ? 'active' : ''}
+          onClick={() => navigate('sobre')}
+        >
+          {t('nav.about')}
         </button>
         <button
           className="nav-theme-toggle"
