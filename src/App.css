@@ -758,6 +758,102 @@ button:focus-visible, a:focus-visible {
   transform: rotate(-0.8deg);
 }
 
+/* ── Sidenotes ── */
+.sidenote-wrapper {
+  position: relative;
+}
+
+.sidenote-ref {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--yellow);
+  color: var(--bg);
+  font-size: 10px;
+  font-weight: 700;
+  font-family: var(--font-mono, monospace);
+  border: none;
+  cursor: pointer;
+  vertical-align: super;
+  line-height: 1;
+  margin: 0 1px;
+  transition: opacity 0.15s;
+}
+
+.sidenote-ref:hover {
+  opacity: 0.75;
+}
+
+.sidenote {
+  display: none;
+  position: absolute;
+  left: calc(100% + 1.5rem);
+  top: -0.25em;
+  width: 220px;
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--gray);
+  font-style: italic;
+  background: transparent;
+  padding: 0;
+  pointer-events: none;
+}
+
+.sidenote-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--yellow);
+  color: var(--bg);
+  font-size: 9px;
+  font-weight: 700;
+  font-family: var(--font-mono, monospace);
+  margin-right: 5px;
+  flex-shrink: 0;
+  vertical-align: middle;
+}
+
+/* Desktop: show sidenote always in margin */
+@media (min-width: 1100px) {
+  .sidenote {
+    display: inline;
+    position: absolute;
+  }
+}
+
+/* Mobile/tablet: show on click */
+@media (max-width: 1099px) {
+  .sidenote {
+    display: none;
+    position: static;
+    width: auto;
+    margin: 0.5em 0 0.5em 1em;
+    padding: 0.5em 0.75em;
+    background: var(--surface, rgba(0,0,0,0.04));
+    border-left: 2px solid var(--yellow);
+    border-radius: 0 4px 4px 0;
+    pointer-events: auto;
+  }
+
+  .sidenote.sidenote-open {
+    display: block;
+  }
+}
+
+html[data-theme="dark"] .sidenote {
+  color: var(--gray);
+}
+
+html[data-theme="dark"] .sidenote-ref {
+  color: #0a0a0a;
+}
+
 /* ── Sobre ── */
 .sobre-view {
   flex: 1;
