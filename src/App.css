@@ -1143,7 +1143,9 @@ button:focus-visible, a:focus-visible {
   min-width: 0;
 }
 
-.sobre-main .home-kicker {
+.sobre-main .home-kicker,
+.diario-view .home-kicker,
+.apoiar-view .home-kicker {
   color: var(--gray);
 }
 
