@@ -251,7 +251,7 @@ export function getEditionsForSeries(edicao, edicoes = EDICOES) {
 export function getEditionSeriesLabel(edicao) {
   const seriesKey = getEditionSeriesKey(edicao)
 
-  if (seriesKey === 'particulas-do-dia') return 'Particulas do dia'
+  if (seriesKey === 'particulas-do-dia') return 'Partículas do dia'
   if (seriesKey === '__default__') return 'Semanas'
 
   return seriesKey
