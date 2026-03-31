@@ -2,7 +2,7 @@
   {
     "id": 201,
     "name": "Wrangelkiez",
-    "coords": [52.4996, 13.4444],
+    "coords": [52.4987, 13.4436],
     "description": "Bairro em Kreuzberg, espremido entre o Spree e o Landwehrkanal.",
     "line": "U1",
     "color": "#79B643",
@@ -12,7 +12,7 @@
   {
     "id": 202,
     "name": "Markthalle Neun",
-    "coords": [52.5019, 13.4328],
+    "coords": [52.5020, 13.4313],
     "description": "Mercado histórico do séc. XIX. Vinhos em taça e produtores locais.",
     "line": "U1",
     "color": "#79B643",
@@ -22,7 +22,7 @@
   {
     "id": 203,
     "name": "Ibero-Amerikanisches Institut",
-    "coords": [52.5064, 13.3703],
+    "coords": [52.5069, 13.3696],
     "description": "Base de pesquisa do pós-doc. Perto da Potsdamer Platz.",
     "line": "U2",
     "color": "#DA421E",
@@ -32,7 +32,7 @@
   {
     "id": 204,
     "name": "Görlitzer Park",
-    "coords": [52.4965, 13.4365],
+    "coords": [52.4966, 13.4376],
     "description": "O pulmão de Kreuzberg, a poucos minutos do apartamento.",
     "line": "U1",
     "color": "#79B643",
@@ -42,7 +42,7 @@
   {
     "id": 205,
     "name": "Burgermeister",
-    "coords": [52.5011, 13.4423],
+    "coords": [52.5011, 13.4425],
     "description": "Hambúrguer icônico num antigo banheiro público sob os trilhos da U1 no Schlesisches Tor.",
     "line": "U1",
     "color": "#79B643",
@@ -52,7 +52,7 @@
   {
     "id": 206,
     "name": "Landwehrkanal",
-    "coords": [52.4974, 13.4441],
+    "coords": [52.4967, 13.4472],
     "description": "Canal ao lado do apartamento em Heckmannufer. Já está florido, a primavera chegou quase de um dia pro outro.",
     "line": "U1",
     "color": "#79B643",
@@ -62,7 +62,7 @@
   {
     "id": 207,
     "name": "Zagros Gemüsekebap",
-    "coords": [52.4995, 13.4285],
+    "coords": [52.4997, 13.4284],
     "description": "Döner de frango em Skalitzer Str. 100. Tipo um Estadão, só que de döner e bom mesmo.",
     "line": "U1",
     "color": "#79B643",
@@ -72,7 +72,7 @@
   {
     "id": 208,
     "name": "Spätify",
-    "coords": [52.4991, 13.4289],
+    "coords": [52.4986, 13.4272],
     "description": "A Späti mais criativa do bairro. Wiener Str. 7.",
     "line": "U1",
     "color": "#79B643",
@@ -82,7 +82,7 @@
   {
     "id": 209,
     "name": "Marheineke Markthalle",
-    "coords": [52.4879, 13.3968],
+    "coords": [52.4893, 13.3947],
     "description": "Mercado histórico no Bergmannkiez. Tem quiosque brasileiro: coxinha, torresmo, tortilha e cerveja alemã.",
     "line": "U7",
     "color": "#6F4E9C",
@@ -92,7 +92,7 @@
   {
     "id": 211,
     "name": "Pizza Espresso",
-    "coords": [52.5001, 13.4415],
+    "coords": [52.4977, 13.4475],
     "description": "Pizza do ítalo-turco-alemão. Dúzias montadas na vitrine, forno na hora. Come-se ali mesmo, sem talheres, sem frescura.",
     "line": "U1",
     "color": "#79B643",
@@ -102,7 +102,7 @@
   {
     "id": 210,
     "name": "Bürgeramt Kreuzberg",
-    "coords": [52.4862, 13.3912],
+    "coords": [52.4939, 13.3864],
     "description": "Bezirksamt Friedrichshain-Kreuzberg, Bürgeramt 1. Aqui a gente se registrou como moradores de Berlim, com bom humor e tudo.",
     "line": "U7",
     "color": "#6F4E9C",
@@ -130,7 +130,7 @@
   {
     "id": 303,
     "name": "Bully's Bakery",
-    "coords": [52.4880, 13.4281],
+    "coords": [52.4881, 13.4281],
     "description": "Friedelstraße 7, 12047 Berlin. A parada de café, bolo de laranja, matcha e aquele quentinho que ficou maior do que a friaca do dia.",
     "line": "U8",
     "color": "#009AD3",
@@ -139,7 +139,7 @@
   {
     "id": 401,
     "name": "Passenger Coffee",
-    "coords": [52.4988, 13.4455],
+    "coords": [52.4984, 13.4427],
     "description": "Wrangelstraße 80, 10997 Berlin. Ambiente gostoso, café delicioso. Som europeu alternativo num volume bom. Estávamos de olho há três semanas.",
     "line": "U1",
     "color": "#79B643",
@@ -149,7 +149,7 @@
   {
     "id": 402,
     "name": "Eurogida",
-    "coords": [52.4986, 13.4441],
+    "coords": [52.4976, 13.4450],
     "description": "Wrangelstraße 70, 10997 Berlin. Frutas, verduras, muita coisa turca — e uma prateleira de feijão que dispensaria qualquer saudade: branco, preto, carioca, vermelho, mungo.",
     "line": "U1",
     "color": "#79B643",
