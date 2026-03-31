@@ -2658,8 +2658,31 @@ html[data-theme="dark"] .comment-submit-btn {
 
 .diario-header {
   margin-bottom: 56px;
-  padding-bottom: 32px;
+  padding-bottom: 36px;
   border-bottom: 1px solid var(--border);
+}
+
+.diario-kicker-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 8px;
+}
+
+.diario-chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 7px 12px 6px;
+  border-radius: 999px;
+  border: 1px solid rgba(10, 10, 10, 0.14);
+  background: rgba(196, 168, 122, 0.08);
+  font-family: var(--font-ui);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(10, 10, 10, 0.62);
 }
 
 .diario-titulo {
@@ -2672,10 +2695,21 @@ html[data-theme="dark"] .comment-submit-btn {
 }
 
 .diario-subtitulo {
+  max-width: 30ch;
+  font-family: var(--font-display);
+  font-size: clamp(22px, 3vw, 28px);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  margin: 0 0 14px;
+}
+
+.diario-intro {
+  max-width: 54ch;
+  margin: 0;
   font-family: var(--font-ui);
   font-size: 13px;
+  line-height: 1.7;
   color: var(--gray);
-  margin: 0;
 }
 
 .diario-feed {
@@ -2784,6 +2818,12 @@ html[data-theme="dark"] .comment-submit-btn {
 
 html[data-theme="dark"] .diario-texto {
   color: rgba(255,255,255,0.88);
+}
+
+html[data-theme="dark"] .diario-chip {
+  border-color: rgba(221, 216, 206, 0.18);
+  background: rgba(255, 208, 0, 0.08);
+  color: rgba(255, 245, 214, 0.72);
 }
 
 /* ── Página /apoiar ── */

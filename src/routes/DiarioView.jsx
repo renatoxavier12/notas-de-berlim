@@ -129,9 +129,13 @@ export default function DiarioView() {
     <div className="diario-view">
       <div className="diario-inner">
         <header className="diario-header">
-          <p className="home-kicker">BERLIM, 2026</p>
+          <div className="diario-kicker-row">
+            <p className="home-kicker">BERLIM, 2026</p>
+            <span className="diario-chip">Caderno paralelo</span>
+          </div>
           <h1 className="diario-titulo">Diário</h1>
-          <p className="diario-subtitulo">Notas rápidas, fotos do dia a dia. Sem edição, sem email.</p>
+          <p className="diario-subtitulo">Notas breves, fotos lentas, restos do dia em Berlim.</p>
+          <p className="diario-intro">Sem edição, sem email, sem cerimônia. Apenas o que ficou do dia e pediu para entrar no caderno.</p>
         </header>
         <div className="diario-feed">
           {DIARIO.map(post => (
