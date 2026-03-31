@@ -40,17 +40,12 @@ export default async function middleware(request) {
   if (!isCrawler) return
 
   try {
-    const ghHeaders = { Accept: 'application/vnd.github.v3+json' }
-    if (process.env.GITHUB_TOKEN) ghHeaders['Authorization'] = `Bearer ${process.env.GITHUB_TOKEN}`
-    const ghRes = await fetch(
-      `https://api.github.com/repos/renatoxavier12/notas-de-berlim/contents/src/edicoes/${slug}.md`,
-      { headers: ghHeaders }
+    const rawRes = await fetch(
+      `https://raw.githubusercontent.com/renatoxavier12/notas-de-berlim/main/src/edicoes/${slug}.md`
     )
-    if (!ghRes.ok) return
+    if (!rawRes.ok) return
 
-    const data = await ghRes.json()
-    const bytes = Uint8Array.from(atob(data.content.replace(/\n/g, '')), c => c.charCodeAt(0))
-    const markdown = new TextDecoder('utf-8').decode(bytes)
+    const markdown = await rawRes.text()
 
     const get = key => {
       const m = markdown.match(new RegExp(`^${key}:\\s*["']?(.+?)["']?\\s*$`, 'm'))
