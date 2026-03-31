@@ -574,13 +574,14 @@ button {
 }
 
 .card-tag {
-  font-family: 'Courier New', 'Courier', monospace;
+  font-family: var(--font-ui);
   font-size: 10px;
-  letter-spacing: 0.14em;
+  font-weight: 700;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--gray);
   display: block;
-  margin-bottom: 8px;
+  margin-bottom: 10px;
 }
 
 .card-title {
@@ -595,19 +596,22 @@ button {
 .card-meta-row {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px 16px;
+  gap: 6px;
   align-items: center;
-  margin: 0 0 10px;
+  margin: 0 0 12px;
   font-family: var(--font-ui);
-  font-size: 11px;
+  font-size: 10px;
   color: var(--gray);
-  letter-spacing: 0.03em;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
-.card-meta-kiez {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
+.card-meta-divider {
+  opacity: 0.5;
+}
+
+.card-meta-bairro {
+  opacity: 0.85;
 }
 
 .card-teaser {

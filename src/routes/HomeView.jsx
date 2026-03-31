@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { MapPinned } from 'lucide-react'
 import { EDICOES, formatEditionRelativeDate, getEditionCopy, getEditionKiez, getEditionKiezes, normalizeEmail, setCookie } from '../lib/site'
 
 function SubscribeForm() {
@@ -98,6 +97,10 @@ export default function HomeView({ setView, setEdicaoAtiva }) {
     )
   })
 
+  function getEditionDistrictLabel(bairro = '') {
+    return bairro.split('/')[0]?.trim() || bairro
+  }
+
   return (
     <div className="home-view">
       <header className="home-header">
@@ -166,6 +169,8 @@ export default function HomeView({ setView, setEdicaoAtiva }) {
           )}
           {filtered.map(edicao => {
             const editionCopy = getEditionCopy(edicao, t)
+            const editionKiez = getEditionKiez(editionCopy.bairro)
+            const editionDistrict = getEditionDistrictLabel(editionCopy.bairro)
 
             return (
               <button
@@ -183,14 +188,12 @@ export default function HomeView({ setView, setEdicaoAtiva }) {
                   }
                 </div>
                 <div className="card-body">
-                  <span className="card-tag">{editionCopy.bairro}</span>
+                  <span className="card-tag">{editionKiez}</span>
                   <h2 className="card-title">{editionCopy.titulo}</h2>
                   <p className="card-meta-row">
                     <span>{formatEditionRelativeDate(edicao.data, locale)}</span>
-                    <span className="card-meta-kiez">
-                      <MapPinned size={13} strokeWidth={1.9} />
-                      {editionCopy.bairro}
-                    </span>
+                    <span className="card-meta-divider" aria-hidden="true">·</span>
+                    <span className="card-meta-bairro">{editionDistrict}</span>
                   </p>
                   <p className="card-teaser">{editionCopy.teaser}</p>
                 </div>
