@@ -144,8 +144,7 @@ export default function DiarioView() {
             <span className="diario-chip">Caderno paralelo</span>
           </div>
           <h1 className="diario-titulo">Diário</h1>
-          <p className="diario-subtitulo">Notas breves, fotos lentas, restos do dia em Berlim.</p>
-          <p className="diario-intro">Sem edição, sem email, sem cerimônia. Apenas o que ficou do dia e pediu para entrar no caderno.</p>
+          <p className="diario-subtitulo">Notas do dia em Berlim.</p>
         </header>
         <div className="diario-feed">
           {DIARIO.map(post => (
