@@ -2,7 +2,7 @@ import { Suspense, lazy, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import './App.css'
 import { normalizeLanguage } from './i18n'
-import { EDICOES, findEdicaoBySlug, getCookie, setCookie } from './lib/site'
+import { EDICOES, findEdicaoBySlug, formatEditionNumber, getCookie, getEditionsForSeries, setCookie } from './lib/site'
 import RouteMeta from './components/RouteMeta'
 
 const HomeView = lazy(() => import('./routes/HomeView'))
@@ -15,6 +15,7 @@ const DiarioView = lazy(() => import('./routes/DiarioView'))
 function Nav({ view, edicaoAtiva, setView, dark, setDark }) {
   const { t } = useTranslation()
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const timelineEditions = edicaoAtiva ? getEditionsForSeries(edicaoAtiva) : []
 
   function navigate(nextView) {
     setView(nextView)
@@ -40,7 +41,7 @@ function Nav({ view, edicaoAtiva, setView, dark, setDark }) {
       </button>
       {view === 'edicao' && edicaoAtiva && (
         <div className="nav-timeline">
-          {EDICOES.map(ed => (
+          {timelineEditions.map(ed => (
             <button
               key={ed.slug}
               className={`nav-timeline-dot${ed.slug === edicaoAtiva.slug ? ' current' : ''}`}
@@ -49,7 +50,7 @@ function Nav({ view, edicaoAtiva, setView, dark, setDark }) {
               aria-label={ed.titulo}
               aria-current={ed.slug === edicaoAtiva.slug ? 'page' : undefined}
             >
-              {ed.id}
+              {formatEditionNumber(ed).replace('#', '')}
             </button>
           ))}
         </div>

@@ -132,6 +132,8 @@ export const EDICOES = Object.entries(markdownFiles)
       teaser: meta.teaser || '',
       capa: meta.capa || null,
       ogImage: meta.ogImage || null,
+      serie: meta.serie || null,
+      numero: meta.numero ? parseInt(meta.numero, 10) : null,
     }
   })
   .sort((a, b) => b.id - a.id)
@@ -226,4 +228,22 @@ export function getEditionCopy(edicao, t) {
     bairro: t(`editions.${edicao.slug}.bairro`, { defaultValue: edicao.bairro }),
     data: t(`editions.${edicao.slug}.date`, { defaultValue: edicao.data }),
   }
+}
+
+export function getEditionDisplayNumber(edicao) {
+  return edicao?.numero ?? edicao?.id ?? null
+}
+
+export function formatEditionNumber(edicao) {
+  const number = getEditionDisplayNumber(edicao)
+  return number == null ? '' : `#${String(number).padStart(2, '0')}`
+}
+
+export function getEditionSeriesKey(edicao) {
+  return edicao?.serie || '__default__'
+}
+
+export function getEditionsForSeries(edicao, edicoes = EDICOES) {
+  const seriesKey = getEditionSeriesKey(edicao)
+  return edicoes.filter(item => getEditionSeriesKey(item) === seriesKey)
 }

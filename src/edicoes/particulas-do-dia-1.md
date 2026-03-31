@@ -6,6 +6,8 @@ bairro: Kreuzberg / Oppelner Straße
 teaser: Um café no Wrangelkiez, chuva sem guarda-chuva, crepúsculo depois. E feijão carioca em Kreuzberg.
 capa: /capa-04.jpg
 ogImage: /capa-04-og.jpg
+serie: particulas-do-dia
+numero: 1
 ---
 
 Hoje saímos de casa para trabalhar de um café. Escolhemos o Passenger, um café aqui no bairro que estamos de olho há umas três semanas. Ambiente gostoso, café delicioso, nada de silêncio absoluto, um som europeu alternativo num volume bom. Uma criança conversa com quem provavelmente é sua avó, enquanto ela mexe no notebook. Um casal ao lado conversa sem parar em alemão, só ouço alguns sons: ich, schule, hallo. E um caderno de anotações nas mãos.

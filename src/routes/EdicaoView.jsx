@@ -4,7 +4,7 @@ import { MapPinned } from 'lucide-react'
 import ReactMarkdown from 'react-markdown'
 import { normalizeLanguage } from '../i18n'
 import LOCATIONS from '../locations.json'
-import { EDICOES, absoluteUrl, formatEditionDate, formatEditionRelativeDate, getCookie, getEditionAroundReadings, getEditionCopy, getGlossaryTerms, getMarkdownForEdicao, normalizeEmail, readingTime, setCookie } from '../lib/site'
+import { EDICOES, absoluteUrl, formatEditionDate, formatEditionNumber, formatEditionRelativeDate, getCookie, getEditionAroundReadings, getEditionCopy, getGlossaryTerms, getMarkdownForEdicao, normalizeEmail, readingTime, setCookie } from '../lib/site'
 
 function EdicaoGate({ onUnlock }) {
   const { t } = useTranslation()
@@ -584,6 +584,7 @@ export default function EdicaoView({ edicao, setView }) {
       : 'pt-BR'
   const relativeDate = formatEditionRelativeDate(edicao.data, locale)
   const absoluteDate = formatEditionDate(edicao.data, locale)
+  const displayNumber = formatEditionNumber(edicao)
   const glossaryTerms = getGlossaryTerms(content)
   const aroundReadings = getEditionAroundReadings(edicao.slug)
   const hasMap = LOCATIONS.some(location => location.edicaoId === edicao.id)
@@ -670,7 +671,7 @@ export default function EdicaoView({ edicao, setView }) {
         <div className="edition-body">
           {!edicao.capa && (
             <header className="edicao-header">
-              <span className="edicao-numero-big">#{String(edicao.id).padStart(2, '0')}</span>
+              <span className="edicao-numero-big">{displayNumber}</span>
               <h1>{editionCopy.titulo}</h1>
               <div className="edition-meta-stack">
                 <p className="edicao-meta">{relativeDate} · {readingTime(content)}</p>
@@ -683,7 +684,7 @@ export default function EdicaoView({ edicao, setView }) {
           )}
           {edicao.capa && (
             <p className="edicao-meta edition-meta-row">
-              #{String(edicao.id).padStart(2, '0')} · {relativeDate} · {readingTime(content)}
+              {displayNumber} · {relativeDate} · {readingTime(content)}
             </p>
           )}
           <article className="edicao-content">

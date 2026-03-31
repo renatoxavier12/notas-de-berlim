@@ -6,7 +6,7 @@ import 'leaflet/dist/leaflet.css'
 import markerIcon from 'leaflet/dist/images/marker-icon.png'
 import markerShadow from 'leaflet/dist/images/marker-shadow.png'
 import LOCATIONS from '../locations.json'
-import { EDICOES } from '../lib/site'
+import { EDICOES, getEditionDisplayNumber } from '../lib/site'
 
 const defaultIcon = L.icon({
   iconUrl: markerIcon,
@@ -131,7 +131,7 @@ export default function MapaView({ setView, setEdicaoAtiva }) {
                           textAlign: 'center',
                         }}
                       >
-                        {t('map.readEdition', { id: String(edicao.id).padStart(2, '0') })}
+                        {t('map.readEdition', { id: String(getEditionDisplayNumber(edicao)).padStart(2, '0') })}
                       </button>
                     ) : null
                   })()}
