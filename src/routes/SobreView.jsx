@@ -21,23 +21,19 @@ export default function SobreView({ setView, setEdicaoAtiva }) {
 
             <div className="sobre-bio-lines">
               <p>Sou Renato Xavier,</p>
-              <p>pesquisador e escritor.</p>
+              <p>pesquisador e autor deste caderno.</p>
               <br />
               <p>Moro em Berlim desde março de 2026,</p>
-              <p>como visiting researcher no <em>Ibero-Amerikanisches Institut</em>,</p>
-              <p>fellow da FAPESP.</p>
+              <p>como visiting researcher no <em>Ibero-Amerikanisches Institut</em>, fellow da FAPESP.</p>
               <br />
               <p>Pesquiso W.E.B. Du Bois, algoritmos e raça.</p>
-              <p>Sou pesquisador associado do CEBRAP.</p>
+              <p>Associado do CEBRAP.</p>
               <br />
               <p>Bia é minha parceira.</p>
               <p>Tião é nosso spitz alemão.</p>
               <p>A leiteira queimou.</p>
               <br />
-              <p>
-                Notas de Berlim é um caderno aberto.<br />
-                Sem paywall. Sem anúncios. Sem algoritmo.
-              </p>
+              <p>Notas de Berlim é um caderno aberto, cheio de anotações.</p>
             </div>
           </div>
 
