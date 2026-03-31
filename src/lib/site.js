@@ -68,6 +68,20 @@ const markdownFiles = import.meta.glob('../edicoes/*.md', {
   eager: true,
 })
 
+const diarioFiles = import.meta.glob('../diario/*.md', {
+  query: '?raw',
+  import: 'default',
+  eager: true,
+})
+
+export const DIARIO = Object.entries(diarioFiles)
+  .map(([path, raw]) => {
+    const slug = path.replace('../diario/', '').replace('.md', '')
+    const { meta, content } = parseFrontmatter(raw)
+    return { slug, data: meta.data || '', foto: meta.foto || null, content }
+  })
+  .sort((a, b) => b.slug.localeCompare(a.slug))
+
 export function getCookie(name) {
   const match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'))
   return match ? decodeURIComponent(match[2]) : null

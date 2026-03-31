@@ -2555,6 +2555,129 @@ html[data-theme="dark"] .comment-submit-btn {
   border-color: rgba(255, 208, 0, 0.55);
 }
 
+/* ── Diário ── */
+.diario-view {
+  flex: 1;
+  padding: 56px 24px 80px;
+}
+
+.diario-inner {
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.diario-header {
+  margin-bottom: 56px;
+  padding-bottom: 32px;
+  border-bottom: 1px solid var(--border);
+}
+
+.diario-titulo {
+  font-family: var(--font-display);
+  font-size: clamp(36px, 5vw, 56px);
+  font-weight: 700;
+  margin: 8px 0 12px;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.diario-subtitulo {
+  font-family: var(--font-ui);
+  font-size: 13px;
+  color: var(--gray);
+  margin: 0;
+}
+
+.diario-feed {
+  display: flex;
+  flex-direction: column;
+}
+
+.diario-post {
+  padding: 32px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.diario-post:first-child {
+  padding-top: 0;
+}
+
+.diario-data {
+  display: block;
+  font-family: var(--font-ui);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gray);
+  margin-bottom: 12px;
+}
+
+.diario-texto {
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.7;
+  color: var(--black);
+}
+
+.diario-texto p {
+  margin: 0 0 12px;
+}
+
+.diario-texto p:last-child {
+  margin-bottom: 0;
+}
+
+.diario-foto {
+  width: 100%;
+  border-radius: 6px;
+  margin-top: 20px;
+  display: block;
+}
+
+.diario-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.diario-like {
+  display: flex;
+  align-items: center;
+  color: var(--gray);
+  transition: color 0.15s;
+}
+
+.diario-like:hover,
+.diario-like.liked {
+  color: #e03e3e;
+}
+
+.diario-comment-toggle {
+  font-family: var(--font-ui);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--gray);
+  transition: color 0.15s;
+}
+
+.diario-comment-toggle:hover {
+  color: var(--black);
+}
+
+.diario-comments {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
+}
+
+html[data-theme="dark"] .diario-texto {
+  color: rgba(255,255,255,0.88);
+}
+
 /* ── Página /apoiar ── */
 .apoiar-view {
   flex: 1;

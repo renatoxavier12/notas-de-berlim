@@ -10,6 +10,7 @@ const EdicaoView = lazy(() => import('./routes/EdicaoView'))
 const MapaView = lazy(() => import('./routes/MapaView'))
 const SobreView = lazy(() => import('./routes/SobreView'))
 const ApoiarView = lazy(() => import('./routes/ApoiarView'))
+const DiarioView = lazy(() => import('./routes/DiarioView'))
 
 function Nav({ view, edicaoAtiva, setView, dark, setDark }) {
   const { t } = useTranslation()
@@ -84,6 +85,12 @@ function Nav({ view, edicaoAtiva, setView, dark, setDark }) {
           {t('nav.about')}
         </button>
         <button
+          className={view === 'diario' ? 'active' : ''}
+          onClick={() => navigate('diario')}
+        >
+          Diário
+        </button>
+        <button
           className="nav-apoiar"
           onClick={() => navigate('apoiar')}
         >
@@ -113,6 +120,7 @@ function routeStateFromPath(pathname) {
   if (pathname === '/mapa') return { view: 'mapa', edicao: null }
   if (pathname === '/sobre') return { view: 'sobre', edicao: null }
   if (pathname === '/apoiar') return { view: 'apoiar', edicao: null }
+  if (pathname === '/diario') return { view: 'diario', edicao: null }
   return { view: 'home', edicao: null }
 }
 
@@ -161,6 +169,7 @@ function App() {
     if (view === 'mapa') newPath = '/mapa'
     if (view === 'sobre') newPath = '/sobre'
     if (view === 'apoiar') newPath = '/apoiar'
+    if (view === 'diario') newPath = '/diario'
 
     if (window.location.pathname !== newPath) {
       window.history.pushState({}, '', newPath)
@@ -186,6 +195,9 @@ function App() {
         )}
         {view === 'apoiar' && (
           <ApoiarView setView={setView} />
+        )}
+        {view === 'diario' && (
+          <DiarioView />
         )}
       </Suspense>
     </div>
