@@ -134,8 +134,8 @@ function LikePillButton({ slug }) {
   }
 
   return (
-    <button className={`btn-like-pill ${liked ? 'liked' : ''}`} onClick={toggle} title={liked ? t('edition.unlike') : t('edition.like')}>
-      <span className="icon"><IconHeart filled={liked} /></span>
+    <button className={`edition-side-action ${liked ? 'active' : ''}`} onClick={toggle} title={liked ? t('edition.unlike') : t('edition.like')}>
+      {liked ? 'Curtido' : t('edition.like')}
     </button>
   )
 }
@@ -344,18 +344,12 @@ function SidebarShare({ edicao, setView }) {
     <div className="edition-sidebar-share">
       <div className="sidebar-share-block">
         <p className="share-label">{t('edition.share')}</p>
-        <div className="sidebar-share-row">
-          <button className={`mini-btn-circle ${copied ? 'copied' : ''}`} onClick={copiar} title={t('edition.copyLink')}>
-            {copied ? (
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-                <polyline points="20 6 9 17 4 12" />
-              </svg>
-            ) : (
-              <IconLink />
-            )}
+        <div className="edition-side-actions">
+          <button className={`edition-side-action ${copied ? 'active' : ''}`} onClick={copiar} title={t('edition.copyLink')}>
+            {copied ? t('edition.copiedLink') : t('edition.copyLink')}
           </button>
-          <button className={`mini-btn-circle ${saved ? 'saved' : ''}`} onClick={toggleSaved} title={saved ? t('edition.unsave') : t('edition.save')}>
-            <IconBookmark filled={saved} />
+          <button className={`edition-side-action ${saved ? 'active' : ''}`} onClick={toggleSaved} title={saved ? t('edition.unsave') : t('edition.save')}>
+            {saved ? t('edition.unsave') : t('edition.save')}
           </button>
           <LikePillButton slug={edicao.slug} />
         </div>

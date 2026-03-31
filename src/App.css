@@ -2063,10 +2063,11 @@ button:focus-visible, a:focus-visible {
   gap: 12px;
 }
 
-.sidebar-share-row {
+.edition-side-actions {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  gap: 10px;
+  gap: 8px 14px;
 }
 
 .sidebar-meta-note {
@@ -2079,53 +2080,27 @@ button:focus-visible, a:focus-visible {
   text-wrap: pretty;
 }
 
-.mini-btn-circle {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  border: none;
-  background: #f4f4f4;
-  color: var(--black);
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: background 0.2s ease, color 0.2s ease;
-}
-
-.mini-btn-circle:hover,
-.mini-btn-circle.copied,
-.mini-btn-circle.saved {
-  background: #1a1a1a;
-  color: #fff;
-}
-
-.btn-like-pill {
-  display: flex;
-  align-items: center;
-  gap: 6px;
+.edition-side-action {
   width: fit-content;
   background: transparent;
-  border: 1px solid rgba(10, 10, 10, 0.12);
-  border-radius: 20px;
-  padding: 5px 12px;
+  border: none;
+  border-bottom: 1px solid rgba(10, 10, 10, 0.12);
+  padding: 0 0 6px;
   font-family: var(--font-ui);
-  font-size: 12px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gray);
+  transition: border-color 0.2s ease, color 0.2s ease, opacity 0.2s ease;
+  opacity: 0.86;
+}
+
+.edition-side-action:hover,
+.edition-side-action.active {
+  border-color: rgba(240, 215, 34, 0.78);
   color: var(--black);
-  cursor: pointer;
-  transition: border-color 0.2s ease, background 0.2s ease, color 0.2s ease;
-}
-
-.btn-like-pill .icon {
-  display: inline-flex;
-  line-height: 0;
-}
-
-.btn-like-pill:hover,
-.btn-like-pill.liked {
-  border-color: rgba(240, 215, 34, 0.55);
-  background: rgba(240, 215, 34, 0.08);
-  color: #a33;
+  opacity: 1;
 }
 
 .sidebar-support-card {
@@ -2480,18 +2455,6 @@ html[data-theme="dark"] .translation-fallback-note p:last-child {
   color: #b7b2a6;
 }
 
-html[data-theme="dark"] .mini-btn-circle {
-  background: #242424;
-  color: #ddd8ce;
-}
-
-html[data-theme="dark"] .mini-btn-circle:hover,
-html[data-theme="dark"] .mini-btn-circle.copied,
-html[data-theme="dark"] .mini-btn-circle.saved {
-  background: #ddd8ce;
-  color: #141414;
-}
-
 html[data-theme="dark"] .edition-map-inline {
   border-color: #3a3a3a;
   color: #ddd8ce;
@@ -2519,17 +2482,15 @@ html[data-theme="dark"] .edition-share-icon-story {
   background: rgba(240, 215, 34, 0.08);
 }
 
-html[data-theme="dark"] .btn-like-pill {
-  background: transparent;
+html[data-theme="dark"] .edition-side-action {
+  color: #b7b2a6;
   border-color: #3a3a3a;
-  color: #ddd8ce;
 }
 
-html[data-theme="dark"] .btn-like-pill:hover,
-html[data-theme="dark"] .btn-like-pill.liked {
-  background: rgba(240, 215, 34, 0.08);
+html[data-theme="dark"] .edition-side-action:hover,
+html[data-theme="dark"] .edition-side-action.active {
+  color: #f1ebd8;
   border-color: rgba(240, 215, 34, 0.38);
-  color: #f0e2a0;
 }
 
 html[data-theme="dark"] .sidebar-meta-note,
