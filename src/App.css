@@ -2718,7 +2718,8 @@ html[data-theme="dark"] .comment-submit-btn {
 }
 
 .diario-post {
-  padding: 32px 0;
+  position: relative;
+  padding: 40px 0 44px;
   border-bottom: 1px solid var(--border);
 }
 
@@ -2726,26 +2727,48 @@ html[data-theme="dark"] .comment-submit-btn {
   padding-top: 0;
 }
 
+.diario-meta-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 14px;
+}
+
 .diario-data {
-  display: block;
   font-family: var(--font-ui);
   font-size: 11px;
   font-weight: 600;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--gray);
-  margin-bottom: 12px;
+}
+
+.diario-kind {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  padding: 6px 10px 5px;
+  border-radius: 999px;
+  border: 1px solid rgba(10, 10, 10, 0.12);
+  background: rgba(10, 10, 10, 0.03);
+  font-family: var(--font-ui);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(10, 10, 10, 0.52);
 }
 
 .diario-texto {
   font-family: var(--font-body);
-  font-size: 17px;
-  line-height: 1.7;
+  font-size: 18px;
+  line-height: 1.78;
   color: var(--black);
 }
 
 .diario-texto p {
-  margin: 0 0 12px;
+  margin: 0 0 14px;
 }
 
 .diario-texto p:last-child {
@@ -2754,18 +2777,21 @@ html[data-theme="dark"] .comment-submit-btn {
 
 .diario-foto {
   width: 100%;
-  border-radius: 6px;
-  margin-top: 20px;
+  border-radius: 18px;
+  margin-top: 24px;
   display: block;
+  border: 1px solid rgba(10, 10, 10, 0.06);
+  box-shadow: 0 18px 40px rgba(10, 10, 10, 0.06);
 }
 
 .diario-video {
   position: relative;
   width: 100%;
   padding-bottom: 56.25%;
-  margin-top: 20px;
-  border-radius: 6px;
+  margin-top: 24px;
+  border-radius: 18px;
   overflow: hidden;
+  box-shadow: 0 18px 40px rgba(10, 10, 10, 0.08);
 }
 
 .diario-video iframe {
@@ -2781,7 +2807,9 @@ html[data-theme="dark"] .comment-submit-btn {
   display: flex;
   align-items: center;
   gap: 16px;
-  margin-top: 16px;
+  margin-top: 20px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(10, 10, 10, 0.08);
 }
 
 .diario-like {
@@ -2824,6 +2852,22 @@ html[data-theme="dark"] .diario-chip {
   border-color: rgba(221, 216, 206, 0.18);
   background: rgba(255, 208, 0, 0.08);
   color: rgba(255, 245, 214, 0.72);
+}
+
+html[data-theme="dark"] .diario-kind {
+  border-color: rgba(221, 216, 206, 0.16);
+  background: rgba(255, 255, 255, 0.04);
+  color: rgba(255,255,255,0.56);
+}
+
+html[data-theme="dark"] .diario-foto,
+html[data-theme="dark"] .diario-video {
+  border-color: rgba(221, 216, 206, 0.1);
+  box-shadow: 0 20px 44px rgba(0, 0, 0, 0.24);
+}
+
+html[data-theme="dark"] .diario-actions {
+  border-top-color: rgba(221, 216, 206, 0.12);
 }
 
 /* ── Página /apoiar ── */

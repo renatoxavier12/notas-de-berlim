@@ -74,10 +74,17 @@ function youtubeId(url) {
   return m ? m[1] : null
 }
 
+function getDiarioKind(post) {
+  if (post.video && youtubeId(post.video)) return 'Video'
+  if (post.foto) return 'Foto'
+  return 'Nota'
+}
+
 function DiarioPost({ post }) {
   const likeKey = `nb_like_diario_${post.slug}`
   const [liked, setLiked] = useState(() => getCookie(likeKey) === 'true')
   const [showComments, setShowComments] = useState(false)
+  const kind = getDiarioKind(post)
 
   function toggleLike() {
     const next = !liked
@@ -87,7 +94,10 @@ function DiarioPost({ post }) {
 
   return (
     <article className="diario-post">
-      <time className="diario-data">{post.data}</time>
+      <div className="diario-meta-row">
+        <time className="diario-data">{post.data}</time>
+        <span className="diario-kind">{kind}</span>
+      </div>
       <div className="diario-texto">
         <ReactMarkdown>{post.content}</ReactMarkdown>
       </div>
