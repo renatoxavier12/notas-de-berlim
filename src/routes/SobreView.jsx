@@ -1,6 +1,27 @@
 import { useTranslation } from 'react-i18next'
 import { EDICOES, formatEditionDate, getEditionCopy } from '../lib/site'
 
+const IconInstagram = () => (
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+  </svg>
+)
+
+const IconSubstack = () => (
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M22.539 8.242H1.46V5.406h21.079v2.836zM1.46 10.812V24L12 18.11 22.54 24V10.812H1.46zM22.54 0H1.46v2.836h21.079V0z" />
+  </svg>
+)
+
+const IconMail = () => (
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+    <polyline points="22,6 12,13 2,6" />
+  </svg>
+)
+
 export default function SobreView({ setView, setEdicaoAtiva }) {
   const { t, i18n } = useTranslation()
   const locale = i18n.resolvedLanguage === 'de'
@@ -52,11 +73,14 @@ export default function SobreView({ setView, setEdicaoAtiva }) {
                 renatoxavier12@gmail.com
               </a>
               <div className="sobre-contato-social">
-                <a href="https://instagram.com/renatoxavierrr" target="_blank" rel="noopener noreferrer" className="sobre-contato-link">
-                  Instagram
+                <a href="https://instagram.com/renatoxavierrr" target="_blank" rel="noopener noreferrer" className="sobre-icon-link" aria-label="Instagram">
+                  <IconInstagram />
                 </a>
-                <a href="https://renatoxavier.substack.com" target="_blank" rel="noopener noreferrer" className="sobre-contato-link">
-                  Substack
+                <a href="https://renatoxavier.substack.com" target="_blank" rel="noopener noreferrer" className="sobre-icon-link" aria-label="Substack">
+                  <IconSubstack />
+                </a>
+                <a href="mailto:renatoxavier12@gmail.com" className="sobre-icon-link" aria-label="Email">
+                  <IconMail />
                 </a>
               </div>
             </div>
