@@ -2774,13 +2774,15 @@ html[data-theme="dark"] .comment-submit-btn {
 
 .diario-video {
   position: relative;
-  width: 100%;
+  width: min(100%, 420px);
   margin-top: 24px;
+  margin-left: auto;
+  margin-right: auto;
   border-radius: 18px;
   overflow: hidden;
-  aspect-ratio: 16 / 9;
+  aspect-ratio: 9 / 16;
   border: 1px solid rgba(10, 10, 10, 0.06);
-  background: #d9d9d4;
+  background: #111;
   box-shadow: 0 18px 40px rgba(10, 10, 10, 0.08);
 }
 
@@ -2799,9 +2801,9 @@ html[data-theme="dark"] .comment-submit-btn {
   inset: 0;
   background-size: cover;
   background-position: center;
-  filter: blur(18px) saturate(0.8);
-  transform: scale(1.08);
-  opacity: 0.52;
+  filter: blur(10px) saturate(0.85);
+  transform: scale(1.04);
+  opacity: 0.22;
 }
 
 .diario-video::after {
@@ -2815,12 +2817,10 @@ html[data-theme="dark"] .comment-submit-btn {
 .diario-video-poster {
   position: relative;
   z-index: 1;
+  width: 100%;
   height: 100%;
-  width: auto;
-  max-width: min(52%, 320px);
   object-fit: cover;
-  border-radius: 14px;
-  box-shadow: 0 16px 30px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 16px 30px rgba(0, 0, 0, 0.18);
 }
 
 .diario-video-play {
