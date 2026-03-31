@@ -2706,16 +2706,26 @@ html[data-theme="dark"] .comment-submit-btn {
 .diario-feed {
   display: flex;
   flex-direction: column;
+  gap: 8px;
 }
 
 .diario-post {
   position: relative;
-  padding: 40px 0 44px;
-  border-bottom: 1px solid var(--border);
+  padding: 44px 0 52px;
 }
 
 .diario-post:first-child {
   padding-top: 0;
+}
+
+.diario-post::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 96px;
+  height: 1px;
+  background: linear-gradient(to right, rgba(10, 10, 10, 0.18), rgba(10, 10, 10, 0));
 }
 
 .diario-meta-row {
@@ -2859,6 +2869,10 @@ html[data-theme="dark"] .diario-video {
 
 html[data-theme="dark"] .diario-actions {
   border-top-color: rgba(221, 216, 206, 0.12);
+}
+
+html[data-theme="dark"] .diario-post::after {
+  background: linear-gradient(to right, rgba(221, 216, 206, 0.26), rgba(221, 216, 206, 0));
 }
 
 /* ── Página /apoiar ── */
