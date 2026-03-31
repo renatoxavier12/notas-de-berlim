@@ -247,3 +247,16 @@ export function getEditionsForSeries(edicao, edicoes = EDICOES) {
   const seriesKey = getEditionSeriesKey(edicao)
   return edicoes.filter(item => getEditionSeriesKey(item) === seriesKey)
 }
+
+export function getEditionSeriesLabel(edicao) {
+  const seriesKey = getEditionSeriesKey(edicao)
+
+  if (seriesKey === 'particulas-do-dia') return 'Particulas do dia'
+  if (seriesKey === '__default__') return 'Semanas'
+
+  return seriesKey
+    .split('-')
+    .filter(Boolean)
+    .map(part => part.charAt(0).toUpperCase() + part.slice(1))
+    .join(' ')
+}

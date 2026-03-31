@@ -2,7 +2,7 @@ import { Suspense, lazy, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import './App.css'
 import { normalizeLanguage } from './i18n'
-import { EDICOES, findEdicaoBySlug, formatEditionNumber, getCookie, getEditionsForSeries, setCookie } from './lib/site'
+import { EDICOES, findEdicaoBySlug, formatEditionNumber, getCookie, getEditionsForSeries, getEditionSeriesLabel, setCookie } from './lib/site'
 import RouteMeta from './components/RouteMeta'
 
 const HomeView = lazy(() => import('./routes/HomeView'))
@@ -16,6 +16,7 @@ function Nav({ view, edicaoAtiva, setView, dark, setDark }) {
   const { t } = useTranslation()
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const timelineEditions = edicaoAtiva ? getEditionsForSeries(edicaoAtiva) : []
+  const seriesLabel = edicaoAtiva ? getEditionSeriesLabel(edicaoAtiva) : ''
 
   function navigate(nextView) {
     setView(nextView)
@@ -40,19 +41,22 @@ function Nav({ view, edicaoAtiva, setView, dark, setDark }) {
         {t('site.name')}
       </button>
       {view === 'edicao' && edicaoAtiva && (
-        <div className="nav-timeline">
-          {timelineEditions.map(ed => (
-            <button
-              key={ed.slug}
-              className={`nav-timeline-dot${ed.slug === edicaoAtiva.slug ? ' current' : ''}`}
-              onClick={() => openEdition(ed)}
-              title={ed.titulo}
-              aria-label={ed.titulo}
-              aria-current={ed.slug === edicaoAtiva.slug ? 'page' : undefined}
-            >
-              {formatEditionNumber(ed).replace('#', '')}
-            </button>
-          ))}
+        <div className="nav-series-pill" aria-label={`Serie ${seriesLabel}`}>
+          <span className="nav-series-label">{seriesLabel}</span>
+          <div className="nav-series-numbers">
+            {timelineEditions.map(ed => (
+              <button
+                key={ed.slug}
+                className={`nav-series-number${ed.slug === edicaoAtiva.slug ? ' current' : ''}`}
+                onClick={() => openEdition(ed)}
+                title={ed.titulo}
+                aria-label={ed.titulo}
+                aria-current={ed.slug === edicaoAtiva.slug ? 'page' : undefined}
+              >
+                {formatEditionNumber(ed).replace('#', '')}
+              </button>
+            ))}
+          </div>
         </div>
       )}
       <button

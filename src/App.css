@@ -787,7 +787,7 @@ button:focus-visible, a:focus-visible {
     top: 0;
   }
 
-  .nav-timeline {
+  .nav-series-pill {
     display: none;
   }
 
@@ -1756,42 +1756,80 @@ button:focus-visible, a:focus-visible {
   padding: 16px 24px;
 }
 
-/* ── Timeline de edições na nav ── */
-.nav-timeline {
+/* ── Série na nav ── */
+.nav-series-pill {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 12px;
   pointer-events: auto;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: rgba(11, 11, 11, 0.46);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  backdrop-filter: blur(10px);
 }
 
-.nav-timeline-dot {
-  width: 26px;
-  height: 26px;
-  border-radius: 50%;
-  border: 2px solid rgba(255, 255, 255, 0.45);
-  background: transparent;
+.nav-series-label {
+  font-family: var(--font-ui);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.56);
+  white-space: nowrap;
+}
+
+.nav-series-numbers {
   display: flex;
   align-items: center;
-  justify-content: center;
+  gap: 10px;
+}
+
+.nav-series-number {
+  position: relative;
+  padding: 2px 0 6px;
+  background: transparent;
+  border: none;
   font-family: var(--font-ui);
-  font-size: 11px;
+  font-size: 16px;
   font-weight: 700;
-  color: rgba(255, 255, 255, 0.7);
-  transition: background 0.15s, color 0.15s, border-color 0.15s;
+  letter-spacing: 0.04em;
+  color: rgba(255, 255, 255, 0.52);
+  transition: color 0.18s ease;
 }
 
-.nav-timeline-dot.current {
+.nav-series-number::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  border-radius: 999px;
+  background: transparent;
+  transition: background 0.18s ease, transform 0.18s ease;
+  transform: scaleX(0.35);
+}
+
+.nav-series-number.current {
+  color: #f7f0cf;
+}
+
+.nav-series-number.current::after {
   background: var(--yellow);
-  border-color: var(--yellow);
-  color: var(--black);
+  transform: scaleX(1);
 }
 
-.nav-timeline-dot:hover:not(.current) {
-  border-color: #fff;
+.nav-series-number:hover:not(.current) {
   color: #fff;
+}
+
+.nav-series-number:hover:not(.current)::after {
+  background: rgba(255, 255, 255, 0.42);
+  transform: scaleX(0.7);
 }
 
 /* ── Edition hero ── */
