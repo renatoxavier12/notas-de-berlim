@@ -135,5 +135,25 @@
     "line": "U8",
     "color": "#009AD3",
     "edicaoId": 3
+  },
+  {
+    "id": 401,
+    "name": "Passenger Coffee",
+    "coords": [52.4988, 13.4455],
+    "description": "Wrangelstraße 80, 10997 Berlin. Ambiente gostoso, café delicioso. Som europeu alternativo num volume bom. Estávamos de olho há três semanas.",
+    "line": "U1",
+    "color": "#79B643",
+    "edicaoId": 4,
+    "imageUrl": "/edicao-04-cafe.jpg"
+  },
+  {
+    "id": 402,
+    "name": "Eurogida",
+    "coords": [52.4986, 13.4441],
+    "description": "Wrangelstraße 70, 10997 Berlin. Frutas, verduras, muita coisa turca — e uma prateleira de feijão que dispensaria qualquer saudade: branco, preto, carioca, vermelho, mungo.",
+    "line": "U1",
+    "color": "#79B643",
+    "edicaoId": 4,
+    "imageUrl": "/edicao-04-feijoes.jpg"
   }
 ]
