@@ -760,7 +760,7 @@ button:focus-visible, a:focus-visible {
 
 /* ── Sidenotes ── */
 .sidenote-wrapper {
-  position: relative;
+  display: inline;
 }
 
 .sidenote-ref {
@@ -779,35 +779,26 @@ button:focus-visible, a:focus-visible {
   cursor: pointer;
   vertical-align: super;
   line-height: 1;
-  margin: 0 1px;
+  margin: 0 2px;
   transition: opacity 0.15s;
+  flex-shrink: 0;
 }
 
 .sidenote-ref:hover {
   opacity: 0.75;
 }
 
+/* Base: hidden everywhere */
 .sidenote {
   display: none;
-  position: absolute;
-  left: calc(100% + 1.5rem);
-  top: -0.25em;
-  width: 220px;
-  font-size: 13px;
-  line-height: 1.55;
-  color: var(--gray);
-  font-style: italic;
-  background: transparent;
-  padding: 0;
-  pointer-events: none;
 }
 
 .sidenote-number {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 14px;
-  height: 14px;
+  width: 13px;
+  height: 13px;
   border-radius: 50%;
   background: var(--yellow);
   color: var(--bg);
@@ -819,26 +810,35 @@ button:focus-visible, a:focus-visible {
   vertical-align: middle;
 }
 
-/* Desktop: show sidenote always in margin */
-@media (min-width: 1100px) {
+/* Desktop: float into right margin of text column */
+@media (min-width: 1000px) {
   .sidenote {
-    display: inline;
-    position: absolute;
+    display: block;
+    float: right;
+    clear: right;
+    width: 200px;
+    margin: 0.2em -220px 1em 1em;
+    font-size: 12.5px;
+    line-height: 1.55;
+    color: var(--gray);
+    font-style: italic;
   }
 }
 
-/* Mobile/tablet: show on click */
-@media (max-width: 1099px) {
+/* Mobile/tablet: expand inline on tap */
+@media (max-width: 999px) {
   .sidenote {
     display: none;
-    position: static;
-    width: auto;
-    margin: 0.5em 0 0.5em 1em;
+    width: 100%;
+    margin: 0.5em 0;
     padding: 0.5em 0.75em;
-    background: var(--surface, rgba(0,0,0,0.04));
+    background: rgba(0,0,0,0.04);
     border-left: 2px solid var(--yellow);
     border-radius: 0 4px 4px 0;
-    pointer-events: auto;
+    font-size: 13px;
+    line-height: 1.55;
+    color: var(--gray);
+    font-style: italic;
   }
 
   .sidenote.sidenote-open {
@@ -848,6 +848,10 @@ button:focus-visible, a:focus-visible {
 
 html[data-theme="dark"] .sidenote {
   color: var(--gray);
+}
+
+html[data-theme="dark"] .sidenote {
+  background: rgba(255,255,255,0.05);
 }
 
 html[data-theme="dark"] .sidenote-ref {
