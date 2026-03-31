@@ -68,6 +68,12 @@ function DiarioComments({ slug }) {
   )
 }
 
+function youtubeId(url) {
+  if (!url) return null
+  const m = url.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?(?:.*&)?v=|embed\/|shorts\/))([A-Za-z0-9_-]{11})/)
+  return m ? m[1] : null
+}
+
 function DiarioPost({ post }) {
   const likeKey = `nb_like_diario_${post.slug}`
   const [liked, setLiked] = useState(() => getCookie(likeKey) === 'true')
@@ -87,6 +93,16 @@ function DiarioPost({ post }) {
       </div>
       {post.foto && (
         <img src={post.foto} alt="" className="diario-foto" loading="lazy" />
+      )}
+      {post.video && youtubeId(post.video) && (
+        <div className="diario-video">
+          <iframe
+            src={`https://www.youtube.com/embed/${youtubeId(post.video)}`}
+            title="Video"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+          />
+        </div>
       )}
       <div className="diario-actions">
         <button

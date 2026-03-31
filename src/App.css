@@ -2685,6 +2685,24 @@ html[data-theme="dark"] .comment-submit-btn {
   display: block;
 }
 
+.diario-video {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%;
+  margin-top: 20px;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.diario-video iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
 .diario-actions {
   display: flex;
   align-items: center;
