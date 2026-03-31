@@ -2794,7 +2794,7 @@ html[data-theme="dark"] .comment-submit-btn {
 .diario-actions {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 18px;
   margin-top: 20px;
   padding-top: 14px;
   border-top: 1px solid rgba(10, 10, 10, 0.08);
@@ -2803,27 +2803,37 @@ html[data-theme="dark"] .comment-submit-btn {
 .diario-like {
   display: flex;
   align-items: center;
+  gap: 8px;
+  font-family: var(--font-ui);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
   color: var(--gray);
-  transition: color 0.15s;
+  transition: color 0.15s, opacity 0.15s;
+  opacity: 0.82;
 }
 
 .diario-like:hover,
 .diario-like.liked {
   color: #e03e3e;
+  opacity: 1;
 }
 
 .diario-comment-toggle {
   font-family: var(--font-ui);
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 600;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--gray);
-  transition: color 0.15s;
+  transition: color 0.15s, opacity 0.15s;
+  opacity: 0.82;
 }
 
 .diario-comment-toggle:hover {
   color: var(--black);
+  opacity: 1;
 }
 
 .diario-comments {
@@ -2852,6 +2862,10 @@ html[data-theme="dark"] .diario-video {
 
 html[data-theme="dark"] .diario-actions {
   border-top-color: rgba(221, 216, 206, 0.12);
+}
+
+html[data-theme="dark"] .diario-comment-toggle:hover {
+  color: rgba(255,255,255,0.9);
 }
 
 html[data-theme="dark"] .diario-post::after {

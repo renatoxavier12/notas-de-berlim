@@ -121,6 +121,7 @@ function DiarioPost({ post }) {
           aria-label={liked ? 'Remover curtida' : 'Curtir'}
         >
           <IconHeart filled={liked} />
+          <span>{liked ? 'Curtido' : 'Curtir'}</span>
         </button>
         <button
           className="diario-comment-toggle"
