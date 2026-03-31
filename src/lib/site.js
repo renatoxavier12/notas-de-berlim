@@ -60,6 +60,13 @@ const EDITION_AROUND_READINGS = {
       note: 'Conferência que atravessa esta edição: tempo, memória, sucessão e a estranheza do presente.',
     },
   ],
+  'particulas-do-dia-1': [
+    {
+      title: 'Wolfgang Schivelbusch, "Das Paradies, der Geschmack und die Vernunft"',
+      meta: 'Frankfurt, 1980',
+      note: 'Como café, álcool e outros vícios ajudaram a organizar o mundo moderno — resgatado da rua em Kreuzberg.',
+    },
+  ],
 }
 
 const markdownFiles = import.meta.glob('../edicoes/*.md', {
