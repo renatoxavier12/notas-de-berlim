@@ -89,7 +89,9 @@ function DiarioPost({ post }) {
   const likeKey = `nb_like_diario_${post.slug}`
   const [liked, setLiked] = useState(() => getCookie(likeKey) === 'true')
   const [showComments, setShowComments] = useState(false)
+  const [videoOpen, setVideoOpen] = useState(false)
   const kind = getDiarioKind(post)
+  const videoId = youtubeId(post.video)
 
   function toggleLike() {
     const next = !liked
@@ -109,26 +111,37 @@ function DiarioPost({ post }) {
       {post.foto && (
         <img src={post.foto} alt="" className="diario-foto" loading="lazy" />
       )}
-      {post.video && youtubeId(post.video) && (
-        <a
-          className="diario-video"
-          href={post.video}
-          target="_blank"
-          rel="noreferrer"
-          aria-label="Abrir vídeo no YouTube"
-        >
-          <div
-            className="diario-video-backdrop"
-            style={{ backgroundImage: `url(${youtubePoster(post.video)})` }}
-          />
-          <img
-            src={youtubePoster(post.video)}
-            alt=""
-            className="diario-video-poster"
-            loading="lazy"
-          />
-          <span className="diario-video-play" aria-hidden="true">Play</span>
-        </a>
+      {post.video && videoId && (
+        <div className={`diario-video${videoOpen ? ' is-open' : ''}`}>
+          {!videoOpen && (
+            <button
+              type="button"
+              className="diario-video-trigger"
+              onClick={() => setVideoOpen(true)}
+              aria-label="Reproduzir vídeo"
+            >
+              <div
+                className="diario-video-backdrop"
+                style={{ backgroundImage: `url(${youtubePoster(post.video)})` }}
+              />
+              <img
+                src={youtubePoster(post.video)}
+                alt=""
+                className="diario-video-poster"
+                loading="lazy"
+              />
+              <span className="diario-video-play" aria-hidden="true">Play</span>
+            </button>
+          )}
+          {videoOpen && (
+            <iframe
+              src={`https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1`}
+              title="Vídeo do Diário"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            />
+          )}
+        </div>
       )}
       <div className="diario-actions">
         <button
