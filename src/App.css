@@ -1065,8 +1065,8 @@ button:focus-visible, a:focus-visible {
   }
 
   .sobre-foto-circular {
-    width: 90px;
-    height: 90px;
+    width: 80px;
+    height: 100px;
     flex-shrink: 0;
   }
 
@@ -1178,11 +1178,11 @@ button:focus-visible, a:focus-visible {
 }
 
 .sobre-foto-circular {
-  width: 160px;
-  height: 160px;
-  border-radius: 50%;
+  width: 180px;
+  height: 220px;
+  border-radius: 8px;
   object-fit: cover;
-  object-position: center top;
+  object-position: center;
   display: block;
 }
 
