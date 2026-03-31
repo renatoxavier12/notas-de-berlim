@@ -74,8 +74,13 @@ function youtubeId(url) {
   return m ? m[1] : null
 }
 
+function youtubePoster(url) {
+  const id = youtubeId(url)
+  return id ? `https://i.ytimg.com/vi/${id}/hqdefault.jpg` : null
+}
+
 function getDiarioKind(post) {
-  if (post.video && youtubeId(post.video)) return 'Video'
+  if (post.video && youtubeId(post.video)) return 'Vídeo'
   if (post.foto) return 'Foto'
   return 'Nota'
 }
@@ -105,14 +110,25 @@ function DiarioPost({ post }) {
         <img src={post.foto} alt="" className="diario-foto" loading="lazy" />
       )}
       {post.video && youtubeId(post.video) && (
-        <div className="diario-video">
-          <iframe
-            src={`https://www.youtube.com/embed/${youtubeId(post.video)}`}
-            title="Video"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
+        <a
+          className="diario-video"
+          href={post.video}
+          target="_blank"
+          rel="noreferrer"
+          aria-label="Abrir vídeo no YouTube"
+        >
+          <div
+            className="diario-video-backdrop"
+            style={{ backgroundImage: `url(${youtubePoster(post.video)})` }}
           />
-        </div>
+          <img
+            src={youtubePoster(post.video)}
+            alt=""
+            className="diario-video-poster"
+            loading="lazy"
+          />
+          <span className="diario-video-play" aria-hidden="true">Play</span>
+        </a>
       )}
       <div className="diario-actions">
         <button
