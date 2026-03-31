@@ -64,7 +64,7 @@ const EDITION_AROUND_READINGS = {
     {
       title: 'Wolfgang Schivelbusch, "Das Paradies, der Geschmack und die Vernunft"',
       meta: 'Frankfurt, 1980',
-      note: 'Como café, álcool e outros vícios ajudaram a organizar o mundo moderno — resgatado da rua em Kreuzberg.',
+      note: 'Como café, álcool e outros vícios ajudaram a organizar o mundo moderno. Resgatado da rua em Kreuzberg.',
     },
   ],
 }
