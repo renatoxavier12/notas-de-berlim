@@ -2657,8 +2657,8 @@ html[data-theme="dark"] .comment-submit-btn {
 }
 
 .diario-header {
-  margin-bottom: 56px;
-  padding-bottom: 36px;
+  margin-bottom: 46px;
+  padding-bottom: 28px;
   border-bottom: 1px solid var(--border);
 }
 
@@ -2666,23 +2666,23 @@ html[data-theme="dark"] .comment-submit-btn {
   display: flex;
   align-items: center;
   gap: 12px;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
 
 .diario-titulo {
   font-family: var(--font-display);
   font-size: clamp(36px, 5vw, 56px);
   font-weight: 700;
-  margin: 8px 0 12px;
+  margin: 6px 0 10px;
   line-height: 1;
   letter-spacing: -0.02em;
 }
 
 .diario-subtitulo {
-  max-width: 30ch;
+  max-width: 24ch;
   font-family: var(--font-display);
-  font-size: clamp(22px, 3vw, 28px);
-  line-height: 1.2;
+  font-size: clamp(20px, 2.7vw, 25px);
+  line-height: 1.18;
   letter-spacing: -0.02em;
   margin: 0;
 }
