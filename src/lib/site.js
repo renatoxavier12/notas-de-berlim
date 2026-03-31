@@ -1,6 +1,6 @@
 export const SITE_URL = 'https://notasdeberlim.com'
 export const SITE_NAME = 'Notas de Berlim'
-export const SITE_DESCRIPTION = 'Comida, drink, Kultur. Vida em Berlim.'
+export const SITE_DESCRIPTION = 'Ensaios sobre a vida em Berlim.'
 export const DEFAULT_OG_IMAGE = `${SITE_URL}/og.jpg`
 
 const PT_MONTHS = {

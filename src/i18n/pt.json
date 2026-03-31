@@ -1,7 +1,7 @@
 {
   "site": {
     "name": "Notas de Berlim",
-    "description": "Comida, drink, Kultur. Vida em Berlim."
+    "description": "Ensaios sobre a vida em Berlim."
   },
   "nav": {
     "archive": "Arquivo",
@@ -17,7 +17,7 @@
   "home": {
     "kicker": "BERLIM, 2026",
     "title": "Notas de Berlim",
-    "subtitle": "Ensaios sobre cidade, cultura e vida cotidiana em Berlim",
+    "subtitle": "Ensaios sobre a vida em Berlim.",
     "editions": "EDIÇÕES",
     "allKiezes": "Todos os Kieze",
     "kiezLabel": "Filtrar por Kiez",

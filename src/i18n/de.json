@@ -1,7 +1,7 @@
 {
   "site": {
     "name": "Notizen aus Berlin",
-    "description": "Essen, Drinks, Kultur. Leben in Berlin."
+    "description": "Essays über das Leben in Berlin."
   },
   "nav": {
     "archive": "Archiv",
@@ -17,7 +17,7 @@
   "home": {
     "kicker": "BERLIN, 2026",
     "title": "Notizen aus Berlin",
-    "subtitle": "Essen, Drinks, Kultur. Leben in Berlin.",
+    "subtitle": "Essays über das Leben in Berlin.",
     "editions": "AUSGABEN",
     "allKiezes": "Alle Kieze",
     "kiezLabel": "Nach Kiez filtern",
