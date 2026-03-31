@@ -1,7 +1,7 @@
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { MapPinned } from 'lucide-react'
-import { EDICOES, formatEditionRelativeDate, getEditionCopy, getEditionKiezes, normalizeEmail, setCookie } from '../lib/site'
+import { EDICOES, formatEditionRelativeDate, getEditionCopy, getEditionKiez, getEditionKiezes, normalizeEmail, setCookie } from '../lib/site'
 
 function SubscribeForm() {
   const { t } = useTranslation()
@@ -64,17 +64,31 @@ export default function HomeView({ setView, setEdicaoAtiva }) {
   const { t, i18n } = useTranslation()
   const [query, setQuery] = useState('')
   const [selectedKiez, setSelectedKiez] = useState('all')
+  const [kiezMenuOpen, setKiezMenuOpen] = useState(false)
+  const kiezMenuRef = useRef(null)
   const locale = i18n.resolvedLanguage === 'de'
     ? 'de-DE'
     : i18n.resolvedLanguage === 'en'
       ? 'en-US'
       : 'pt-BR'
-  const kiezes = getEditionKiezes(EDICOES)
+  const kiezes = getEditionKiezes(EDICOES).filter(kiez => /kiez/i.test(kiez))
+
+  useEffect(() => {
+    function handlePointerDown(event) {
+      if (kiezMenuRef.current && !kiezMenuRef.current.contains(event.target)) {
+        setKiezMenuOpen(false)
+      }
+    }
+
+    document.addEventListener('mousedown', handlePointerDown)
+    return () => document.removeEventListener('mousedown', handlePointerDown)
+  }, [])
 
   const filtered = EDICOES.filter(edicao => {
     const editionCopy = getEditionCopy(edicao, t)
     const normalizedQuery = query.toLowerCase()
-    const matchesKiez = selectedKiez === 'all' || editionCopy.bairro.includes(selectedKiez)
+    const editionKiez = getEditionKiez(editionCopy.bairro)
+    const matchesKiez = selectedKiez === 'all' || editionKiez === selectedKiez
 
     return matchesKiez && (
       !query ||
@@ -106,24 +120,43 @@ export default function HomeView({ setView, setEdicaoAtiva }) {
               value={query}
               onChange={event => setQuery(event.target.value)}
             />
-            <div className="kiez-filter-row" aria-label={t('home.kiezLabel')}>
+            <div className="kiez-filter-row" aria-label={t('home.kiezLabel')} ref={kiezMenuRef}>
               <button
                 type="button"
-                className={`kiez-filter-chip ${selectedKiez === 'all' ? 'active' : ''}`}
-                onClick={() => setSelectedKiez('all')}
+                className={`kiez-filter-chip kiez-filter-trigger ${selectedKiez !== 'all' ? 'active' : ''} ${kiezMenuOpen ? 'open' : ''}`}
+                onClick={() => setKiezMenuOpen(open => !open)}
+                aria-haspopup="menu"
+                aria-expanded={kiezMenuOpen}
               >
-                {t('home.allKiezes')}
+                {selectedKiez === 'all' ? t('home.kiezMenu') : selectedKiez}
               </button>
-              {kiezes.map(kiez => (
-                <button
-                  key={kiez}
-                  type="button"
-                  className={`kiez-filter-chip ${selectedKiez === kiez ? 'active' : ''}`}
-                  onClick={() => setSelectedKiez(kiez)}
-                >
-                  {kiez}
-                </button>
-              ))}
+              {kiezMenuOpen && (
+                <div className="kiez-filter-menu" role="menu">
+                  <button
+                    type="button"
+                    className={`kiez-filter-option ${selectedKiez === 'all' ? 'active' : ''}`}
+                    onClick={() => {
+                      setSelectedKiez('all')
+                      setKiezMenuOpen(false)
+                    }}
+                  >
+                    {t('home.allKiezes')}
+                  </button>
+                  {kiezes.map(kiez => (
+                    <button
+                      key={kiez}
+                      type="button"
+                      className={`kiez-filter-option ${selectedKiez === kiez ? 'active' : ''}`}
+                      onClick={() => {
+                        setSelectedKiez(kiez)
+                        setKiezMenuOpen(false)
+                      }}
+                    >
+                      {kiez}
+                    </button>
+                  ))}
+                </div>
+              )}
             </div>
           </div>
         </div>

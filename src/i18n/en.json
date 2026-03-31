@@ -20,6 +20,7 @@
     "subtitle": "Essays on life in Berlin.",
     "editions": "EDITIONS",
     "allKiezes": "All Kieze",
+    "kiezMenu": "Kiez",
     "kiezLabel": "Filter by Kiez",
     "searchPlaceholder": "Search...",
     "noResults": "No editions found."
