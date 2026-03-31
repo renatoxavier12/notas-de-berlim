@@ -1051,21 +1051,35 @@ button:focus-visible, a:focus-visible {
     min-height: 200px;
   }
 
-  .sobre-foto-placeholder,
-  .sobre-foto {
-    width: min(100%, 240px);
-    height: auto;
-    aspect-ratio: 9 / 11;
+  .sobre-layout {
+    flex-direction: column-reverse;
+    gap: 40px;
   }
 
-  .sobre-bio {
+  .sobre-sidebar {
+    position: static;
     width: 100%;
+    flex-direction: row;
+    align-items: flex-start;
+    text-align: left;
   }
 
-  .sobre-texto {
-    text-align: left;
-    hyphens: manual;
-    -webkit-hyphens: manual;
+  .sobre-foto-circular {
+    width: 90px;
+    height: 90px;
+    flex-shrink: 0;
+  }
+
+  .sobre-contato {
+    align-items: flex-start;
+  }
+
+  .sobre-contato-social {
+    align-items: flex-start;
+  }
+
+  .sobre-bio-lines p {
+    font-size: 18px;
   }
 
   .comment-header {
@@ -1117,89 +1131,110 @@ button:focus-visible, a:focus-visible {
   }
 }
 
-.sobre-foto-placeholder {
-  width: 180px;
-  height: 220px;
-  background: var(--border);
-  flex-shrink: 0;
+.sobre-layout {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: var(--font-ui);
-  font-size: 12px;
-  color: var(--gray);
-  border: 2px dashed var(--border);
+  gap: 80px;
+  align-items: flex-start;
+  margin: 40px 0 72px;
 }
 
-.sobre-foto {
-  width: 180px;
-  height: 220px;
-  object-fit: cover;
-  flex-shrink: 0;
-  border-radius: 12px;
-}
-
-.sobre-nome {
-  font-family: var(--font-display);
-  font-size: 36px;
-  font-weight: 700;
-  margin: 8px 0 20px;
-  line-height: 1.1;
-}
-
-.sobre-bio {
+.sobre-main {
   flex: 1;
+  min-width: 0;
 }
 
-.sobre-texto {
+.sobre-bio-lines {
+  margin-top: 28px;
+}
+
+.sobre-bio-lines p {
   font-family: var(--font-body);
-  font-size: 17px;
-  line-height: 1.75;
-  color: #444;
-  margin: 0 0 16px;
-  text-align: justify;
-  hyphens: auto;
-  -webkit-hyphens: auto;
+  font-size: 22px;
+  line-height: 1.55;
+  color: var(--black);
+  margin: 0;
 }
 
-.sobre-links {
+.sobre-bio-lines br {
+  display: block;
+  content: '';
+  margin-top: 16px;
+}
+
+.sobre-sidebar {
+  width: 200px;
+  flex-shrink: 0;
+  position: sticky;
+  top: calc(var(--nav-h) + 32px);
   display: flex;
-  gap: 24px;
-  margin-top: 32px;
+  flex-direction: column;
   align-items: center;
-  flex-wrap: wrap;
+  text-align: center;
+  gap: 20px;
 }
 
-.social-group {
-  display: flex;
-  gap: 12px;
-}
-
-.sobre-link {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 44px;
-  height: 44px;
-  border: 2px solid var(--black);
+.sobre-foto-circular {
+  width: 160px;
+  height: 160px;
   border-radius: 50%;
-  text-decoration: none;
-  transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  object-fit: cover;
+  object-position: center top;
+  display: block;
 }
 
-.sobre-link:hover {
-  background: var(--black);
-  color: var(--bg) !important;
-  transform: translateY(-4px);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+.sobre-contato {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  width: 100%;
 }
 
-.sobre-link:hover span {
-  color: white !important;
+.sobre-contato-label {
+  font-family: var(--font-ui);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gray);
+  margin: 0 0 8px;
+}
+
+.sobre-contato-nome {
+  font-family: var(--font-ui);
+  font-size: 14px;
+  font-weight: 700;
+  margin: 0 0 4px;
+  color: var(--black);
+}
+
+.sobre-contato-link {
+  font-family: var(--font-ui);
+  font-size: 13px;
+  color: var(--gray);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  display: block;
+  transition: color 0.15s;
+}
+
+.sobre-contato-link:hover {
+  color: var(--black);
+}
+
+.sobre-contato-social {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  margin-top: 4px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+  width: 100%;
 }
 
 .sobre-edicoes {
-  border-top: 3px solid var(--black);
+  border-top: 1px solid var(--border);
   padding-top: 32px;
 }
 
@@ -2175,22 +2210,20 @@ html[data-theme="dark"] .gate-text {
   color: #aaa;
 }
 
-html[data-theme="dark"] .sobre-texto {
-  color: #aaa;
+html[data-theme="dark"] .sobre-bio-lines p {
+  color: rgba(255,255,255,0.88);
 }
 
-html[data-theme="dark"] .sobre-link {
-  color: #ddd8ce;
-  border-color: #3a3a3a;
+html[data-theme="dark"] .sobre-contato-nome {
+  color: rgba(255,255,255,0.9);
 }
 
-html[data-theme="dark"] .sobre-link:hover {
-  background: #ddd8ce;
-  color: #141414;
+html[data-theme="dark"] .sobre-contato-link:hover {
+  color: #fff;
 }
 
 html[data-theme="dark"] .sobre-edicoes {
-  border-top-color: #3a3a3a;
+  border-top-color: rgba(255,255,255,0.1);
 }
 
 html[data-theme="dark"] .subscribe-input {

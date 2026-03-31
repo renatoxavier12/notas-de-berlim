@@ -1,27 +1,6 @@
 import { useTranslation } from 'react-i18next'
 import { EDICOES, formatEditionDate, getEditionCopy } from '../lib/site'
 
-const IconInstagram = () => (
-  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
-    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
-    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
-  </svg>
-)
-
-const IconSubstack = () => (
-  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-    <path d="M22.539 8.242H1.46V5.406h21.079v2.836zM1.46 10.812V24L12 18.11 22.54 24V10.812H1.46zM22.54 0H1.46v2.836h21.079V0z" />
-  </svg>
-)
-
-const IconMail = () => (
-  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
-    <polyline points="22,6 12,13 2,6" />
-  </svg>
-)
-
 export default function SobreView({ setView, setEdicaoAtiva }) {
   const { t, i18n } = useTranslation()
   const locale = i18n.resolvedLanguage === 'de'
@@ -33,42 +12,65 @@ export default function SobreView({ setView, setEdicaoAtiva }) {
   return (
     <div className="sobre-view">
       <div className="sobre-inner">
-        <button className="back-btn" onClick={() => setView('home')}>{t('about.back')}</button>
 
-        <div className="sobre-hero">
-          <div className="sobre-foto-placeholder">
-            <img src="/euetiao.jpg" alt={t('about.photoAlt')} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+        <div className="sobre-layout">
+
+          {/* ── Texto principal ── */}
+          <div className="sobre-main">
+            <p className="home-kicker">O AUTOR</p>
+
+            <div className="sobre-bio-lines">
+              <p>Sou Renato Xavier,</p>
+              <p>pesquisador, escritor e dono do Tião.</p>
+              <br />
+              <p>Moro em Berlim desde março de 2026,</p>
+              <p>como pós-doutorando no <em>Ibero-Amerikanisches Institut</em>.</p>
+              <br />
+              <p>Pesquiso W.E.B. Du Bois, algoritmos e raça.</p>
+              <p>Sou filiado ao CEBRAP e à FAPESP.</p>
+              <br />
+              <p>Bia é minha parceira.</p>
+              <p>Tião é nosso spitz alemão.</p>
+              <p>A leiteira foi esquecida no Brasil.</p>
+              <br />
+              <p>
+                Notas de Berlim é um caderno aberto.<br />
+                Sem paywall. Sem anúncios. Sem algoritmo.
+              </p>
+            </div>
           </div>
-          <div className="sobre-bio">
-            <p className="home-kicker">{t('about.kicker')}</p>
-            <h1 className="sobre-nome">{t('about.name')}</h1>
-            <p className="sobre-texto">
-              {t('about.bio1')}
-            </p>
-            <p className="sobre-texto">
-              <em>{t('about.bio2')}</em>
-            </p>
-            <div className="sobre-links">
-              <div className="social-group">
-                <a href="https://instagram.com/renatoxavierrr" target="_blank" rel="noopener noreferrer" className="sobre-link" aria-label="Instagram">
-                  <span style={{ display: 'flex' }}><IconInstagram /></span>
+
+          {/* ── Sidebar: foto + contato ── */}
+          <aside className="sobre-sidebar">
+            <img
+              src="/euetiao.jpg"
+              alt="Renato Xavier e Tião"
+              className="sobre-foto-circular"
+            />
+            <div className="sobre-contato">
+              <p className="sobre-contato-label">Contato &amp; Redes</p>
+              <p className="sobre-contato-nome">Renato Xavier</p>
+              <a href="mailto:renatoxavier12@gmail.com" className="sobre-contato-link">
+                renatoxavier12@gmail.com
+              </a>
+              <div className="sobre-contato-social">
+                <a href="https://instagram.com/renatoxavierrr" target="_blank" rel="noopener noreferrer" className="sobre-contato-link">
+                  Instagram
                 </a>
-                <a href="https://renatoxavier.substack.com" target="_blank" rel="noopener noreferrer" className="sobre-link" aria-label="Substack">
-                  <span style={{ display: 'flex' }}><IconSubstack /></span>
-                </a>
-                <a href="mailto:renatoxavier12@gmail.com" className="sobre-link" aria-label="Contato">
-                  <span style={{ display: 'flex' }}><IconMail /></span>
+                <a href="https://renatoxavier.substack.com" target="_blank" rel="noopener noreferrer" className="sobre-contato-link">
+                  Substack
                 </a>
               </div>
             </div>
-          </div>
+          </aside>
+
         </div>
 
+        {/* ── Edições publicadas ── */}
         <div className="sobre-edicoes">
           <p className="section-label">{t('about.published')}</p>
           {EDICOES.map(edicao => {
             const editionCopy = getEditionCopy(edicao, t)
-
             return (
               <button
                 key={edicao.id}
@@ -88,6 +90,7 @@ export default function SobreView({ setView, setEdicaoAtiva }) {
             )
           })}
         </div>
+
       </div>
     </div>
   )
