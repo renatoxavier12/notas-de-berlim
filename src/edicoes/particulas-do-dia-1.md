@@ -23,13 +23,13 @@ A Bia está completamente focada na sua nova fase da carreira, fazendo um curso 
 
 Enquanto escrevo essas poucas linhas, a chuva lá fora aperta. Nada de leve, nada de calmaria. Olhamos um para o outro e foi automático: não trouxemos guarda-chuva. Seguimos acreditando na previsão, mas ainda carregamos o hábito dos trópicos, onde o tempo raramente cumpre o que promete.
 
-O café, de repente, ficou cheio. A chuva trouxe todo mundo para dentro. O cheiro de café aqui é maravilhoso. Não sou dos maiores fãs de café puro, mas poucas coisas superam o cheiro de café pela manhã e em ambientes assim.
+O Café, de repente, ficou cheio. A chuva trouxe todo mundo para dentro. O cheiro de café aqui é maravilhoso. Não sou dos maiores fãs de café puro, mas poucas coisas superam o cheiro de café pela manhã e em ambientes assim.
 
 Tenho repetido algumas coisas nas idas a cafés, tentando sair do café com leite: tomar matcha latte e, sempre que possível, pedir um bolo de laranja ou banana. Essa combinação tem sido um sucesso.
 
 A série "Semanas" acabou, como disse na última news, e acho que já tenho uma nova para chamar de minha: "Partículas do dia". Pegue um café, um vinho, uma cerveja ou apenas leia sem estimulantes.
 
-Por falar em estimulantes, resgatei da rua um livro do Wolfgang Schivelbusch sobre como café, álcool e outros "vícios" ajudaram a organizar o mundo moderno. Como o café passa a ocupar um lugar central na vida cotidiana, enquanto o álcool vai sendo deslocado para outros momentos, tudo isso em sintonia com o ritmo do capitalismo. O sistema se retroalimenta. Está em alemão, então por enquanto a leitura vai ter que esperar: *Das Paradies, der Geschmack und die Vernunft*.
+Por falar em estimulantes, resgatei da rua um livro do Wolfgang Schivelbusch sobre como café, álcool e outros "vícios" ajudaram a organizar o mundo moderno. Como o café passa a ocupar um lugar central na vida cotidiana, enquanto o álcool vai sendo deslocado para outros momentos, tudo isso em sintonia com o ritmo do capitalismo. O sistema se retroalimenta. Está em alemão, então por enquanto a leitura vai ter que esperar: Das Paradies, der Geschmack und die Vernunft.
 
 A chuva parou, faltando poucos minutos para o Passenger fechar. Saímos caminhando devagar, não por outro motivo senão o cuidado redobrado com o joelho. O céu abriu. Um crepúsculo perfeito.
 
@@ -39,4 +39,4 @@ Na volta, paramos no Eurogida, um dos melhores mercados para frutas, verduras e 
 
 Enfim, preciso entender mais o consumo dessa leguminosa por essas bandas e aproveitar para fazer uma feijoada, quem sabe um cassoulet ou até um kuru fasulye (aprendi o nome hoje).
 
-Na aba diário, notas rápidas, comidas quentes e fotos lentas. Receitinhas não, ou talvez.
+Para encerrar por hoje, aproveito para dizer que, na aba "diário", vão aparecer notas rápidas, comidas quentes e fotos lentas. Receitinhas não, ou talvez.
