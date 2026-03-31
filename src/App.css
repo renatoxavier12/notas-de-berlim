@@ -1143,6 +1143,10 @@ button:focus-visible, a:focus-visible {
   min-width: 0;
 }
 
+.sobre-main .home-kicker {
+  color: var(--gray);
+}
+
 .sobre-bio-lines {
   margin-top: 28px;
 }
@@ -1226,6 +1230,7 @@ button:focus-visible, a:focus-visible {
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: center;
   gap: 12px;
   margin-top: 4px;
   padding-top: 12px;
