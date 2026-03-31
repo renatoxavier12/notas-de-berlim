@@ -69,9 +69,6 @@ export default function SobreView({ setView, setEdicaoAtiva }) {
             <div className="sobre-contato">
               <p className="sobre-contato-label">Contato &amp; Redes</p>
               <p className="sobre-contato-nome">Renato Xavier</p>
-              <a href="mailto:renatoxavier12@gmail.com" className="sobre-contato-link">
-                renatoxavier12@gmail.com
-              </a>
               <div className="sobre-contato-social">
                 <a href="https://instagram.com/renatoxavierrr" target="_blank" rel="noopener noreferrer" className="sobre-icon-link" aria-label="Instagram">
                   <IconInstagram />
