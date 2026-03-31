@@ -2665,24 +2665,8 @@ html[data-theme="dark"] .comment-submit-btn {
 .diario-kicker-row {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 16px;
+  gap: 12px;
   margin-bottom: 8px;
-}
-
-.diario-chip {
-  display: inline-flex;
-  align-items: center;
-  padding: 7px 12px 6px;
-  border-radius: 999px;
-  border: 1px solid rgba(10, 10, 10, 0.14);
-  background: rgba(196, 168, 122, 0.08);
-  font-family: var(--font-ui);
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: rgba(10, 10, 10, 0.62);
 }
 
 .diario-titulo {
@@ -2851,12 +2835,6 @@ html[data-theme="dark"] .comment-submit-btn {
 
 html[data-theme="dark"] .diario-texto {
   color: rgba(255,255,255,0.88);
-}
-
-html[data-theme="dark"] .diario-chip {
-  border-color: rgba(221, 216, 206, 0.18);
-  background: rgba(255, 208, 0, 0.08);
-  color: rgba(255, 245, 214, 0.72);
 }
 
 html[data-theme="dark"] .diario-kind {

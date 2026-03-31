@@ -141,7 +141,6 @@ export default function DiarioView() {
         <header className="diario-header">
           <div className="diario-kicker-row">
             <p className="home-kicker">BERLIM, 2026</p>
-            <span className="diario-chip">Caderno de rascunho</span>
           </div>
           <h1 className="diario-titulo">Diário</h1>
           <p className="diario-subtitulo">Notas do dia em Berlim.</p>
