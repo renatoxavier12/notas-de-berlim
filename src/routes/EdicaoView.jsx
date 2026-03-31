@@ -558,12 +558,9 @@ function EditionPager({ edicao, setView }) {
 
 export default function EdicaoView({ edicao, setView }) {
   const { t, i18n } = useTranslation()
-  const [readingMode, setReadingMode] = useState(false)
-
   useEffect(() => {
     const root = document.getElementById('root')
     if (root) root.scrollTop = 0
-    setReadingMode(false)
   }, [edicao.slug])
 
   const raw = getMarkdownForEdicao(edicao.slug)
@@ -635,15 +632,12 @@ export default function EdicaoView({ edicao, setView }) {
   }, [hasMore, unlocked, edicao.slug])
 
   return (
-    <div className={`edicao-view${readingMode ? ' reading-mode' : ''}`}>
+    <div className="edicao-view">
       <ReadingProgress />
       <TextHighlight slug={edicao.slug} />
       <div className="edition-topbar">
         <button className="back-btn" onClick={() => setView('home')}>
           {t('edition.back')}
-        </button>
-        <button className="reading-mode-btn" onClick={() => setReadingMode(v => !v)}>
-          {readingMode ? '✕ Sair' : 'Aa'}
         </button>
       </div>
 

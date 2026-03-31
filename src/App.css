@@ -1681,54 +1681,6 @@ button:focus-visible, a:focus-visible {
 /* ── Edition topbar ── */
 .edition-topbar {
   padding: 16px 24px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.reading-mode-btn {
-  font-family: var(--font-ui);
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  color: var(--gray);
-  padding: 5px 10px;
-  border: 1.5px solid var(--border);
-  border-radius: 4px;
-  transition: color 0.15s, border-color 0.15s;
-}
-
-.reading-mode-btn:hover {
-  color: var(--black);
-  border-color: var(--black);
-}
-
-html[data-theme="dark"] .reading-mode-btn {
-  color: rgba(255,255,255,0.45);
-  border-color: rgba(255,255,255,0.18);
-}
-
-html[data-theme="dark"] .reading-mode-btn:hover {
-  color: #fff;
-  border-color: rgba(255,255,255,0.6);
-}
-
-/* ── Modo leitura ── */
-.edicao-view.reading-mode .edition-sidebar {
-  display: none;
-}
-
-.edicao-view.reading-mode .edition-reading-layout {
-  max-width: 740px;
-}
-
-.edicao-view.reading-mode .edition-body {
-  max-width: 100%;
-  font-size: 1.08em;
-}
-
-.edicao-view.reading-mode .edition-body .edicao-content {
-  line-height: 1.82;
 }
 
 /* ── Timeline de edições na nav ── */
