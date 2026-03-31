@@ -635,14 +635,11 @@ export default function EdicaoView({ edicao, setView }) {
     <div className="edicao-view">
       <ReadingProgress />
       <TextHighlight slug={edicao.slug} />
-      <div className="edition-topbar">
-        <button className="back-btn" onClick={() => setView('home')}>
-          {t('edition.back')}
-        </button>
-      </div>
-
-      {edicao.capa && (
+      {edicao.capa ? (
         <div className="edition-hero" style={{ backgroundImage: `url(${edicao.capa})` }}>
+          <button className="back-btn back-btn-hero" onClick={() => setView('home')}>
+            {t('edition.back')}
+          </button>
           <div className="edition-hero-content">
             <p className="edition-hero-kicker">{relativeDate}</p>
             <h1 className="edition-hero-title">{editionCopy.titulo}</h1>
@@ -654,6 +651,12 @@ export default function EdicaoView({ edicao, setView }) {
               <span>{absoluteDate}</span>
             </div>
           </div>
+        </div>
+      ) : (
+        <div className="edition-topbar">
+          <button className="back-btn" onClick={() => setView('home')}>
+            {t('edition.back')}
+          </button>
         </div>
       )}
 
