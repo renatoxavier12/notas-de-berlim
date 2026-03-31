@@ -758,59 +758,6 @@ button:focus-visible, a:focus-visible {
   transform: rotate(-0.8deg);
 }
 
-/* ── Sidenotes ── */
-.sidenote-trigger {
-  border-bottom: 1px dashed currentColor;
-  cursor: help;
-  position: relative;
-  display: inline;
-}
-
-.sidenote-tooltip {
-  display: none;
-  position: absolute;
-  bottom: calc(100% + 8px);
-  left: 50%;
-  transform: translateX(-50%);
-  width: 260px;
-  background: var(--fg, #0a0a0a);
-  color: var(--bg, #f5f4f0);
-  font-size: 13px;
-  font-style: normal;
-  line-height: 1.55;
-  padding: 10px 13px;
-  border-radius: 5px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.18);
-  z-index: 200;
-  pointer-events: none;
-  white-space: normal;
-  text-align: left;
-}
-
-.sidenote-tooltip::after {
-  content: '';
-  position: absolute;
-  top: 100%;
-  left: 50%;
-  transform: translateX(-50%);
-  border: 6px solid transparent;
-  border-top-color: var(--fg, #0a0a0a);
-}
-
-.sidenote-trigger:hover .sidenote-tooltip,
-.sidenote-trigger.sidenote-open .sidenote-tooltip {
-  display: block;
-}
-
-html[data-theme="dark"] .sidenote-tooltip {
-  background: #f5f4f0;
-  color: #0a0a0a;
-}
-
-html[data-theme="dark"] .sidenote-tooltip::after {
-  border-top-color: #f5f4f0;
-}
-
 /* ── Sobre ── */
 .sobre-view {
   flex: 1;
