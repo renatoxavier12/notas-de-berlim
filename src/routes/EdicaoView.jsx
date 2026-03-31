@@ -5,7 +5,6 @@ import ReactMarkdown from 'react-markdown'
 import { normalizeLanguage } from '../i18n'
 import LOCATIONS from '../locations.json'
 import { EDICOES, absoluteUrl, formatEditionDate, formatEditionRelativeDate, getCookie, getEditionAroundReadings, getEditionCopy, getGlossaryTerms, getMarkdownForEdicao, normalizeEmail, readingTime, setCookie } from '../lib/site'
-import { remarkSidenotes } from '../lib/remarkSidenotes'
 
 function EdicaoGate({ onUnlock }) {
   const { t } = useTranslation()
@@ -557,26 +556,6 @@ function EditionPager({ edicao, setView }) {
   )
 }
 
-function SidenoteNode({ node }) {
-  const [open, setOpen] = useState(false)
-  return (
-    <span className="sidenote-wrapper">
-      <button
-        className="sidenote-ref"
-        onClick={() => setOpen(v => !v)}
-        aria-expanded={open}
-        aria-label="nota lateral"
-      >
-        {node.id}
-      </button>
-      <span className={`sidenote${open ? ' sidenote-open' : ''}`}>
-        <span className="sidenote-number">{node.id}</span>
-        {node.note}
-      </span>
-    </span>
-  )
-}
-
 export default function EdicaoView({ edicao, setView }) {
   const { t, i18n } = useTranslation()
   useEffect(() => {
@@ -709,10 +688,10 @@ export default function EdicaoView({ edicao, setView }) {
           )}
           <article className="edicao-content">
             <>
-              <ReactMarkdown remarkPlugins={[remarkSidenotes]} components={{ sidenote: SidenoteNode }}>{teaser}</ReactMarkdown>
+              <ReactMarkdown>{teaser}</ReactMarkdown>
               {hasMore && checkingAccess && <p className="translation-loading">{t('common.loading')}</p>}
               {hasMore && !unlocked && !checkingAccess && <EdicaoGate onUnlock={() => setUnlocked(true)} />}
-              {hasMore && unlocked && <ReactMarkdown remarkPlugins={[remarkSidenotes]} components={{ sidenote: SidenoteNode }}>{rest}</ReactMarkdown>}
+              {hasMore && unlocked && <ReactMarkdown>{rest}</ReactMarkdown>}
             </>
           </article>
           {(unlocked || !hasMore) && (
