@@ -79,8 +79,12 @@ function youtubePoster(url) {
   return id ? `https://i.ytimg.com/vi/${id}/hqdefault.jpg` : null
 }
 
+function isLocalVideo(url) {
+  return typeof url === 'string' && url.startsWith('/')
+}
+
 function getDiarioKind(post) {
-  if (post.video && youtubeId(post.video)) return 'Vídeo'
+  if (post.video && (youtubeId(post.video) || isLocalVideo(post.video))) return 'Vídeo'
   if (post.foto) return 'Foto'
   return 'Nota'
 }
@@ -142,6 +146,15 @@ function DiarioPost({ post }) {
             />
           )}
         </div>
+      )}
+      {post.video && isLocalVideo(post.video) && (
+        <video
+          className="diario-video-local"
+          src={post.video}
+          controls
+          playsInline
+          preload="metadata"
+        />
       )}
       <div className="diario-actions">
         <button

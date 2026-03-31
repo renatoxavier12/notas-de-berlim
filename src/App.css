@@ -2861,6 +2861,16 @@ html[data-theme="dark"] .comment-submit-btn {
   z-index: 3;
 }
 
+.diario-video-local {
+  display: block;
+  width: min(100%, 320px);
+  margin: 24px auto 0;
+  border-radius: 18px;
+  background: #111;
+  border: 1px solid rgba(10, 10, 10, 0.06);
+  box-shadow: 0 18px 40px rgba(10, 10, 10, 0.08);
+}
+
 .diario-actions {
   display: flex;
   align-items: center;
@@ -2926,6 +2936,11 @@ html[data-theme="dark"] .diario-kind::before {
 
 html[data-theme="dark"] .diario-foto,
 html[data-theme="dark"] .diario-video {
+  border-color: rgba(221, 216, 206, 0.1);
+  box-shadow: 0 20px 44px rgba(0, 0, 0, 0.24);
+}
+
+html[data-theme="dark"] .diario-video-local {
   border-color: rgba(221, 216, 206, 0.1);
   box-shadow: 0 20px 44px rgba(0, 0, 0, 0.24);
 }
