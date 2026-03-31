@@ -49,7 +49,8 @@ export default async function middleware(request) {
     if (!ghRes.ok) return
 
     const data = await ghRes.json()
-    const markdown = atob(data.content.replace(/\n/g, ''))
+    const bytes = Uint8Array.from(atob(data.content.replace(/\n/g, '')), c => c.charCodeAt(0))
+    const markdown = new TextDecoder('utf-8').decode(bytes)
 
     const get = key => {
       const m = markdown.match(new RegExp(`^${key}:\\s*["']?(.+?)["']?\\s*$`, 'm'))
