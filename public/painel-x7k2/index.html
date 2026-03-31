@@ -84,6 +84,19 @@
                 { label: 'Corpo', name: 'body', widget: 'markdown' },
               ],
             },
+            {
+              name: 'diario',
+              label: 'Diário',
+              folder: 'src/diario',
+              create: true,
+              slug: '{{year}}-{{month}}-{{day}}-{{slug}}',
+              fields: [
+                { label: 'Data', name: 'data', widget: 'string', hint: 'Ex: 31 de março de 2026' },
+                { label: 'Foto', name: 'foto', widget: 'image', required: false },
+                { label: 'Vídeo (YouTube URL)', name: 'video', widget: 'string', required: false },
+                { label: 'Texto', name: 'body', widget: 'markdown' },
+              ],
+            },
           ],
         },
       })
