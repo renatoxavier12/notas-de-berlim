@@ -2715,16 +2715,17 @@ html[data-theme="dark"] .comment-submit-btn {
 .diario-meta-row {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  margin-bottom: 14px;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 16px;
 }
 
 .diario-data {
   font-family: var(--font-ui);
   font-size: 11px;
   font-weight: 600;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.11em;
   text-transform: uppercase;
   color: var(--gray);
 }
@@ -2733,20 +2734,18 @@ html[data-theme="dark"] .comment-submit-btn {
   display: inline-flex;
   align-items: center;
   flex-shrink: 0;
-  gap: 8px;
   font-family: var(--font-ui);
   font-size: 10px;
   font-weight: 600;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: rgba(10, 10, 10, 0.42);
+  color: rgba(10, 10, 10, 0.38);
 }
 
 .diario-kind::before {
-  content: '';
-  width: 18px;
-  height: 1px;
-  background: rgba(10, 10, 10, 0.18);
+  content: '·';
+  margin-right: 2px;
+  color: rgba(10, 10, 10, 0.28);
 }
 
 .diario-texto {
@@ -2842,7 +2841,7 @@ html[data-theme="dark"] .diario-kind {
 }
 
 html[data-theme="dark"] .diario-kind::before {
-  background: rgba(221, 216, 206, 0.22);
+  color: rgba(221, 216, 206, 0.3);
 }
 
 html[data-theme="dark"] .diario-foto,
