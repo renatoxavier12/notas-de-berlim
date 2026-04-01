@@ -533,7 +533,7 @@ function EditionPager({ edicao, setView }) {
         {previousEdition && (
           <button
             type="button"
-            className="edition-pager-card"
+            className="edition-pager-card edition-pager-previous"
             onClick={() => openEdition(previousEdition)}
           >
             {previousEdition.capa && <img src={previousEdition.capa} alt={previousEdition.titulo} className="edition-pager-image" />}
@@ -544,7 +544,7 @@ function EditionPager({ edicao, setView }) {
         {nextEdition && (
           <button
             type="button"
-            className="edition-pager-card"
+            className="edition-pager-card edition-pager-next"
             onClick={() => openEdition(nextEdition)}
           >
             {nextEdition.capa && <img src={nextEdition.capa} alt={nextEdition.titulo} className="edition-pager-image" />}
