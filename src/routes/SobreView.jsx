@@ -67,7 +67,7 @@ export default function SobreView({ setView, setEdicaoAtiva }) {
               className="sobre-foto-circular"
             />
             <div className="sobre-contato">
-              <p className="sobre-contato-label">Contato &amp; Redes</p>
+              <p className="sobre-contato-label">Contato e redes</p>
               <p className="sobre-contato-nome">Renato Xavier</p>
               <div className="sobre-contato-social">
                 <a href="https://instagram.com/renatoxavierrr" target="_blank" rel="noopener noreferrer" className="sobre-icon-link" aria-label="Instagram">
