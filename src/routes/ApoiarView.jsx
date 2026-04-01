@@ -38,9 +38,9 @@ export default function ApoiarView({ setView }) {
 
         <div className="apoiar-actions">
           <button className="apoiar-btn" onClick={copiar}>
-            {copied ? '✓ Chave PIX copiada!' : 'Copiar chave PIX'}
+            {copied ? '✓ Chave PIX copiada' : 'Copiar chave PIX'}
           </button>
-          <p className="apoiar-note">Qualquer valor, uma única vez ou quando quiser.</p>
+          <p className="apoiar-note">Qualquer valor, uma vez só ou quando quiser.</p>
         </div>
       </div>
     </div>
