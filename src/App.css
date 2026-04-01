@@ -1568,7 +1568,7 @@ button:focus-visible, a:focus-visible {
 
 /* ── Gate ── */
 .edicao-gate {
-  margin: 48px 0;
+  margin: 56px 0 52px;
   position: relative;
 }
 
@@ -1582,51 +1582,52 @@ button:focus-visible, a:focus-visible {
 }
 
 .gate-inner {
-  background: linear-gradient(180deg, rgba(255,255,255,0.98) 0%, rgba(248,246,240,0.98) 100%);
-  border: 1px solid rgba(10, 10, 10, 0.12);
-  padding: 28px;
+  background: transparent;
+  border-top: 1px solid rgba(10, 10, 10, 0.12);
+  border-bottom: 1px solid rgba(10, 10, 10, 0.12);
+  padding: 28px 0 30px;
   text-align: center;
-  border-radius: 18px;
-  box-shadow: 0 16px 36px rgba(10, 10, 10, 0.06);
 }
 
 .gate-label {
   font-family: var(--font-ui);
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 700;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.2em;
   color: var(--gray);
-  margin: 0 0 12px;
+  margin: 0 0 10px;
 }
 
 .gate-title {
-  margin: 0 0 10px;
+  margin: 0 0 8px;
   font-family: var(--font-display);
-  font-size: clamp(28px, 3vw, 36px);
+  font-size: clamp(26px, 3vw, 34px);
   font-weight: 600;
-  line-height: 1.15;
+  line-height: 1.12;
 }
 
 .gate-text {
-  max-width: 520px;
-  margin: 0 auto 20px;
-  font-size: 17px;
-  line-height: 1.7;
+  max-width: 500px;
+  margin: 0 auto 18px;
+  font-size: 16px;
+  line-height: 1.65;
   color: #444;
+  text-wrap: pretty;
 }
 
 .gate-inner .subscribe-form {
-  max-width: 460px;
+  max-width: 420px;
   margin: 0 auto;
-  border: 1px solid rgba(10, 10, 10, 0.12);
-  border-radius: 999px;
-  overflow: hidden;
-  background: rgba(255, 255, 255, 0.92);
-  box-shadow: 0 6px 18px rgba(10, 10, 10, 0.05);
+  border: none;
+  border-bottom: 1px solid rgba(10, 10, 10, 0.14);
+  border-radius: 0;
+  overflow: visible;
+  background: transparent;
+  box-shadow: none;
 }
 
 .gate-note {
-  margin: 12px 0 0;
+  margin: 14px 0 0;
   font-family: var(--font-body);
   font-size: 14px;
   line-height: 1.5;
