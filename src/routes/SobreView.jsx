@@ -93,18 +93,18 @@ export default function SobreView({ setView, setEdicaoAtiva }) {
             return (
               <button
                 key={edicao.id}
-                className="edicao-card"
+                className="sobre-edicao-card"
                 onClick={() => {
                   setEdicaoAtiva(edicao)
                   setView('edicao')
                 }}
               >
-                <span className="edicao-numero">{formatEditionNumber(edicao)}</span>
-                <div className="edicao-info">
+                <span className="sobre-edicao-numero">{formatEditionNumber(edicao)}</span>
+                <div className="sobre-edicao-info">
                   <h2>{editionCopy.titulo}</h2>
-                  <p className="edicao-meta">{formatEditionDate(edicao.data, locale)} · {editionCopy.bairro}</p>
+                  <p className="sobre-edicao-meta">{formatEditionDate(edicao.data, locale)} · {editionCopy.bairro}</p>
                 </div>
-                <span className="edicao-arrow">→</span>
+                <span className="sobre-edicao-arrow">→</span>
               </button>
             )
           })}
