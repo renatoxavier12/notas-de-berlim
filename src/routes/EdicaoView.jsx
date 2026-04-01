@@ -570,12 +570,12 @@ export default function EdicaoView({ edicao, setView }) {
   const hasMore = parts.length > 1
   const rest = parts.slice(1).join('\n\n---\n\n')
   const editionCopy = getEditionCopy(edicao, t)
-  const [unlocked, setUnlocked] = useState(() => !!getCookie('nb_email'))
+  const storedEmail = normalizeEmail(getCookie('nb_email'))
+  const initialUrlEmail = normalizeEmail(new URLSearchParams(window.location.search).get('email'))
+  const [unlocked, setUnlocked] = useState(() => !hasMore)
   const [checkingAccess, setCheckingAccess] = useState(() => {
     if (!hasMore) return false
-    if (getCookie('nb_email')) return false
-    const params = new URLSearchParams(window.location.search)
-    return !!normalizeEmail(params.get('email'))
+    return Boolean(initialUrlEmail || storedEmail)
   })
   const locale = i18n.resolvedLanguage === 'de'
     ? 'de-DE'
@@ -598,24 +598,43 @@ export default function EdicaoView({ edicao, setView }) {
     let cancelled = false
     const params = new URLSearchParams(window.location.search)
     const emailFromUrl = normalizeEmail(params.get('email'))
+    const emailFromCookie = normalizeEmail(getCookie('nb_email'))
+    const emailToValidate = emailFromUrl || emailFromCookie
 
-    if (!hasMore || unlocked || !emailFromUrl) return
+    if (!hasMore) {
+      setUnlocked(true)
+      setCheckingAccess(false)
+      return
+    }
+
+    if (!emailToValidate) {
+      setUnlocked(false)
+      setCheckingAccess(false)
+      return
+    }
 
     async function validateAccess() {
       setCheckingAccess(true)
 
       try {
-        const response = await fetch(`/api/check?email=${encodeURIComponent(emailFromUrl)}`)
+        const response = await fetch(`/api/check?email=${encodeURIComponent(emailToValidate)}`)
 
-        if (!response.ok || cancelled) return
+        if (!response.ok || cancelled) {
+          setUnlocked(false)
+          if (emailFromCookie) setCookie('nb_email', '', -1)
+          return
+        }
 
         const data = await response.json()
         if (data.isSubscribed) {
-          setCookie('nb_email', emailFromUrl)
+          setCookie('nb_email', emailToValidate)
           if (!cancelled) setUnlocked(true)
+        } else {
+          if (emailFromCookie) setCookie('nb_email', '', -1)
+          if (!cancelled) setUnlocked(false)
         }
       } catch {
-        // Fall back to the manual gate if validation fails.
+        if (!cancelled) setUnlocked(false)
       } finally {
         params.delete('email')
         const cleanQuery = params.toString()
@@ -630,7 +649,7 @@ export default function EdicaoView({ edicao, setView }) {
     return () => {
       cancelled = true
     }
-  }, [hasMore, unlocked, edicao.slug])
+  }, [hasMore, edicao.slug])
 
   return (
     <div className="edicao-view">
