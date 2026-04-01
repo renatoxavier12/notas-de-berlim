@@ -1870,6 +1870,14 @@ button:focus-visible, a:focus-visible {
   background: #f8f8f6;
 }
 
+.map-sidebar-intro {
+  margin: 0 0 16px;
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 1.6;
+  color: #666;
+}
+
 .location-item {
   padding: 16px;
   margin-bottom: 16px;
@@ -1899,6 +1907,21 @@ button:focus-visible, a:focus-visible {
   font-size: 18px;
   font-family: var(--font-display);
   font-weight: 700;
+}
+
+.location-meta-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.location-city {
+  font-family: var(--font-ui);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #888;
 }
 
 .location-item p {
@@ -1959,6 +1982,42 @@ button:focus-visible, a:focus-visible {
 
 .leaflet-popup-tip {
   box-shadow: none !important;
+}
+
+.popup-description {
+  margin: 0 0 10px;
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+.popup-line {
+  font-family: var(--font-ui);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #888;
+}
+
+.popup-read-edition {
+  display: inline-block;
+  margin-top: 12px;
+  padding: 0 0 6px;
+  background: transparent;
+  color: var(--black);
+  border: none;
+  border-bottom: 1px solid rgba(10, 10, 10, 0.14);
+  font-family: var(--font-ui);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-align: left;
+}
+
+.popup-read-edition:hover {
+  border-color: rgba(240, 215, 34, 0.6);
+  color: #8a6e00;
 }
 
 .u-line-tag {

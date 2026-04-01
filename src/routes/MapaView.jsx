@@ -52,9 +52,7 @@ export default function MapaView({ setView, setEdicaoAtiva }) {
           <h1>{t('map.title')}</h1>
         </header>
         <div className="sidebar-content">
-          <p style={{ fontSize: '13px', color: '#666', marginBottom: '16px' }}>
-            {t('map.subtitle')}
-          </p>
+          <p className="map-sidebar-intro">{t('map.subtitle')}</p>
           {LOCATIONS.map(location => (
             <div
               key={location.id}
@@ -69,11 +67,11 @@ export default function MapaView({ setView, setEdicaoAtiva }) {
                 <img src={location.imageUrl} alt={location.name} className="location-img-thumb" referrerPolicy="no-referrer" />
               )}
               <h2>{location.name}</h2>
-              <div style={{ display: 'flex', alignItems: 'center', marginBottom: '5px' }}>
+              <div className="location-meta-row">
                 <span className="u-line-tag" style={{ backgroundColor: location.color }}>
                   {location.line}
                 </span>
-                <span style={{ fontSize: '12px', color: '#888' }}>{t('map.city')}</span>
+                <span className="location-city">{t('map.city')}</span>
               </div>
               <p>{location.description}</p>
             </div>
@@ -107,8 +105,8 @@ export default function MapaView({ setView, setEdicaoAtiva }) {
                   {location.imageUrl && (
                     <img src={location.imageUrl} alt={location.name} className="popup-img" referrerPolicy="no-referrer" />
                   )}
-                  <p style={{ margin: '0 0 8px', fontSize: '13px' }}>{location.description}</p>
-                  <span style={{ fontWeight: 'bold', fontSize: '12px', color: '#888' }}>{t('map.line', { line: location.line })}</span>
+                  <p className="popup-description">{location.description}</p>
+                  <span className="popup-line">{t('map.line', { line: location.line })}</span>
                   {location.edicaoId && (() => {
                     const edicao = EDICOES.find(item => item.id === location.edicaoId)
                     return edicao ? (
@@ -117,19 +115,7 @@ export default function MapaView({ setView, setEdicaoAtiva }) {
                           setEdicaoAtiva(edicao)
                           setView('edicao')
                         }}
-                        style={{
-                          display: 'block',
-                          marginTop: '10px',
-                          width: '100%',
-                          padding: '7px',
-                          background: '#111',
-                          color: 'white',
-                          border: 'none',
-                          fontSize: '12px',
-                          fontWeight: 'bold',
-                          cursor: 'pointer',
-                          textAlign: 'center',
-                        }}
+                        className="popup-read-edition"
                       >
                         {t('map.readEdition', { id: String(getEditionDisplayNumber(edicao)).padStart(2, '0') })}
                       </button>
