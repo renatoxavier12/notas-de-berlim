@@ -528,7 +528,6 @@ function EditionPager({ edicao, setView }) {
 
   return (
     <div className="edition-pager">
-      <p className="share-label">{t('edition.moreLabel')}</p>
       <div className={`edition-pager-grid ${availableCount === 1 ? 'single-item' : ''}`}>
         {previousEdition && (
           <button
