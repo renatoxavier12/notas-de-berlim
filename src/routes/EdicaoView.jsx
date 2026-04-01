@@ -475,6 +475,7 @@ function EditionShareStrip({ edicao, title, setView, hasMap }) {
 
   return (
     <div className="edition-actions-strip">
+      <p className="share-label edition-actions-label">{t('edition.shareEndLabel')}</p>
       {hasMap && (
         <button className="edition-map-inline" onClick={() => setView('mapa')}>
           {t('edition.mapLinkShort')}
