@@ -905,7 +905,7 @@ button:focus-visible, a:focus-visible {
     flex-direction: column;
     align-items: stretch;
     gap: 0;
-    padding: 8px 16px 16px;
+    padding: 10px 16px 18px;
     background: rgba(10, 10, 10, 0.98);
     border-bottom: 1px solid rgba(255, 255, 255, 0.12);
   }
@@ -933,28 +933,37 @@ button:focus-visible, a:focus-visible {
   }
 
   .home-header {
-    padding: calc(var(--nav-h) + 48px) 20px 56px;
+    padding: calc(var(--nav-h) + 40px) 20px 52px;
   }
 
   .home-title {
-    font-size: clamp(48px, 17vw, 88px);
-    line-height: 0.94;
+    font-size: clamp(44px, 16vw, 78px);
+    line-height: 0.92;
   }
 
   .home-subtitle {
-    margin: 24px auto 36px;
-    font-size: 16px;
-    max-width: 28rem;
+    margin: 22px auto 30px;
+    font-size: 15px;
+    max-width: 24rem;
   }
 
   .subscribe-form {
     flex-direction: column;
+    align-items: stretch;
+  }
+
+  .subscribe-input {
+    padding: 8px 0 10px;
+    font-size: 17px;
+    text-align: left;
   }
 
   .subscribe-btn {
     width: 100%;
+    padding: 10px 0 0;
     border-left: none;
-    border-top: 1px solid rgba(10, 10, 10, 0.1);
+    border-top: 1px solid rgba(255, 255, 255, 0.14);
+    text-align: left;
   }
 
   .home-main,
@@ -1006,16 +1015,16 @@ button:focus-visible, a:focus-visible {
   }
 
   .edition-hero {
-    min-height: 320px;
-    height: 52vh;
+    min-height: 300px;
+    height: 48vh;
   }
 
   .edition-hero-content {
-    padding: 0 20px 36px;
+    padding: 0 20px 30px;
   }
 
   .edition-hero-title {
-    font-size: clamp(34px, 11vw, 54px);
+    font-size: clamp(32px, 10vw, 48px);
   }
 
   .edition-hero-meta {
@@ -1145,7 +1154,7 @@ button:focus-visible, a:focus-visible {
 
   .sobre-layout {
     flex-direction: column-reverse;
-    gap: 40px;
+    gap: 32px;
   }
 
   .sobre-sidebar {
@@ -1154,11 +1163,12 @@ button:focus-visible, a:focus-visible {
     flex-direction: row;
     align-items: flex-start;
     text-align: left;
+    gap: 16px;
   }
 
   .sobre-foto-circular {
-    width: 80px;
-    height: 100px;
+    width: 92px;
+    height: 116px;
     flex-shrink: 0;
   }
 
@@ -1172,6 +1182,7 @@ button:focus-visible, a:focus-visible {
 
   .sobre-bio-lines p {
     font-size: 16px;
+    line-height: 1.68;
   }
 
   .comment-header {
@@ -1197,6 +1208,12 @@ button:focus-visible, a:focus-visible {
     font-size: clamp(30px, 10vw, 44px);
   }
 
+  .apoiar-subtitle {
+    font-size: 16px;
+    line-height: 1.6;
+    max-width: 22rem;
+  }
+
   .apoiar-body p {
     font-size: 17px;
     line-height: 1.72;
@@ -1214,8 +1231,9 @@ button:focus-visible, a:focus-visible {
 
   .mapa-toggle-btn {
     bottom: 16px;
-    width: calc(100% - 32px);
-    max-width: 320px;
+    width: calc(100% - 40px);
+    max-width: 300px;
+    padding: 11px 18px;
   }
 
   .sidebar-content {
