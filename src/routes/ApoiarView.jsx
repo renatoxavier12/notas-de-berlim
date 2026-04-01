@@ -28,6 +28,7 @@ export default function ApoiarView({ setView }) {
         <header className="apoiar-header">
           <p className="home-kicker">APOIAR O PROJETO</p>
           <h1 className="apoiar-title">Este projeto existe porque você lê.</h1>
+          <p className="apoiar-subtitle">Um gesto pequeno mantém o caderno vivo.</p>
         </header>
 
         <div className="apoiar-body">

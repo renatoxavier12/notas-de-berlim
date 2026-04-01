@@ -3188,33 +3188,44 @@ html[data-theme="dark"] .diario-post::after {
 }
 
 .apoiar-inner {
-  max-width: 620px;
+  max-width: 640px;
   margin: 0 auto;
 }
 
 .apoiar-header {
-  margin: 48px 0 40px;
+  margin: 44px 0 34px;
 }
 
 .apoiar-title {
   font-family: var(--font-display);
-  font-size: clamp(36px, 5vw, 56px);
-  font-weight: 700;
-  line-height: 1.1;
-  letter-spacing: -0.02em;
-  margin: 16px 0 0;
+  font-size: clamp(34px, 5vw, 52px);
+  font-weight: 600;
+  line-height: 1.08;
+  letter-spacing: -0.015em;
+  margin: 14px 0 0;
+}
+
+.apoiar-subtitle {
+  margin: 14px 0 0;
+  max-width: 28rem;
+  font-family: var(--font-body);
+  font-size: 18px;
+  line-height: 1.65;
+  color: var(--gray);
+  text-wrap: pretty;
 }
 
 .apoiar-body {
-  margin-bottom: 40px;
+  margin-bottom: 36px;
 }
 
 .apoiar-body p {
   font-family: var(--font-body);
-  font-size: 19px;
-  line-height: 1.8;
+  font-size: 18px;
+  line-height: 1.78;
   color: #333;
-  margin: 0 0 1.5em;
+  margin: 0 0 1.4em;
+  text-wrap: pretty;
 }
 
 .apoiar-actions {
@@ -3276,6 +3287,10 @@ html[data-theme="dark"] .diario-post::after {
 /* dark mode */
 html[data-theme="dark"] .apoiar-body p {
   color: #ccc8be;
+}
+
+html[data-theme="dark"] .apoiar-subtitle {
+  color: #a7a094;
 }
 
 html[data-theme="dark"] .apoiar-actions {
