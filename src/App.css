@@ -1715,6 +1715,7 @@ button:focus-visible, a:focus-visible {
 .gate-inner .subscribe-form {
   max-width: 420px;
   margin: 0 auto;
+  align-items: center;
   border: none;
   border-bottom: 1px solid rgba(10, 10, 10, 0.14);
   border-radius: 0;
@@ -1724,10 +1725,13 @@ button:focus-visible, a:focus-visible {
 }
 
 .gate-inner .subscribe-input {
+  width: 100%;
+  min-width: 0;
   padding: 8px 0 10px;
   color: var(--black);
   font-size: 17px;
   font-style: normal;
+  text-align: left;
   opacity: 1;
 }
 
@@ -1741,10 +1745,29 @@ button:focus-visible, a:focus-visible {
   color: var(--black);
   font-size: 10px;
   letter-spacing: 0.14em;
+  flex-shrink: 0;
 }
 
 .gate-inner .subscribe-btn:hover:not(:disabled) {
   color: #8a6e00;
+}
+
+@media (max-width: 768px) {
+  .gate-inner {
+    padding: 24px 0 26px;
+  }
+
+  .gate-inner .subscribe-form {
+    max-width: 100%;
+  }
+
+  .gate-inner .subscribe-input {
+    font-size: 16px;
+  }
+
+  .gate-inner .subscribe-btn {
+    padding-left: 14px;
+  }
 }
 
 .gate-note {
