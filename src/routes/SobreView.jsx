@@ -80,6 +80,12 @@ export default function SobreView({ setView, setEdicaoAtiva }) {
                   <IconMail />
                 </a>
               </div>
+              <div className="sobre-contato-academico">
+                <p className="sobre-contato-label">Meu trabalho</p>
+                <a href="https://bv.fapesp.br/pt/pesquisador/737373/renato-xavier-dos-santos/" target="_blank" rel="noopener noreferrer" className="sobre-contato-link">FAPESP</a>
+                <a href="https://buscatextual.cnpq.br/buscatextual/visualizacv.do?metodo=apresentar&id=K4458372P6" target="_blank" rel="noopener noreferrer" className="sobre-contato-link">Lattes</a>
+                <a href="https://orcid.org/0000-0001-5136-7636" target="_blank" rel="noopener noreferrer" className="sobre-contato-link">ORCID</a>
+              </div>
             </div>
           </aside>
 

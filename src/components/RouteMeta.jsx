@@ -3,6 +3,46 @@ import { useTranslation } from 'react-i18next'
 import { normalizeLanguage } from '../i18n'
 import { absoluteUrl, DEFAULT_OG_IMAGE, formatEditionDate, getEditionCopy, SITE_URL, toIsoDate } from '../lib/site'
 
+const AUTHOR_PROFILE_URL = `${SITE_URL}/sobre`
+const AUTHOR_IMAGE_URL = `${SITE_URL}/euetiao.jpg`
+
+const AUTHOR_STRUCTURED_DATA = {
+  '@type': 'Person',
+  '@id': `${AUTHOR_PROFILE_URL}#renato-xavier`,
+  name: 'Renato Xavier',
+  url: AUTHOR_PROFILE_URL,
+  image: AUTHOR_IMAGE_URL,
+  jobTitle: 'Postdoctoral researcher',
+  affiliation: [
+    {
+      '@type': 'Organization',
+      name: 'Ibero-Amerikanisches Institut Berlin',
+      url: 'https://www.iai.spk-berlin.de/',
+    },
+    {
+      '@type': 'Organization',
+      name: 'CEBRAP',
+      url: 'https://cebrap.org.br/',
+    },
+  ],
+  knowsAbout: [
+    'W.E.B. Du Bois',
+    'Black international thought',
+    'International Relations',
+    'Political theory',
+    'Race',
+    'Algorithms',
+  ],
+  sameAs: [
+    'https://bv.fapesp.br/pt/pesquisador/737373/renato-xavier-dos-santos/',
+    'https://buscatextual.cnpq.br/buscatextual/visualizacv.do?metodo=apresentar&id=K4458372P6',
+    'https://orcid.org/0000-0001-5136-7636',
+    'https://scholar.google.com/citations?user=t8bM1p8AAAAJ&hl=pt-BR',
+    'https://instagram.com/renatoxavierrr',
+    'https://renatoxavier.substack.com',
+  ],
+}
+
 function buildMeta(view, edicao, t) {
   const siteName = t('site.name')
   const siteDescription = t('site.description')
@@ -37,10 +77,7 @@ function buildMeta(view, edicao, t) {
           name: siteName,
           url: SITE_URL,
         },
-        author: {
-          '@type': 'Person',
-          name: 'Renato Xavier',
-        },
+        author: AUTHOR_STRUCTURED_DATA,
       },
     }
   }
@@ -59,9 +96,20 @@ function buildMeta(view, edicao, t) {
     return {
       title: t('meta.aboutTitle'),
       description: t('meta.aboutDescription'),
-      image: DEFAULT_OG_IMAGE,
+      image: AUTHOR_IMAGE_URL,
       url: absoluteUrl('/sobre'),
-      type: 'website',
+      type: 'profile',
+      structuredData: {
+        '@context': 'https://schema.org',
+        '@type': 'ProfilePage',
+        '@id': `${AUTHOR_PROFILE_URL}#profile`,
+        url: AUTHOR_PROFILE_URL,
+        name: 'Renato Xavier | Notas de Berlim',
+        description: t('meta.aboutDescription'),
+        image: AUTHOR_IMAGE_URL,
+        inLanguage: 'pt-BR',
+        mainEntity: AUTHOR_STRUCTURED_DATA,
+      },
     }
   }
 
