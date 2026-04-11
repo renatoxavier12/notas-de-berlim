@@ -259,6 +259,7 @@ export function getEditionSeriesLabel(edicao) {
   const seriesKey = getEditionSeriesKey(edicao)
 
   if (seriesKey === 'particulas-do-dia') return 'Partículas do dia'
+  if (seriesKey === 'desvios') return 'Desvios'
   if (seriesKey === '__default__') return 'Semanas'
 
   return seriesKey
