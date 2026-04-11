@@ -25,7 +25,7 @@ E os livros? Circulam com uma liberdade que ainda me surpreende. Encontrei esses
 
 Temos duas bikes agora. E isso muda a relação com a cidade, olhar pra ela do selim é diferente. Berlim é uma cidade que respira fora do carro: ciclistas, patinetes, metrô, bonde. O carro existe, mas não organiza tudo ao redor dele. Na bike, você entende isso no corpo.
 
-O toca-discos não veio de doação, custou algum dinheiro. Um Lenco dos anos 1970, usado e em ótimo estado. Namorei esse toca-discos por exatamente 24 horas. Não peguei na hora, mas no dia seguinte tive que voltar correndo: coloquei na garupa da bike dentro de uma caixa, enrolada numa corda que o dono fez questão de me ajudar a amarrar. E a garantia? "Já testei, está tudo em ordem, mas se você não quiser ficar, por qualquer motivo, traz de volta que te devolvo o dinheiro." Não vou devolver.
+O toca-discos não veio de doação, custou algum dinheiro. Um Lenco dos anos 1970, usado e em ótimo estado, achado na accessoires & ambiente A.B. CZAJA, na Bürknerstraße 26. Namorei esse toca-discos por exatamente 24 horas. Não peguei na hora, mas no dia seguinte tive que voltar correndo: coloquei na garupa da bike dentro de uma caixa, enrolada numa corda que o dono fez questão de me ajudar a amarrar. E a garantia? "Já testei, está tudo em ordem, mas se você não quiser ficar, por qualquer motivo, traz de volta que te devolvo o dinheiro." Não vou devolver.
 
 Agora aguardo um adaptador para ligar o Lenco ao receptor, e a compra do primeiro vinil em Berlim. Os meus discos, uma pequena coleção de quarenta obras, estão no Brasil. Queria todos aqui comigo hoje.
 

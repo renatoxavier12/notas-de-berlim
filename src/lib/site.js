@@ -50,6 +50,11 @@ export const BERLINER_GLOSSARY = [
     description: 'Sanduíche clássico de rua em Berlim, com pão, salada e carne assada no espeto.',
     pattern: /\bdöner\b/i,
   },
+  {
+    term: 'Weitergeben',
+    description: 'Passar adiante. O ato de repassar um objeto para que continue em uso — roupa, livro, móvel. Uma prática cotidiana em Berlim.',
+    pattern: /\bweitergeben\b/i,
+  },
 ]
 
 const EDITION_AROUND_READINGS = {
