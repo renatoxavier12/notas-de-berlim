@@ -5,6 +5,7 @@ import { normalizeLanguage } from './i18n'
 import { EDICOES, findEdicaoBySlug, formatEditionNumber, getCookie, getEditionsForSeries, getEditionSeriesLabel, setCookie } from './lib/site'
 import RouteMeta from './components/RouteMeta'
 
+const AdminView = lazy(() => import('./routes/AdminView'))
 const HomeView = lazy(() => import('./routes/HomeView'))
 const EdicaoView = lazy(() => import('./routes/EdicaoView'))
 const MapaView = lazy(() => import('./routes/MapaView'))
@@ -136,6 +137,18 @@ function LoadingFallback() {
 
 function App() {
   const { i18n } = useTranslation()
+
+  // Admin panel — standalone, no nav
+  if (window.location.pathname === '/admin') {
+    return (
+      <div className="admin-root">
+        <Suspense fallback={<div style={{ color: '#666', padding: 24 }}>Carregando…</div>}>
+          <AdminView />
+        </Suspense>
+      </div>
+    )
+  }
+
   const initialRoute = routeStateFromPath(window.location.pathname)
   const [view, setView] = useState(initialRoute.view)
   const [edicaoAtiva, setEdicaoAtiva] = useState(initialRoute.edicao)
