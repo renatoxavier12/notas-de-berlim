@@ -111,6 +111,29 @@ export function setCookie(name, value, days = 365) {
   document.cookie = `${name}=${encodeURIComponent(value)};expires=${expires};path=/;SameSite=Lax`
 }
 
+// localStorage helpers — persistent, no expiry, survives ITP/cache clears
+export function getLocal(key) {
+  try {
+    return localStorage.getItem(key) ?? null
+  } catch {
+    return getCookie(key)
+  }
+}
+
+export function setLocal(key, value) {
+  try {
+    if (value === null || value === undefined || value === '') {
+      localStorage.removeItem(key)
+    } else {
+      localStorage.setItem(key, value)
+    }
+    // Also write cookie as fallback (private browsing, etc.)
+    setCookie(key, value)
+  } catch {
+    setCookie(key, value)
+  }
+}
+
 export function normalizeEmail(email) {
   return typeof email === 'string' ? email.trim().toLowerCase() : ''
 }

@@ -4,11 +4,11 @@ import { MapPinned } from 'lucide-react'
 import ReactMarkdown from 'react-markdown'
 import { normalizeLanguage } from '../i18n'
 import LOCATIONS from '../locations.json'
-import { EDICOES, absoluteUrl, formatEditionDate, formatEditionNumber, formatEditionRelativeDate, getCookie, getEditionAroundReadings, getEditionCopy, getGlossaryTerms, getMarkdownForEdicao, normalizeEmail, readingTime, setCookie } from '../lib/site'
+import { EDICOES, absoluteUrl, formatEditionDate, formatEditionNumber, formatEditionRelativeDate, getCookie, getEditionAroundReadings, getEditionCopy, getGlossaryTerms, getLocal, getMarkdownForEdicao, normalizeEmail, readingTime, setCookie, setLocal } from '../lib/site'
 
 function EdicaoGate({ onUnlock }) {
   const { t } = useTranslation()
-  const [email, setEmail] = useState(() => normalizeEmail(getCookie('nb_email')))
+  const [email, setEmail] = useState(() => normalizeEmail(getLocal('nb_email')))
   const [status, setStatus] = useState(null)
 
   async function handleSubmit(event) {
@@ -22,7 +22,7 @@ function EdicaoGate({ onUnlock }) {
       if (response.ok) {
         const data = await response.json()
         if (data.isSubscribed) {
-          setCookie('nb_email', normalizedEmail)
+          setLocal('nb_email', normalizedEmail)
           onUnlock()
         } else {
           setStatus('not_subscribed')
@@ -125,12 +125,12 @@ const IconBookmark = ({ filled }) => (
 function LikePillButton({ slug }) {
   const { t } = useTranslation()
   const key = `nb_like_${slug}`
-  const [liked, setLiked] = useState(() => getCookie(key) === 'true')
+  const [liked, setLiked] = useState(() => getLocal(key) === 'true')
 
   function toggle() {
     const next = !liked
     setLiked(next)
-    setCookie(key, String(next))
+    setLocal(key, String(next))
   }
 
   return (
@@ -316,7 +316,7 @@ function SidebarShare({ edicao, setView }) {
   const { t } = useTranslation()
   const [copied, setCopied] = useState(false)
   const saveKey = `nb_save_${edicao.slug}`
-  const [saved, setSaved] = useState(() => getCookie(saveKey) === 'true')
+  const [saved, setSaved] = useState(() => getLocal(saveKey) === 'true')
   const canonicalUrl = absoluteUrl(`/edicoes/${edicao.slug}`)
 
   async function copiar() {
@@ -337,7 +337,7 @@ function SidebarShare({ edicao, setView }) {
   function toggleSaved() {
     const next = !saved
     setSaved(next)
-    setCookie(saveKey, String(next))
+    setLocal(saveKey, String(next))
   }
 
   return (
@@ -570,7 +570,7 @@ export default function EdicaoView({ edicao, setView }) {
   const hasMore = parts.length > 1
   const rest = parts.slice(1).join('\n\n---\n\n')
   const editionCopy = getEditionCopy(edicao, t)
-  const storedEmail = normalizeEmail(getCookie('nb_email'))
+  const storedEmail = normalizeEmail(getLocal('nb_email'))
   const initialUrlEmail = normalizeEmail(new URLSearchParams(window.location.search).get('email'))
   const [unlocked, setUnlocked] = useState(() => !hasMore)
   const [checkingAccess, setCheckingAccess] = useState(() => {
@@ -598,7 +598,7 @@ export default function EdicaoView({ edicao, setView }) {
     let cancelled = false
     const params = new URLSearchParams(window.location.search)
     const emailFromUrl = normalizeEmail(params.get('email'))
-    const emailFromCookie = normalizeEmail(getCookie('nb_email'))
+    const emailFromCookie = normalizeEmail(getLocal('nb_email'))
     const emailToValidate = emailFromUrl || emailFromCookie
 
     if (!hasMore) {
@@ -621,16 +621,16 @@ export default function EdicaoView({ edicao, setView }) {
 
         if (!response.ok || cancelled) {
           setUnlocked(false)
-          if (emailFromCookie) setCookie('nb_email', '', -1)
+          if (emailFromCookie) setLocal('nb_email', '')
           return
         }
 
         const data = await response.json()
         if (data.isSubscribed) {
-          setCookie('nb_email', emailToValidate)
+          setLocal('nb_email', emailToValidate)
           if (!cancelled) setUnlocked(true)
         } else {
-          if (emailFromCookie) setCookie('nb_email', '', -1)
+          if (emailFromCookie) setLocal('nb_email', '')
           if (!cancelled) setUnlocked(false)
         }
       } catch {
