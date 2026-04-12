@@ -17,6 +17,8 @@ Até conhecer a Bia. Ela me inseriu no universo dos brechós com a paciência de
 
 A ideia era chegar em Berlim e ir construindo um guarda-roupa. Não por vaidade. Boa parte pelo frio mesmo.
 
+---
+
 Dito e feito. Cada esquina que dobro aqui tem uma Second Hand. Lembrei automaticamente do meu pai, o libriano mais vaidoso da família, e percebi que estava entrando em todo lugar que jamais entraria em outros tempos. Second hand, vintage, está em quase tudo, em quase todas as ruas. É como a cidade funciona.
 
 Você vê o tempo todo sacolas de doação nas frentes das casas, roupas, sapatos, tênis, caixas de som, objetos de decoração, sofás. A gente brinca que daria para montar um brechó ou uma casa, com tanta coisa que eles simplesmente repassam.
